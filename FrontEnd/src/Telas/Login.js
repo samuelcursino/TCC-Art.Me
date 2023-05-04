@@ -10,7 +10,7 @@ import Estilo from './Estilo';
 const Login = ({ navigation }) => {
 
   const handleClickLogin = async (values) => {
-    axios.get(`http://10.0.1.90:3005/listarUsuarioEMAIL/${values.email}/${values.password}`, {
+    axios.get(`http://10.0.3.107:3005/listarUsuarioEMAIL/${values.email}/${values.password}`, {
       email: values.email,
       password: values.password,
     })

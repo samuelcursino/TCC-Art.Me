@@ -63,6 +63,7 @@ const Estilo = StyleSheet.create({
       borderRadius: 25,
       height: 45,
       marginBottom: 20,
+      marginTop: 10,
       justifyContent: 'center',
       padding: 20,
     },
@@ -122,7 +123,8 @@ const Estilo = StyleSheet.create({
   
     titulo: {
      flexDirection: 'row',
-     flex:1
+     flex:1,
+     marginBottom: 30,
     },
 
     msgErro: {
@@ -176,8 +178,7 @@ const Estilo = StyleSheet.create({
       campos: {
         flexDirection: 'row',
         flex:1,
-        justifyContent: 'center'   
-         
+        justifyContent: 'center',
        },
     
        inputcurto: {

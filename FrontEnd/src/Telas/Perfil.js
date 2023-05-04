@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 import Estilo from './Estilo';
 
 const Trabalhos = () => {
   return (
     <View>
-      <Text>
-        Trabalhos1
-      </Text>
+       <ImageBackground source={require('../../assets/Imagens/fixar-mapa.png')} style={styles.museu} >
+        <View style={{justifyContent:'center',alignItems:'center',alignContent:'center'}}>
+          <Text style={{color:'white'}}>Vendido</Text>
+        </View>
+        </ImageBackground>
     </View>
   )
 };
@@ -102,7 +104,7 @@ const Perfil = () => {
     <ScrollView>
 
       <View style={styles.tela}>
-        <Image source={require('../../assets/Imagens/Vetor.png')} style={styles.vetor} />
+        <Image source={require('../../assets/Imagens/Vetor.png')} style={styles.vet} />
         <View style={styles.beck}>
           <Text style={styles.edit}>
             Editar
@@ -229,8 +231,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20
   },
   museu: {
-    width: 24,
-    height: 24,
+    width: 250,
+    height: 250,
   },
   textocarac: {
     padding: 5
@@ -245,6 +247,11 @@ const styles = StyleSheet.create({
   },
   escolhas: {
     marginHorizontal: 10
+  },
+  vet: {
+    width: 32,
+    height: 32,
+   
   }
 });
 

@@ -9,7 +9,7 @@ const Cadastro = ({ navigation }) => {
 
   // Axios Cadastro
 const handleClickCadastro = async (values) => {
-  axios.post("http://10.0.1.90:3005/cadastrarUsuario", {
+  axios.post("http://10.0.3.107:3005/cadastrarUsuario", {
     nome: values.nome,
     email: values.email,
     password: values.password,
@@ -49,11 +49,11 @@ const validationCadastro = yup.object().shape({
 
   telefone: yup
   .string()
-  .required("Campo obrigatório"),
+  .required("Obrigatório"),
 
   uf: yup
   .string()
-  .required("Campo obrigatório"),
+  .required("Obrigatório"),
   
 })
 
@@ -63,9 +63,9 @@ const validationCadastro = yup.object().shape({
   // const [message, setMessage] = useState(null);
 
   //informaria caso o cadastro fosse completado
-  const handleCadastroSuccess = ()=>{
-    navigation.navigate('Menu');
-  }
+  // const handleCadastroSuccess = ()=>{
+  //   navigation.navigate('Menu');
+  // }
 
   // useEffect(()=>{
   //   if(enviar==true){ 
@@ -97,6 +97,7 @@ const validationCadastro = yup.object().shape({
   // const { nome, email, password, telefone, uf } = userInfo;
 
   return (
+    <ScrollView>
     <Formik
       
     validationSchema={validationCadastro}
@@ -135,9 +136,7 @@ const validationCadastro = yup.object().shape({
 
             {/* input nome */}
             < View style={Estilo.inputView}>
-              {touched.nome && errors.nome &&
-                  <Text style={Estilo.msgErro}>{errors.nome}</Text>
-              }
+              
               <TextInput
                 style={Estilo.inputText}
                 placeholder="Nome"
@@ -145,14 +144,14 @@ const validationCadastro = yup.object().shape({
                 value={values.nome}
                 onChangeText={handleChange('nome')}
                 onBlur={() => setFieldTouched('nome')}                
-              />              
+              />   
+               {touched.nome && <Text style={Estilo.msgErro}>{errors.nome}</Text>}    
+
             </View>
 
             {/* input email */}
             <View style={Estilo.inputView}>
-              {touched.email && errors.email &&
-                  <Text style={Estilo.msgErro}>{errors.email}</Text>
-              }
+              
               <TextInput
                 style={Estilo.inputText}
                 placeholder="Email"
@@ -161,13 +160,13 @@ const validationCadastro = yup.object().shape({
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
               />
+              {touched.email && <Text style={Estilo.msgErro}>{errors.email}</Text>}
+
             </View>
 
             {/* input senha */}
             <View style={Estilo.inputView}>
-              {errors.password && errors.password &&
-                  <Text style={Estilo.msgErro}>{errors.password}</Text>
-              }
+              
               <TextInput
                 style={Estilo.inputText}
                 placeholder="Senha"
@@ -177,6 +176,8 @@ const validationCadastro = yup.object().shape({
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
               />
+              {errors.password && <Text style={Estilo.msgErro}>{errors.password}</Text>}
+
             </View>
 
             {/* input curtos */}
@@ -184,24 +185,22 @@ const validationCadastro = yup.object().shape({
 
               {/* input telefone */}
               <View style={Estilo.inputcurto}>
-                {errors.telefone && errors.telefone &&
-                    <Text style={Estilo.msgErro}>{errors.telefone}</Text>
-                }
+
                 <TextInput
                   style={Estilo.inputText}
                   placeholder="Telefone"
                   placeholderTextColor="#F97316"
                   value={values.telefone}
                   onChangeText={handleChange('telefone')}
-                onBlur={handleBlur('telefone')}
+                  onBlur={handleBlur('telefone')}
                 />
+                {errors.telefone && <Text style={Estilo.msgErro}>{errors.telefone}</Text>}
+
               </View>
 
               {/* input estado */}
               <View style={Estilo.inputcurto}>
-                {errors.uf && errors.uf &&
-                    <Text style={Estilo.msgErro}>{errors.uf}</Text>
-                }
+                
                 <TextInput
                   style={Estilo.inputText}
                   placeholder="UF"
@@ -210,6 +209,8 @@ const validationCadastro = yup.object().shape({
                   onChangeText={handleChange('uf')}
                   onBlur={handleBlur('uf')}
                 />
+                {errors.uf && <Text style={Estilo.msgErro}>{errors.uf}</Text>}
+
               </View>
             </View>
             
@@ -239,7 +240,7 @@ const validationCadastro = yup.object().shape({
       }
 
     </Formik >
-
+    </ScrollView>
 
   );
 
