@@ -9,7 +9,7 @@ const Cadastro = ({ navigation }) => {
 
   // Axios Cadastro
 const handleClickCadastro = async (values) => {
-  axios.post("http://10.0.3.107:3005/cadastrarUsuario", {
+  axios.post("http://192.168.100.6:3005/cadastrarUsuario", {
     nome: values.nome,
     email: values.email,
     password: values.password,
@@ -238,7 +238,7 @@ const validationCadastro = yup.object().shape({
 
       )
       }
-
+ 
     </Formik >
     </ScrollView>
 

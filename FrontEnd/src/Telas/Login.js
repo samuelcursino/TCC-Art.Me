@@ -10,7 +10,7 @@ import Estilo from './Estilo';
 const Login = ({ navigation }) => {
 
   const handleClickLogin = async (values) => {
-    axios.get(`http://10.0.3.107:3005/listarUsuarioEMAIL/${values.email}/${values.password}`, {
+    axios.get(`http://192.168.100.6:3005/listarUsuarioEMAIL/${values.email}/${values.password}`, {
       email: values.email,
       password: values.password,
     })
@@ -41,11 +41,11 @@ const Login = ({ navigation }) => {
       console.log("Dados nao encontrados!")
   }, [dados])
 
-  function ValidationLogin() {
-    let dados = {
-      email: email,
-      password: password,
-    }
+  function ValidationLogin(dados) {
+    // let dados = {
+    //   email: email,
+    //   password: password,
+    // }
     if (dados != null) {
       navigation.navigate('Menu')
     } else {
@@ -61,7 +61,7 @@ const Login = ({ navigation }) => {
         password: ''
       }}
 
-      onSubmit={values => { handleClickLogin(values), ValidationLogin }}
+      onSubmit={values => { handleClickLogin(values), ValidationLogin(dados) }}
     // onSubmit={values => console.log(values)}
     >
 
