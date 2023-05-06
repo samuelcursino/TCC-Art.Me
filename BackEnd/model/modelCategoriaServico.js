@@ -13,7 +13,7 @@ const modelCategoriaServico = connection.define(
             primaryKey: true,
             autoIncrement:true
         },
-        desc_categoria:{
+        nome_categoria:{
             type: Sequelize.STRING(100),
             allowNull: false
         }

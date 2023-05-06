@@ -8,7 +8,7 @@ const Menu = () => {
       <View style={{ flexDirection: 'row' }}>
         <Image source={require('../../assets/Imagens/Vetor.png')} style={styles.vetor} />
         <View style={styles.selecao}>
-          <Text style={styles.txtsamuel}>Oi, Usuário!</Text>
+          <Text style={styles.txtusuario}>Oi, Usuário!</Text>
           <Image source={require('../../assets/Imagens/usuarioM.png')} style={styles.artista} />
         </View>
       </View>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     marginVertical:40,
     right: 140
   },
-  txtsamuel: {
+  txtusuario: {
     direction: 'rtl',
     fontSize: 22,
     marginTop: 80,

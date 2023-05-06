@@ -29,6 +29,10 @@ const modelUsuario = connection.define(
             type: Sequelize.STRING(20),
             allowNull: false
         },
+        bio:{
+            type: Sequelize.STRING(400),
+            allowNull: false
+        },
         
     }
 );
