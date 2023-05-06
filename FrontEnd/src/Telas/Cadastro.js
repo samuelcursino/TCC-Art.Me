@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, Modal } from 'react-native';
+import { StyleSheet, 
+         Text,
+         View,
+         TextInput,
+         TouchableOpacity,
+         Image,
+         ScrollView
+        } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from "yup";
 import axios from "axios";
-import Estilo from './Estilo';
 
 const Cadastro = ({ navigation }) => {
 
   // Axios Cadastro
 const handleClickCadastro = async (values) => {
-  axios.post("http://192.168.100.6:3005/cadastrarUsuario", {
+  axios.post("http://192.168.100.7:3005/cadastrarUsuario", {
     nome: values.nome,
     email: values.email,
     password: values.password,
@@ -49,52 +55,14 @@ const validationCadastro = yup.object().shape({
 
   telefone: yup
   .string()
-  .required("Obrigatório"),
+  .required("Campo Obrigatório"),
 
   uf: yup
   .string()
-  .required("Obrigatório"),
+  .required("Campo Obrigatório"),
   
 })
 
-  // const [showModal, setShowModal] = useState(false);
-  // const [enviar, setEnviar] = useState(false);
-  // const [dados, setDados] = useState();
-  // const [message, setMessage] = useState(null);
-
-  //informaria caso o cadastro fosse completado
-  // const handleCadastroSuccess = ()=>{
-  //   navigation.navigate('Menu');
-  // }
-
-  // useEffect(()=>{
-  //   if(enviar==true){ 
-  //     console.log(dados)
-  //     handleClickCadastro(dados)
-  //     setDados({})
-  //     setEnviar(false)
-  //   }
-   
-  //   return () => {
-  //     setDados([])
-  //     setEnviar(false)
-  //   }
-
-  // }, [enviar]);
-
-  // teoricamente não usado
-  // const userInfo = {
-  //   nome: '',
-  //   email: '',
-  //   password: '',
-  //   telefone: '',
-  //   uf: '',
-  // };
-
-  // const [error, setError] = useState('');
-
-  // teoricamente não usado
-  // const { nome, email, password, telefone, uf } = userInfo;
 
   return (
     <ScrollView>
@@ -123,52 +91,57 @@ const validationCadastro = yup.object().shape({
           values 
         }) => (
 
-        <View style={Estilo.tela}>
-          <Image source={require('../../assets/Imagens/artmelogo4.png')} style={Estilo.image} />
-          <View style={Estilo.containerCadastro}>
+        <View style={StyleCadastro.tela}>
+          
+          <Image source={require('../../assets/Imagens/artmelogo4.png')} style={StyleCadastro.image} />
 
-            <View style={Estilo.titulo}>
-              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text style={Estilo.logoCadastro}>Login</Text>
-              </TouchableOpacity>
-              <Text style={Estilo.logo}>Cadastrar</Text>
-            </View>
+            <View style={StyleCadastro.containerCadastro}>
+
+              <View style={StyleCadastro.titulo}>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                  <Text style={StyleCadastro.clickLogin}>Login</Text>
+                </TouchableOpacity>
+
+                <Text style={StyleCadastro.clickCadastro}>Cadastrar</Text>
+
+              </View>
 
             {/* input nome */}
-            < View style={Estilo.inputView}>
+            < View style={StyleCadastro.inputView}>
               
               <TextInput
-                style={Estilo.inputText}
+                style={StyleCadastro.inputText}
                 placeholder="Nome"
                 placeholderTextColor="#F97316"
                 value={values.nome}
                 onChangeText={handleChange('nome')}
                 onBlur={() => setFieldTouched('nome')}                
               />   
-               {touched.nome && <Text style={Estilo.msgErro}>{errors.nome}</Text>}    
+               {touched.nome && <Text style={StyleCadastro.msgErro}>{errors.nome}</Text>}    
 
             </View>
 
             {/* input email */}
-            <View style={Estilo.inputView}>
+            <View style={StyleCadastro.inputView}>
               
               <TextInput
-                style={Estilo.inputText}
+                style={StyleCadastro.inputText}
                 placeholder="Email"
                 placeholderTextColor="#F97316"
                 value={values.email}
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
               />
-              {touched.email && <Text style={Estilo.msgErro}>{errors.email}</Text>}
+              {touched.email && <Text style={StyleCadastro.msgErro}>{errors.email}</Text>}
 
             </View>
 
             {/* input senha */}
-            <View style={Estilo.inputView}>
+            <View style={StyleCadastro.inputView}>
               
               <TextInput
-                style={Estilo.inputText}
+                style={StyleCadastro.inputText}
                 placeholder="Senha"
                 placeholderTextColor="#F97316"
                 value={values.password}
@@ -176,74 +149,269 @@ const validationCadastro = yup.object().shape({
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
               />
-              {errors.password && <Text style={Estilo.msgErro}>{errors.password}</Text>}
+              {errors.password && <Text style={StyleCadastro.msgErro}>{errors.password}</Text>}
 
             </View>
 
             {/* input curtos */}
-            <View style={Estilo.campos}>
+            <View style={StyleCadastro.campos}>
 
               {/* input telefone */}
-              <View style={Estilo.inputcurto}>
+              <View style={StyleCadastro.inputViewCurto}>
 
                 <TextInput
-                  style={Estilo.inputText}
+                  style={StyleCadastro.inputTextCurto}
                   placeholder="Telefone"
                   placeholderTextColor="#F97316"
                   value={values.telefone}
                   onChangeText={handleChange('telefone')}
                   onBlur={handleBlur('telefone')}
                 />
-                {errors.telefone && <Text style={Estilo.msgErro}>{errors.telefone}</Text>}
+                {errors.telefone && <Text style={StyleCadastro.msgErroCurta}>{errors.telefone}</Text>}
 
               </View>
 
               {/* input estado */}
-              <View style={Estilo.inputcurto}>
+              <View style={StyleCadastro.inputViewCurto}>
                 
                 <TextInput
-                  style={Estilo.inputText}
+                  style={StyleCadastro.inputTextCurto}
                   placeholder="UF"
                   placeholderTextColor="#F97316"
                   value={values.uf}
                   onChangeText={handleChange('uf')}
                   onBlur={handleBlur('uf')}
                 />
-                {errors.uf && <Text style={Estilo.msgErro}>{errors.uf}</Text>}
+                {errors.uf && <Text style={StyleCadastro.msgErroCurta}>{errors.uf}</Text>}
 
               </View>
-            </View>
-            
-            {/* <TouchableOpacity style={Estilo.loginButton} onPress={() => navigation.navigate('Menu')}>
-              <Text style={Estilo.loginText}>Entrar</Text>
-            </TouchableOpacity> */}
 
-            <TouchableOpacity style={Estilo.loginButton} onPress={handleSubmit} disabled={!isValid}>
-              <Text style={Estilo.loginText}>Cadastrar</Text>
+            </View>      
+
+            <TouchableOpacity style={StyleCadastro.loginButton} onPress={handleSubmit} disabled={!isValid}>
+              <Text style={StyleCadastro.loginText}>Cadastrar</Text>
             </TouchableOpacity>
-
-            {/* <Modal visible={showModal}>
-              <View style={Estilo.modalContainer}>
-                  <Text style={Estilo.modalText}>Cadastro realizado com sucesso!</Text>
-                  <TouchableOpacity style={Estilo.modalButton} onPress={() => setShowModal(false)}>
-                  <Text style={Estilo.modalButtonText}>OK</Text>
-                  </TouchableOpacity>
-              </View>
-            </Modal> */}
-
-
+          
           </View>
         </View>
+        
+      )}
 
-
-      )
-      }
- 
     </Formik >
     </ScrollView>
 
   );
 
 }
+
+const StyleCadastro = StyleSheet.create({
+
+  tela: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  //imagem
+  image: {  
+    height: 100,
+    width: 210,
+    margin: 30         
+  },
+
+  titulo: {
+    flexDirection: 'row',
+    flex:1,
+    marginBottom: 30,
+   },
+
+ // Container da página Cadastro
+ containerCadastro: {
+  borderRadius: 30,
+  paddingVertical: 20,
+  width: 310,
+  height: 460,
+  backgroundColor: '#FFC700',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+// Botão de cadastro
+botaocadastrar2: {
+  borderWidth: 1,
+  borderColor: '#F97316',
+  width: 130,
+  height: 50,
+  borderRadius: 70,
+  paddingHorizontal: 20,
+  backgroundColor: 'white',
+  padding: 10,
+  marginBottom: 40,
+}, 
+
+  // Botão de escolher Cadastrar
+  clickCadastro: {
+    textAlign: 'center',
+    alignContent: 'center',
+    borderRadius: 70,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#F97316',      
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: 'white',
+    marginBottom: 20,
+    padding: 14,
+    width: 130,
+    height: 50,
+  },
+
+//Botao de escolher Login
+clickLogin: {  
+  textAlign: 'center',
+  borderRadius: 70,
+  borderWidth: 1,
+  borderColor: '#F97316',
+  alignContent: 'center',
+  backgroundColor: 'white',
+  padding: 14,
+  fontWeight: 'bold',
+  fontSize: 18,
+  color: '#F97316',
+  width: 130,
+  height: 50,
+},
+
+//View do input Nome, Email e Senha
+inputView: {
+  width: 270,  
+  height: 60,
+  marginBottom: 10,
+  justifyContent: 'center',
+},
+
+// Texto do Placeholder do Nome, Email e Senha
+inputText: {
+  width: 270,
+  fontSize: 19,
+  height: 45,
+  backgroundColor: '#fff',
+  color: '#F97316',
+  borderRadius: 25,
+  padding: 10,
+  paddingLeft: 20,
+  justifyContent: 'center',
+},
+
+// Texto do Placeholder do Telefone e UF
+inputTextCurto: {
+  width: 130,
+  fontSize: 19,
+  height: 45,
+  backgroundColor: '#fff',
+  color: '#F97316',
+  borderRadius: 25,
+  padding: 10,
+  paddingLeft: 15,
+  justifyContent: 'center',
+},
+
+campos: {
+  flexDirection: 'row',
+  flex:1,
+  justifyContent: 'center',
+ },
+
+ inputViewCurto: {
+  width: 130,
+  height: 60,
+  marginBottom: 10,
+  justifyContent: 'center',
+  marginHorizontal: 7,
+  fontSize: 19,
+},
+
+// Modal
+modalContainer: {
+  borderRadius: 30,
+  paddingVertical: 20,
+  width: '80%',
+  height: 460,
+  backgroundColor: '#FFC700',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+modalText: {
+fontSize: 19,
+color: 'white',
+fontWeight: 'bold',
+textAlign:'center',
+},
+
+modalButton: {
+textAlign: 'center',
+width: '40%',
+height: 40,
+borderRadius: 40,
+alignContent: 'center',
+justifyContent: 'center',
+paddingHorizontal: 20,
+backgroundColor: '#F97316',
+padding: 5,
+fontSize: 10,
+margin: 30,
+},
+
+modalButtonText: {
+textAlign: 'center',
+alignContent: 'center',
+justifyContent: 'center',
+fontWeight: 'bold',
+fontSize: 18,
+color: '#F97316',    
+borderRadius: 70,
+backgroundColor: 'white',
+},
+
+msgErro: {
+  fontSize: 15,
+  color: 'red',
+  height: 20,
+  paddingLeft: 35
+},
+
+msgErroCurta: {
+  fontSize: 15,
+  color: 'red',
+  height: 20,
+  // paddingLeft: 35
+},
+
+//Botão de Entrar
+loginButton: {
+  textAlign: 'center',
+  width: 130,
+  height: 40,
+  borderRadius: 40,
+  alignContent: 'center',
+  justifyContent: 'center',
+  paddingHorizontal: 20,
+  backgroundColor: '#F97316',
+  padding: 5,
+  fontSize: 10,
+  margin: 30,
+},
+
+// Fonte do Botão Entrar
+loginText: {
+  fontSize: 19,
+  color: 'white',
+  fontWeight: 'bold',
+  textAlign:'center',
+},
+
+})
 
 export default Cadastro;

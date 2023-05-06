@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
-import Estilo from './Estilo';
 
 const Trabalhos = () => {
   return (
     <View>
-       <ImageBackground source={require('../../assets/Imagens/fixar-mapa.png')} style={styles.museu} >
+       <ImageBackground source={require('../../assets/Imagens/fixar-mapa.png')} style={stylePerfil.museu} >
         <View style={{justifyContent:'center',alignItems:'center',alignContent:'center'}}>
           <Text style={{color:'white'}}>Vendido</Text>
         </View>
@@ -17,11 +16,11 @@ const Trabalhos = () => {
 const Sobre = () => {
   return (
     <View>
-      <Text style={styles.red}>
+      <Text style={stylePerfil.red}>
         Pintor de Quadros
       </Text>
 
-      <Text style={styles.texto1}>
+      <Text style={stylePerfil.texto1}>
         olá, prazer!!
 
         Sou artista no ramo de pintura de quadros e artesanato.
@@ -29,22 +28,22 @@ const Sobre = () => {
       </Text>
 
 
-      <Text style={styles.texto1}>
+      <Text style={stylePerfil.texto1}>
         Tenho como objetivo principal "Transformar o mundo através da arte". Eu acredito
         que somente através da pintura será possível impactar (em grande escala) a sociedade e
         o meio ambiente e transformar positivamente o mundo.
       </Text>
 
-      <View style={styles.carac}>
-        <View style={styles.caixacarac}>
-          <Image source={require('../../assets/Imagens/museu.png')} style={styles.museu} />
-          <Text style={styles.textocarac}>
+      <View style={stylePerfil.carac}>
+        <View style={stylePerfil.caixacarac}>
+          <Image source={require('../../assets/Imagens/museu.png')} style={stylePerfil.museu} />
+          <Text style={stylePerfil.textocarac}>
             Formado em Artes Visuais
           </Text>
         </View>
-        <View style={styles.caixacarac}>
-          <Image source={require('../../assets/Imagens/fixar-mapa.png')} style={styles.museu} />
-          <Text style={styles.textocarac}>
+        <View style={stylePerfil.caixacarac}>
+          <Image source={require('../../assets/Imagens/fixar-mapa.png')} style={stylePerfil.museu} />
+          <Text style={stylePerfil.textocarac}>
             Sao Paulo
           </Text>
         </View>
@@ -103,43 +102,43 @@ const Perfil = () => {
   return (
     <ScrollView>
 
-      <View style={styles.tela}>
-        <Image source={require('../../assets/Imagens/Vetor.png')} style={styles.vet} />
-        <View style={styles.beck}>
-          <Text style={styles.edit}>
+      <View style={stylePerfil.tela}>
+        <Image source={require('../../assets/Imagens/Vetor.png')} style={stylePerfil.vet} />
+        <View style={stylePerfil.beck}>
+          <Text style={stylePerfil.edit}>
             Editar
           </Text>
 
-          <Image source={require('../../assets/Imagens/usuarioM.png')} style={styles.margem} />
+          <Image source={require('../../assets/Imagens/usuarioM.png')} style={stylePerfil.margem} />
 
-          <Text style={styles.samu}>
+          <Text style={stylePerfil.samu}>
             Samuel Cursino
           </Text>
-          <Text style={styles.samu}>
+          <Text style={stylePerfil.samu}>
             10K Seguidores 12K Seguindo
           </Text>
         </View>
 
         <View>
-          <View style={styles.botoes}>
-            <TouchableOpacity style={styles.escolhas} onPress={() => setClicou(1)}>
+          <View style={stylePerfil.botoes}>
+            <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(1)}>
               <Text>
                 Trabalhos
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.escolhas} onPress={() => setClicou(2)}>
+            <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(2)}>
               <Text>Sobre</Text>
 
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.escolhas} onPress={() => setClicou(3)}>
+            <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(3)}>
               <Text>
                 Vendas
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.escolhas} onPress={() => setClicou(4)}>
+            <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(4)}>
               <Text>
                 Rascunhos
               </Text>
@@ -168,7 +167,7 @@ const Perfil = () => {
   )
 }
 
-const styles = StyleSheet.create({
+const stylePerfil = StyleSheet.create({
   containerLogin: {
     margin: 80,
     alignItems: 'center',

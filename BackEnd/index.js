@@ -1,4 +1,4 @@
-//Express e cors sendo importado e atribuído à uma constante
+//Express e cors sendo importado e atribuído a uma constante
 const express = require('express');
 const cors = require("cors");
 

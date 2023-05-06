@@ -9,7 +9,7 @@ const connection = new Sequelize(
     'root',
 
     //Senha do usuário do banco de dados (nada)
-    '12345678',
+    '',
     {
         host:'localhost',
         port: '3306',
