@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, 
-         Text,
-         View,
-         TextInput,
-         TouchableOpacity,
-         Image,
-         ScrollView
-        } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from "yup";
 import axios from "axios";
+import configuration from '../../configuration.json';
+import { 
+  StyleSheet, 
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView
+  } from 'react-native';
+
 
 const Cadastro = ({ navigation }) => {
 
   // Axios Cadastro
 const handleClickCadastro = async (values) => {
-  axios.post("http://192.168.100.7:3005/cadastrarUsuario", {
+  axios.post(`${configuration.url}/cadastrarUsuario`, {
     nome: values.nome,
     email: values.email,
     password: values.password,
@@ -41,11 +44,12 @@ const validationCadastro = yup.object().shape({
   
   nome: yup
   .string()
-  .required("Este campo é obrigatório"),
+  .required("Este campo é obrigatório")
+  .matches(/^[A-z]+$/ , 'Nome inválido'),
     
   email: yup
   .string()
-  .email('Não é um Email')
+  .email('Email inválido')
   .required("Este campo é obrigatório"),
 
   password: yup

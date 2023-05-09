@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView
-} from 'react-native';
 import { Formik } from 'formik';
 import * as yup from "yup";
 import axios from "axios";
+import configuration from '../../configuration.json';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  } from 'react-native';
+
+//importando modulo AsyncStorage para salvar dados do login
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
 
   const handleClickLogin = async (values) => {
-    axios.get(`http://192.168.100.7:3005/listarUsuarioEMAIL/${values.email}/${values.password}`, {
+    axios.get(`${configuration.url}/listarUsuarioEMAIL/${values.email}/${values.password}`, {
       email: values.email,
       password: values.password,
     })
@@ -17,6 +26,8 @@ const Login = ({ navigation }) => {
       .then(function (response) {
         console.log(response.data)
         setDados(response.data.data)
+        //armazenando dados do usuario em cache 
+         AsyncStorage.setItem('usuarioData', JSON.stringify(response.data.data))
 
         if (response == 201) {
         } else if (response == 404) {
@@ -28,7 +39,7 @@ const Login = ({ navigation }) => {
       })
   }
 
-  const [dados, setDados] = useState({});
+  const [dados, setDados] = useState(null);
   // const [email, setEmail] = useState(null);
   // const [password, setPassword] = useState(null);
 
@@ -60,9 +71,9 @@ const Login = ({ navigation }) => {
     //   password: password,
     // }
     if (dados != null) {
-      navigation.navigate('Menu')
+      navigation.navigate("Menu")
     } else {
-      alert("Login invalido!")
+      alert("Login inválido!")
     }
   }
 

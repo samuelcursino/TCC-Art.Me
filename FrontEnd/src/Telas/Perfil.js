@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
+import { 
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  ImageBackground 
+  } from 'react-native';
+
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Trabalhos = () => {
   return (
@@ -99,6 +110,24 @@ const Perfil = () => {
     clicou === 4 ? (setMostrarRascunhos(true)) : (setMostrarRascunhos(false))
   }, [clicou])
 
+  
+
+  const [usuario, setUsuario] = useState([])
+  console.log(usuario);
+
+  useEffect(() => {
+    getUsuario();
+  }, []);
+
+ 
+
+  async function getUsuario() {
+    let response = await AsyncStorage.getItem('usuarioData')
+    let json = JSON.parse(response)
+    setUsuario(json)
+  }
+
+
   return (
     <ScrollView>
 
@@ -112,10 +141,10 @@ const Perfil = () => {
           <Image source={require('../../assets/Imagens/usuarioM.png')} style={stylePerfil.margem} />
 
           <Text style={stylePerfil.samu}>
-            Samuel Cursino
+            {usuario.nome}
           </Text>
           <Text style={stylePerfil.samu}>
-            10K Seguidores 12K Seguindo
+            {/* 10K Seguidores 12K Seguindo */}
           </Text>
         </View>
 

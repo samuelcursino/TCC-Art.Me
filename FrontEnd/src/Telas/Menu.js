@@ -1,27 +1,52 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native';
+import React, {useState, useEffect} from 'react';
 import BotaoCategoria from './BotaoCategoria';
+import { 
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView 
+  } from 'react-native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Menu = () => {
+
+  const [usuario, setUsuario] = useState([])
+  console.log(usuario);
+
+  useEffect(() => {
+    getUsuario();
+  }, []);
+
+ 
+
+  async function getUsuario() {
+    let response = await AsyncStorage.getItem('usuarioData')
+    let json = JSON.parse(response)
+    setUsuario(json)
+  }
+
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style={{ flexDirection: 'row' }}>
         <Image source={require('../../assets/Imagens/Vetor.png')} style={styles.vetor} />
         <View style={styles.selecao}>
-          <Text style={styles.txtusuario}>Oi, Usuário!</Text>
+          <Text style={styles.txtusuario}>Olá {usuario.nome}</Text>
           <Image source={require('../../assets/Imagens/usuarioM.png')} style={styles.artista} />
         </View>
       </View>
       <View style={styles.image}>
         <Image source={require('../../assets/Imagens/artistas.png')} style={styles.imgdetalhe} />
-        
+
       </View>
 
 
       <View style={styles.branco}>
         <ScrollView horizontal>
 
-          
+
           <BotaoCategoria texto={'Grafite'} imagem={require('../../assets/Imagens/grafite.png')} />
 
           <BotaoCategoria texto={'Pintor'} imagem={require('../../assets/Imagens/Pintor.png')} />
@@ -32,33 +57,32 @@ const Menu = () => {
         </ScrollView>
 
       </View>
-      
+
       <Text>Artistas Recomendados</Text>
-      
+
       <View style={styles.containeruser1}>
-      <Image source={require('../../assets/Imagens/art.png')} style={styles.cara} />
-      <Text>Jefferson
-        Santos Fotografo
-        <Image source={require('../../assets/Imagens/estrela.png')} style={styles.estrela} />
-      </Text>
-      
+        <Image source={require('../../assets/Imagens/art.png')} style={styles.cara} />
+        <Text>Jefferson
+          Santos Fotografo
+          <Image source={require('../../assets/Imagens/estrela.png')} style={styles.estrela} />
+        </Text>
+
       </View>
       <View style={styles.containeruser2}>
-      <Image source={require('../../assets/Imagens/art.png')} style={styles.cara} />
-      <Text>Jefferson
-        Santos Fotografo
-        <Image source={require('../../assets/Imagens/estrela.png')} style={styles.estrela} />
-      </Text>
-      
+        <Image source={require('../../assets/Imagens/art.png')} style={styles.cara} />
+        <Text>Jefferson
+          Santos Fotografo
+          <Image source={require('../../assets/Imagens/estrela.png')} style={styles.estrela} />
+        </Text>
+
       </View>
       <View>
-      
+
       </View>
     </View>
 
-
-  )
-}
+    </ScrollView>
+      )}
 
 const styles = StyleSheet.create({
   container: {
@@ -68,8 +92,8 @@ const styles = StyleSheet.create({
   artista: {
     height: 60,
     width: 60,
-    marginTop:12 ,
-    marginVertical:40,
+    marginTop: 12,
+    marginVertical: 40,
     right: 140
   },
   txtusuario: {
@@ -131,60 +155,60 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     marginHorizontal: 20
   },
-  imgdetalhe:{
-    alignItems:'center',
-    width:390,
-    height:146,
+  imgdetalhe: {
+    alignItems: 'center',
+    width: 390,
+    height: 146,
     left: 0,
     right: 7,
-    marginBottom:35,
-    borderRadius:16
-   
+    marginBottom: 35,
+    borderRadius: 16
+
   },
   containeruser1: {
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'center',
-     alignItems: 'center',
-      padding: 5,
-      width: 150,
-      height: 160, 
+    alignItems: 'center',
+    padding: 5,
+    width: 150,
+    height: 160,
     borderRadius: 2,
-     borderWidth: 4,
-      borderColor: '#F97316',
-       margin: 4,
-       backgroundColor: 'white',
-       borderRadius:12
+    borderWidth: 4,
+    borderColor: '#F97316',
+    margin: 4,
+    backgroundColor: 'white',
+    borderRadius: 12
 
-      },
-      containeruser2: {
-        display: 'flex', 
-        justifyContent: 'center',
-         alignItems: 'center',
-          padding: 5,
-          width: 150,
-          height: 160, 
-        borderRadius: 2,
-         borderWidth: 4,
-          borderColor: '#F97316',
-           margin: 4,
-           marginTop:-163,
-           backgroundColor: 'white',
-           borderRadius:12,
-           left:180
+  },
+  containeruser2: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    width: 150,
+    height: 160,
+    borderRadius: 2,
+    borderWidth: 4,
+    borderColor: '#F97316',
+    margin: 4,
+    marginTop: -163,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    left: 180
   },
   cara: {
-     height: 76,
-     width: 114,
-     marginVertical: 10,
+    height: 76,
+    width: 114,
+    marginVertical: 10,
     marginHorizontal: 5,
-    borderRadius:6,
-    
-    
+    borderRadius: 6,
+
+
   },
   estrela: {
     width: 10,
     height: 10,
-    marginHorizontal:10,
+    marginHorizontal: 10,
     marginVertical: 40
   }
 
