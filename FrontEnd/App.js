@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/Telas/Login';
 import Cadastro from './src/Telas/Cadastro';
-import Menu from './src/Telas/Menu';
+import Menu from './src/Telas/Menu/Menu';
 import MudarSenha from './src/Telas/MudarSenha';
 import BoasVindas from './src/Telas/BoasVindas';
 import Perfil from './src/Telas/Perfil';
@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer>
-       <Stack.Navigator initialRouteName='BoasVindas'>
+       <Stack.Navigator initialRouteName='Menu'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} />

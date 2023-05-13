@@ -44,8 +44,8 @@ const validationCadastro = yup.object().shape({
   
   nome: yup
   .string()
-  .required("Este campo é obrigatório")
-  .matches(/^[A-z]+$/ , 'Nome inválido'),
+  .required("Este campo é obrigatório"),
+  // .matches(/^[A-z]+$/ , 'Nome inválido'),
     
   email: yup
   .string()

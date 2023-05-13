@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import BotaoCategoria from './BotaoCategoria';
+import BotaoCategoria from '../Menu/BotaoCategoria';
 import { 
   View,
   Text,
   StyleSheet,
   Image,
-  ScrollView 
+  ScrollView, 
+  TouchableOpacity
   } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { Touchable } from 'react-native/types';
 
 const Menu = () => {
 
@@ -29,50 +31,53 @@ const Menu = () => {
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-      <View style={{ flexDirection: 'row' }}>
-        <Image source={require('../../assets/Imagens/Vetor.png')} style={styles.vetor} />
-        <View style={styles.selecao}>
-          <Text style={styles.txtusuario}>Olá {usuario.nome}</Text>
-          <Image source={require('../../assets/Imagens/usuarioM.png')} style={styles.artista} />
+      <View style={styleMenu.container}>
+        <View style={{ flexDirection: 'row' }}>
+          <Image source={require('../../../assets/Imagens/Vetor.png')} style={styleMenu.vetor} />
+            <View style={styleMenu.selecao}>              
+              <Text style={styleMenu.txtusuario}>Olá {usuario.nome}!</Text>
+            <Image source={require('../../../assets/Imagens/usuarioM.png')} style={styleMenu.fotoPerfil} />
+            
+          </View>
         </View>
-      </View>
-      <View style={styles.image}>
-        <Image source={require('../../assets/Imagens/artistas.png')} style={styles.imgdetalhe} />
-
+      <View style={styleMenu.image}>
+        <Image source={require('../../../assets/Imagens/artistas.png')} style={styleMenu.imgdetalhe} />
       </View>
 
+      
+      <View style={styleMenu.categorias}>
 
-      <View style={styles.branco}>
-        <ScrollView horizontal>
 
+        <TouchableOpacity>
+          <BotaoCategoria texto={'Pintores'} imagem={require('../../../assets/Imagens/Pintores.png')} />
+        </TouchableOpacity>
 
-          <BotaoCategoria texto={'Grafite'} imagem={require('../../assets/Imagens/grafite.png')} />
+        <TouchableOpacity>
+          <BotaoCategoria texto={'Fotógrafos'} imagem={require('../../../assets/Imagens/Fotografos.png')} />
+        </TouchableOpacity>
 
-          <BotaoCategoria texto={'Pintor'} imagem={require('../../assets/Imagens/Pintor.png')} />
-
-          <BotaoCategoria texto={'Pintor'} imagem={require('../../assets/Imagens/quadros.png')} />
-
-          <BotaoCategoria texto={'Pintor'} imagem={require('../../assets/Imagens/artesanato.png')} />
-        </ScrollView>
+        <TouchableOpacity>
+          <BotaoCategoria texto={'Músicos'} imagem={require('../../../assets/Imagens/Musicos.png')} />
+        </TouchableOpacity>
 
       </View>
+
 
       <Text>Artistas Recomendados</Text>
 
-      <View style={styles.containeruser1}>
-        <Image source={require('../../assets/Imagens/art.png')} style={styles.cara} />
+      <View style={styleMenu.containeruser1}>
+        <Image source={require('../../../assets/Imagens/art.png')} style={styleMenu.cara} />
         <Text>Jefferson
           Santos Fotografo
-          <Image source={require('../../assets/Imagens/estrela.png')} style={styles.estrela} />
+          <Image source={require('../../../assets/Imagens/estrela.png')} style={styleMenu.estrela} />
         </Text>
 
       </View>
-      <View style={styles.containeruser2}>
-        <Image source={require('../../assets/Imagens/art.png')} style={styles.cara} />
+      <View style={styleMenu.containeruser2}>
+        <Image source={require('../../../assets/Imagens/art.png')} style={styleMenu.cara} />
         <Text>Jefferson
           Santos Fotografo
-          <Image source={require('../../assets/Imagens/estrela.png')} style={styles.estrela} />
+          <Image source={require('../../../assets/Imagens/estrela.png')} style={styleMenu.estrela} />
         </Text>
 
       </View>
@@ -84,17 +89,19 @@ const Menu = () => {
     </ScrollView>
       )}
 
-const styles = StyleSheet.create({
+const styleMenu = StyleSheet.create({
   container: {
     backgroundColor: '#FFC700',
     flex: 1,
   },
-  artista: {
+  fotoPerfil: {
+    top: 20,
     height: 60,
     width: 60,
-    marginTop: 12,
-    marginVertical: 40,
-    right: 140
+    // marginEnd: 20, 
+    // paddingTop: 25,
+    right: 230,
+    position: 'absolute'
   },
   txtusuario: {
     direction: 'rtl',
@@ -102,7 +109,8 @@ const styles = StyleSheet.create({
     marginTop: 80,
     fontWeight: 'bold',
     marginVertical: 30,
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    color: 'white',
   },
   selecao: {
     direction: 'rtl',
@@ -128,9 +136,9 @@ const styles = StyleSheet.create({
     margin: 30,
     direction: 'ltr'
   },
-  branco: {
+  categorias: {
     backgroundColor: 'white',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   art: {
     width: 70,

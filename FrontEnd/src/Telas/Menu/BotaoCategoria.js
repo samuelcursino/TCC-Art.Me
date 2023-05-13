@@ -1,4 +1,34 @@
+import React from 'react';
 import { StyleSheet } from "react-native";
+import {
+    View, 
+    Text, 
+    Image
+} from 'react-native';
+
+const BotaoCategoria = (props) => {
+
+    const {texto, imagem} = props;
+
+    return (
+        <View style={{display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 8, 
+        borderRadius: 16,
+        borderWidth: 4,
+        borderColor: '#F97316',
+        margin: 10}}>
+
+            <Image source={imagem} style={styles.art} />
+
+          <Text style={{textAlign: 'center', fontWeight: 'bold'}}>{texto}</Text>
+          
+        </View>
+    );
+
+    
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -74,4 +104,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default styles;
+export default BotaoCategoria;
