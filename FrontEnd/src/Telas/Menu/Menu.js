@@ -74,25 +74,44 @@ const Menu = () => {
 
       <Text style={styleMenu.txtArtistasRecomendados}>Artistas Recomendados</Text>
 
-      <View style={styleMenu.containerUsuario1}>
-        <Image source={require('../../../assets/Imagens/art.png')} style={styleMenu.cara} />
-        <Text>Jefferson
-          Santos Fotografo
-          <Image source={require('../../../assets/Imagens/estrela.png')} style={styleMenu.estrela} />
-        </Text>
+      <TouchableOpacity>
+        <View style={styleMenu.containerUsuario1}>
+          <Image source={require('../../../assets/Imagens/FotoArtista.png')} style={styleMenu.fotoArtista} />
+            <Text style={styleMenu.txtNomeArtistas}>Jefferson</Text>
+            <Text style={styleMenu.txtNomeArtistas}>Santos</Text>
+            <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
+        </View>          
+      </TouchableOpacity>
 
-      </View>
-      <View style={styleMenu.containeruser2}>
-        <Image source={require('../../../assets/Imagens/art.png')} style={styleMenu.cara} />
-        <Text>Jefferson
-          Santos Fotografo
-          <Image source={require('../../../assets/Imagens/estrela.png')} style={styleMenu.estrela} />
-        </Text>
+      <TouchableOpacity>
+        <View style={styleMenu.containerUsuario2}>
+          <Image source={require('../../../assets/Imagens/FotoPintora.png')} style={styleMenu.fotoArtista} />
+            <Text style={styleMenu.txtNomeArtistasBranco}>Alice</Text>
+            <Text style={styleMenu.txtNomeArtistasBranco}>Duarte</Text>
+            <Text style={styleMenu.txtCategoriaArtistas}>Pintor</Text>
+        </View>
+      </TouchableOpacity>
 
-      </View>
+      <TouchableOpacity>
+        <View style={styleMenu.containerUsuario3}>
+          <Image source={require('../../../assets/Imagens/FotoArtista.png')} style={styleMenu.fotoArtista} />
+            <Text style={styleMenu.txtNomeArtistasBranco}>Jefferson</Text>
+            <Text style={styleMenu.txtNomeArtistasBranco}>Santos</Text>
+            <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
+        </View> 
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <View style={styleMenu.containerUsuario4}>
+          <Image source={require('../../../assets/Imagens/FotoArtista.png')} style={styleMenu.fotoArtista} />
+            <Text style={styleMenu.txtNomeArtistas}>Jefferson</Text>
+            <Text style={styleMenu.txtNomeArtistas}>Santos</Text>
+            <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
+        </View> 
+      </TouchableOpacity>
+
       <View>
-
-      </View>
+    </View>
   </View>
 
     </ScrollView>
@@ -136,11 +155,40 @@ const styleMenu = StyleSheet.create({
   },
 
   txtArtistasRecomendados: {
-    fontSize: 19,
+    fontSize: 17,
     marginTop: 20,
     margin: 5,
     marginHorizontal: 20,
     fontWeight: 'bold',
+  },
+
+  txtNomeArtistas: {
+    fontSize: 17,
+    // marginTop: 20,
+    // marginEnd: 50,
+    marginLeft: 7,
+    // marginHorizontal: 20,
+    fontWeight: 'bold',
+  },
+
+  txtNomeArtistasBranco: {
+    fontSize: 17,
+    // marginTop: 20,
+    // marginEnd: 50,
+    marginLeft: 7,
+    // marginHorizontal: 20,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+
+  txtCategoriaArtistas: {
+    fontSize: 12,
+    // marginTop: 20,
+    marginRight: 60,
+    marginLeft: 7,
+    color: '#970C0C'
+    // marginHorizontal: 20,
+    // fontWeight: 'bold',
   },
 
   selecao: {
@@ -204,56 +252,88 @@ const styleMenu = StyleSheet.create({
     // right: 7,
     marginBottom: 35,
   },
+
   containerUsuario1: {
-    display: 'flex',
+    // display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     padding: 5,
-    width: 150,
-    height: 160,
+    width: 170,
+    height: 180,
     borderWidth: 3,
     borderColor: '#F97316',
     margin: 4,
     backgroundColor: 'white',
     borderRadius: 22,
-    elevation: 50,
+    // elevation: 50,
+    left: 15
   },
-  containeruser2: {
-    display: 'flex',
+
+  containerUsuario2: {
+    // display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     padding: 5,
-    width: 150,
-    height: 160,
-    borderRadius: 2,
-    borderWidth: 4,
+    width: 170,
+    height: 180,
+    borderWidth: 3,
     borderColor: '#F97316',
     margin: 4,
-    marginTop: -163,
+    backgroundColor: '#F97316',
+    borderRadius: 22,
+    // elevation: 50,
+    marginTop: -185,
+    left: 200
+  },
+
+  containerUsuario3: {
+    // display: 'flex',
+    justifyContent: 'center',
+    // alignItems: 'center',
+    padding: 5,
+    width: 170,
+    height: 180,
+    borderWidth: 3,
+    borderColor: '#F97316',
+    margin: 4,
+    backgroundColor: '#F97316',
+    borderRadius: 22,
+    // elevation: 50,
+    left: 15
+  },
+
+  containerUsuario4: {
+    // display: 'flex',
+    justifyContent: 'center',
+    // alignItems: 'center',
+    padding: 5,
+    width: 170,
+    height: 180,
+    borderWidth: 3,
+    borderColor: '#F97316',
+    margin: 4,
     backgroundColor: 'white',
-    borderRadius: 12,
-    left: 180
+    borderRadius: 22,
+    // elevation: 50,
+    marginTop: -185,
+    left: 200
   },
-  cara: {
-    height: 76,
-    width: 114,
-    marginVertical: 10,
-    marginHorizontal: 5,
-    borderRadius: 6,
 
-
+  fotoArtista: {
+    height: 90,
+    width: 135,
+    marginVertical: 3,
+    marginTop: 5,
+    borderRadius: 9,
+    marginLeft: 9.5
   },
+
   estrela: {
     width: 10,
     height: 10,
     marginHorizontal: 10,
     marginVertical: 40
   }
-
-
-
-
-
 
 });
 

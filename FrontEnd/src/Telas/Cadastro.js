@@ -45,12 +45,13 @@ const validationCadastro = yup.object().shape({
   
   nome: yup
   .string()
-  .required("Este campo é obrigatório"),
-  // .matches(/^[A-z]+$/ , 'Nome inválido'),
+  .required("Este campo é obrigatório")
+  .matches(/^[A-z]+$/ , 'Nome inválido'),
 
   sobrenome: yup
   .string()
-  .required("Este campo é obrigatório"),
+  .required("Este campo é obrigatório")  
+  .matches(/^[A-z]+$/ , 'Sobrenome inválido'),
     
   email: yup
   .string()
@@ -174,7 +175,7 @@ const validationCadastro = yup.object().shape({
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
               />
-              {errors.password && <Text style={StyleCadastro.msgErro}>{errors.password}</Text>}
+              {touched.password && <Text style={StyleCadastro.msgErro}>{errors.password}</Text>}
 
             </View>
 
@@ -192,7 +193,7 @@ const validationCadastro = yup.object().shape({
                   onChangeText={handleChange('telefone')}
                   onBlur={handleBlur('telefone')}
                 />
-                {errors.telefone && <Text style={StyleCadastro.msgErroCurta}>{errors.telefone}</Text>}
+                {touched.telefone && <Text style={StyleCadastro.msgErroCurta}>{errors.telefone}</Text>}
 
               </View>
 
@@ -207,7 +208,7 @@ const validationCadastro = yup.object().shape({
                   onChangeText={handleChange('uf')}
                   onBlur={handleBlur('uf')}
                 />
-                {errors.uf && <Text style={StyleCadastro.msgErroCurta}>{errors.uf}</Text>}
+                {touched.uf && <Text style={StyleCadastro.msgErroCurta}>{errors.uf}</Text>}
 
               </View>
 

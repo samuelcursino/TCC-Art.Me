@@ -10,10 +10,10 @@ const router = express.Router();
 // -------------------------------------- ROTA DE CADASTRAR USUARIO ------------------------------------
 router.post('/cadastrarUsuario', (req, res)=>{
     console.log(req.body);    
-    let {nome, email, password, telefone, uf} = req.body;
+    let {nome, sobrenome, email, password, telefone, uf} = req.body;
     modelUsuario.create(
         //DADOS DA INSERÇÂO DE USUARIO
-        {nome, email, password, telefone, uf}
+        {nome, sobrenome, email, password, telefone, uf}
     ).then(
         ()=>{
             return res.status(201).json({

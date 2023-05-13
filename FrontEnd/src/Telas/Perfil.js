@@ -141,7 +141,7 @@ const Perfil = () => {
           <Image source={require('../../assets/Imagens/UsuarioM.png')} style={stylePerfil.margem} />
 
           <Text style={stylePerfil.samu}>
-            {usuario.nome}
+            {usuario.nome} {usuario.sobrenome}
           </Text>
           <Text style={stylePerfil.samu}>
             {/* 10K Seguidores 12K Seguindo */}
