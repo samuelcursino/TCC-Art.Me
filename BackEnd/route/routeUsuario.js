@@ -64,7 +64,7 @@ router.get('/listarUsuarioEMAIL/:email/:password', (req, res)=>{
 
     let {email, password} = req.params;
 
-    modelUsuario.findOne({attributes:['nome','uf','telefone','email','password'],where:{email, password}})
+    modelUsuario.findOne({attributes:['nome', 'sobrenome', 'uf','telefone','email','password'],where:{email, password}})
     .then(
         (response)=>{
             return res.status(200).json({

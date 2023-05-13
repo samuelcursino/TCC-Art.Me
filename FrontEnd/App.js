@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer>
-       <Stack.Navigator initialRouteName='Menu'>
+       <Stack.Navigator initialRouteName='BoasVindas'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} />
