@@ -78,7 +78,7 @@ const Rascunhos = () => {
   return (
     <View>
       <Text>
-        Rascunhos4
+        Rascunhos
       </Text>
     </View>
   )
@@ -138,7 +138,7 @@ const Perfil = () => {
             Editar
           </Text>
 
-          <Image source={require('../../assets/Imagens/usuarioM.png')} style={stylePerfil.margem} />
+          <Image source={require('../../assets/Imagens/UsuarioM.png')} style={stylePerfil.margem} />
 
           <Text style={stylePerfil.samu}>
             {usuario.nome}
@@ -205,7 +205,7 @@ const stylePerfil = StyleSheet.create({
   },
   beck: {
     width: '90%',
-    backgroundColor: 'orange',
+    backgroundColor: '#FFBB1B',
     borderRadius: 15,
     padding: 30,
     alignItems: 'center',
@@ -232,7 +232,6 @@ const stylePerfil = StyleSheet.create({
   margem: {
     height: 50,
     width: 50,
-    backgroundColor: 'white'
   },
   samu: {
     fontWeight: 'bold',

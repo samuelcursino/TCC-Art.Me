@@ -20,6 +20,7 @@ const Cadastro = ({ navigation }) => {
 const handleClickCadastro = async (values) => {
   axios.post(`${configuration.url}/cadastrarUsuario`, {
     nome: values.nome,
+    sobrenome: values.sobrenome,
     email: values.email,
     password: values.password,
     telefone: values.telefone,
@@ -46,6 +47,10 @@ const validationCadastro = yup.object().shape({
   .string()
   .required("Este campo é obrigatório"),
   // .matches(/^[A-z]+$/ , 'Nome inválido'),
+
+  sobrenome: yup
+  .string()
+  .required("Este campo é obrigatório"),
     
   email: yup
   .string()
@@ -75,6 +80,7 @@ const validationCadastro = yup.object().shape({
     validationSchema={validationCadastro}
     initialValues={{
         nome: '',
+        sobrenome: '',
         email: '',
         password: '',
         telefone: '',
@@ -123,6 +129,21 @@ const validationCadastro = yup.object().shape({
                 onBlur={() => setFieldTouched('nome')}                
               />   
                {touched.nome && <Text style={StyleCadastro.msgErro}>{errors.nome}</Text>}    
+
+            </View>
+
+            {/* input sobrenome */}
+            < View style={StyleCadastro.inputView}>
+              
+              <TextInput
+                style={StyleCadastro.inputText}
+                placeholder="Sobrenome"
+                placeholderTextColor="#F97316"
+                value={values.sobrenome}
+                onChangeText={handleChange('sobrenome')}
+                onBlur={() => setFieldTouched('sobrenome')}                
+              />   
+               {touched.sobrenome && <Text style={StyleCadastro.msgErro}>{errors.sobrenome}</Text>}    
 
             </View>
 
@@ -215,6 +236,7 @@ const StyleCadastro = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+    height: 750
   },
 
   //imagem
@@ -235,7 +257,7 @@ const StyleCadastro = StyleSheet.create({
   borderRadius: 30,
   paddingVertical: 20,
   width: 310,
-  height: 460,
+  height: 500,
   backgroundColor: '#FFC700',
   alignItems: 'center',
   justifyContent: 'center',
@@ -393,19 +415,20 @@ msgErroCurta: {
   // paddingLeft: 35
 },
 
-//Botão de Entrar
+//Botão de Cadastrar
 loginButton: {
   textAlign: 'center',
   width: 130,
   height: 40,
   borderRadius: 40,
-  alignContent: 'center',
+  // alignContent: 'center',
   justifyContent: 'center',
-  paddingHorizontal: 20,
+  // paddingHorizontal: 20,
   backgroundColor: '#F97316',
   padding: 5,
   fontSize: 10,
-  margin: 30,
+  // margin: 20,
+  marginTop: 20
 },
 
 // Fonte do Botão Entrar

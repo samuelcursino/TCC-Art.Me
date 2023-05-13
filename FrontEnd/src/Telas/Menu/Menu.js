@@ -31,23 +31,31 @@ const Menu = () => {
 
   return (
     <ScrollView>
+
+
       <View style={styleMenu.container}>
-        <View style={{ flexDirection: 'row' }}>
-          <Image source={require('../../../assets/Imagens/Vetor.png')} style={styleMenu.vetor} />
+
+        <View style={styleMenu.containerColor}>
+          <View style={{ flexDirection: 'row' }}>
+            <Image source={require('../../../assets/Imagens/Vetor.png')} style={styleMenu.vetor} />
+
             <View style={styleMenu.selecao}>              
-              <Text style={styleMenu.txtusuario}>Olá {usuario.nome}!</Text>
-            <Image source={require('../../../assets/Imagens/usuarioM.png')} style={styleMenu.fotoPerfil} />
-            
+              <Text style={styleMenu.txtusuario}>Olá {usuario.nome}!</Text>              
+              <Image source={require('../../../assets/Imagens/UsuarioM.png')} style={styleMenu.fotoPerfil} />            
+            </View>
+
+          </View>
+
+          <View style={styleMenu.image}>
+            <Image source={require('../../../assets/Imagens/Outdoor.png')} style={styleMenu.imgdetalhe} />
           </View>
         </View>
-      <View style={styleMenu.image}>
-        <Image source={require('../../../assets/Imagens/artistas.png')} style={styleMenu.imgdetalhe} />
-      </View>
 
-      
+
+
+      <Text style={styleMenu.txtCategorias}>Categorias</Text>
       <View style={styleMenu.categorias}>
-
-
+        
         <TouchableOpacity>
           <BotaoCategoria texto={'Pintores'} imagem={require('../../../assets/Imagens/Pintores.png')} />
         </TouchableOpacity>
@@ -63,9 +71,10 @@ const Menu = () => {
       </View>
 
 
-      <Text>Artistas Recomendados</Text>
 
-      <View style={styleMenu.containeruser1}>
+      <Text style={styleMenu.txtArtistasRecomendados}>Artistas Recomendados</Text>
+
+      <View style={styleMenu.containerUsuario1}>
         <Image source={require('../../../assets/Imagens/art.png')} style={styleMenu.cara} />
         <Text>Jefferson
           Santos Fotografo
@@ -84,16 +93,22 @@ const Menu = () => {
       <View>
 
       </View>
-    </View>
+  </View>
 
     </ScrollView>
       )}
 
 const styleMenu = StyleSheet.create({
+
   container: {
-    backgroundColor: '#FFC700',
+    backgroundColor: 'white',
     flex: 1,
   },
+
+  containerColor: {
+    backgroundColor: '#FFBB1B',
+  },
+  
   fotoPerfil: {
     top: 20,
     height: 60,
@@ -108,10 +123,26 @@ const styleMenu = StyleSheet.create({
     fontSize: 22,
     marginTop: 80,
     fontWeight: 'bold',
-    marginVertical: 30,
+    marginVertical: 10,
     marginHorizontal: 20,
     color: 'white',
   },
+
+  txtCategorias: {
+    fontSize: 22,
+    marginTop: 8,
+    fontWeight: 'bold',
+    marginHorizontal: 20,
+  },
+
+  txtArtistasRecomendados: {
+    fontSize: 19,
+    marginTop: 20,
+    margin: 5,
+    marginHorizontal: 20,
+    fontWeight: 'bold',
+  },
+
   selecao: {
     direction: 'rtl',
     flexDirection: 'row-reverse',
@@ -136,10 +167,12 @@ const styleMenu = StyleSheet.create({
     margin: 30,
     direction: 'ltr'
   },
+
   categorias: {
-    backgroundColor: 'white',
     flexDirection: 'row',
+    marginHorizontal: 10
   },
+
   art: {
     width: 70,
     height: 40,
@@ -167,26 +200,23 @@ const styleMenu = StyleSheet.create({
     alignItems: 'center',
     width: 390,
     height: 146,
-    left: 0,
-    right: 7,
+    // left: 0,
+    // right: 7,
     marginBottom: 35,
-    borderRadius: 16
-
   },
-  containeruser1: {
+  containerUsuario1: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
     width: 150,
     height: 160,
-    borderRadius: 2,
-    borderWidth: 4,
+    borderWidth: 3,
     borderColor: '#F97316',
     margin: 4,
     backgroundColor: 'white',
-    borderRadius: 12
-
+    borderRadius: 22,
+    elevation: 50,
   },
   containeruser2: {
     display: 'flex',

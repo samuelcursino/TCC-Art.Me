@@ -11,12 +11,13 @@ const BotaoCategoria = (props) => {
     const {texto, imagem} = props;
 
     return (
-        <View style={{display: 'flex',
+        <View style={{
+        // display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 8, 
-        borderRadius: 16,
-        borderWidth: 4,
+        padding: 8,
+        borderRadius: 10,
+        borderWidth: 3,
         borderColor: '#F97316',
         margin: 10}}>
 
@@ -78,11 +79,12 @@ const styles = StyleSheet.create({
       flexDirection: 'row'
     },
     art: {
-      width: 70,
+      width: 80,
       height: 40,
-      marginVertical: 5,
-      marginHorizontal: 2,
-      backgroundColor: 'white'
+      borderRadius: 5,
+      marginVertical: 2,
+      // marginHorizontal: 2,
+      // backgroundColor: 'white'
     },
     pintor: {
       width: 50,

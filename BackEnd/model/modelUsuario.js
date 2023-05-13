@@ -10,26 +10,30 @@ const modelUsuario = connection.define(
     {
         nome:{
             type: Sequelize.STRING(50),
-            primaryKey: true,
             autoIncrement:false
         },
-        uf:{
-            type: Sequelize.STRING(2),
-            allowNull: false
-        },
-        telefone:{
-            type: Sequelize.STRING(14),
-            allowNull: false
+        sobrenome:{
+            type: Sequelize.STRING(50),
+            autoIncrement:false
         },
         email:{
             type: Sequelize.STRING(50),
+            primaryKey: true,
             allowNull: false
         },
         password:{
             type: Sequelize.STRING(20),
             allowNull: false
+        },        
+        telefone:{
+            type: Sequelize.STRING(14),
+            allowNull: false
         },
-        
+        uf:{
+            type: Sequelize.STRING(2),
+            allowNull: false
+        },   
+
     }
 );
 
