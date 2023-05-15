@@ -19,9 +19,7 @@ const Menu = ( navigation ) => {
 
   useEffect(() => {
     getUsuario();
-  }, []);
-
- 
+  }, []); 
 
   async function getUsuario() {
     let response = await AsyncStorage.getItem('usuarioData')
@@ -138,7 +136,7 @@ const styleMenu = StyleSheet.create({
   },
   
   fotoPerfil: {
-    top: 20,
+    top: 16,
     height: 60,
     width: 60,
     // marginEnd: 20, 
@@ -146,6 +144,7 @@ const styleMenu = StyleSheet.create({
     right: 230,
     position: 'absolute'
   },
+
   txtusuario: {
     direction: 'rtl',
     fontSize: 22,
@@ -154,6 +153,8 @@ const styleMenu = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 20,
     color: 'white',
+    top: -49,
+    left: 60
   },
 
   txtCategorias: {
@@ -206,6 +207,7 @@ const styleMenu = StyleSheet.create({
     alignItems: 'center',
     flex: 1
   },
+
   image: {
     justifyContent: 'center',
     alignItems: 'center'
@@ -260,6 +262,7 @@ const styleMenu = StyleSheet.create({
     // left: 0,
     // right: 7,
     marginBottom: 35,
+    marginVertical: -25
   },
 
   containerUsuario1: {
