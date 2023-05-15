@@ -12,7 +12,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { Touchable } from 'react-native/types';
 
-const Menu = () => {
+const Menu = ( navigation ) => {
 
   const [usuario, setUsuario] = useState([])
   console.log(usuario);
@@ -30,6 +30,8 @@ const Menu = () => {
   }
 
   return (
+
+  <View>
     <ScrollView>
 
 
@@ -37,6 +39,7 @@ const Menu = () => {
 
         <View style={styleMenu.containerColor}>
           <View style={{ flexDirection: 'row' }}>
+
             <Image source={require('../../../assets/Imagens/Vetor.png')} style={styleMenu.vetor} />
 
             <View style={styleMenu.selecao}>              
@@ -56,7 +59,7 @@ const Menu = () => {
       <Text style={styleMenu.txtCategorias}>Categorias</Text>
       <View style={styleMenu.categorias}>
         
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Pintores')} >
           <BotaoCategoria texto={'Pintores'} imagem={require('../../../assets/Imagens/Pintores.png')} />
         </TouchableOpacity>
 
@@ -108,13 +111,19 @@ const Menu = () => {
             <Text style={styleMenu.txtNomeArtistas}>Santos</Text>
             <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
         </View> 
+      </TouchableOpacity>      
+
+        <View>
+      </View>
+    </View>
+  </ScrollView>
+      {/* onPress={() => navigation.navigate('#')} */}
+      <TouchableOpacity style={styleMenu.btnPost} > 
+        <Text style={styleMenu.btnPost2}>+</Text>
       </TouchableOpacity>
 
-      <View>
-    </View>
-  </View>
+</View>
 
-    </ScrollView>
       )}
 
 const styleMenu = StyleSheet.create({
@@ -333,7 +342,28 @@ const styleMenu = StyleSheet.create({
     height: 10,
     marginHorizontal: 10,
     marginVertical: 40
-  }
+  },
+
+  btnPost: {
+    width: 60,
+    height: 60,
+    borderRadius: 40,
+    justifyContent: 'center',
+    backgroundColor: '#F97316',
+    marginLeft: 330,
+    position: 'absolute',
+    bottom: 20,
+    // alignItems: 'center',
+  },
+
+  btnPost2: {
+    fontSize: 70,
+    // justifyContent: 'center',
+    color: 'white',    
+    textAlign:'center',
+    // padding: 10
+    
+  },
 
 });
 
