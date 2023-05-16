@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -21,8 +21,10 @@ const Pintores = ({navigation}) => {
 
 return (
 
+  <ScrollView>
 
     <View style={stylePintores.container}>
+      <View style={stylePintores.containerColor}>
 
         <View style={{ flexDirection: 'row' }}>
         <Image source={require('../../../assets/Imagens/Vetor.png')} style={stylePintores.vetor} />
@@ -36,7 +38,12 @@ return (
     
     </View>
         
+    <Text style={stylePintores.txtServicos}>Categorias</Text>
 
+
+
+      </View>
+    </ScrollView>
 
     )
 }
@@ -46,6 +53,10 @@ const stylePintores = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         flex: 1,
+      },
+
+      containerColor: {
+        backgroundColor: '#FFBB1B',
       },
 
     vetor: {
@@ -82,6 +93,13 @@ const stylePintores = StyleSheet.create({
     // paddingTop: 25,
     right: 230,
     position: 'absolute'
+    },
+
+    txtServicos: {
+      fontSize: 22,
+      marginTop: 8,
+      fontWeight: 'bold',
+      marginHorizontal: 20,
     },
 
 })
