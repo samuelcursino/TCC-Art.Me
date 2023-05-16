@@ -54,6 +54,56 @@ return (
           </View>          
        </TouchableOpacity>
 
+       <TouchableOpacity>
+          <View style={stylePintores.containerArtista2}>
+            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
+            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
+              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
+              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
+              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
+          </View>          
+       </TouchableOpacity>
+
+       <TouchableOpacity>
+          <View style={stylePintores.containerArtista3}>
+            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
+            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
+              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
+              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
+              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
+          </View>          
+       </TouchableOpacity>
+
+       <TouchableOpacity>
+          <View style={stylePintores.containerArtista4}>
+            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
+            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
+              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
+              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
+              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
+          </View>          
+       </TouchableOpacity>
+
+       <TouchableOpacity>
+          <View style={stylePintores.containerArtista5}>
+            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
+            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
+              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
+              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
+              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
+          </View>          
+       </TouchableOpacity>
+
+       <TouchableOpacity>
+          <View style={stylePintores.containerArtista6}>
+            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
+            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
+              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
+              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
+              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
+          </View>          
+       </TouchableOpacity>
+
         </View>
 
 </View>
@@ -126,18 +176,6 @@ const stylePintores = StyleSheet.create({
       flexDirection: 'row',
       marginHorizontal: 10
     },
-
-    BackgroundFoto: {
-      height: 110,
-      width: 190,
-      // marginVertical: 3,
-      // marginTop: 5,
-      // borderRadius: 7,
-      // marginLeft: 9.5
-      borderTopLeftRadius: 7,
-      borderTopRightRadius: 7,
-    },
-
     fotoPerfilArtista: {
       top: 95,
       height: 40,
@@ -146,22 +184,121 @@ const stylePintores = StyleSheet.create({
       // paddingTop: 25,
       left: 15,
       position: 'absolute'
-      },
+      },    
+
+    BackgroundFoto: {
+      height: 116,
+      width: 170,
+      // marginVertical: 3,
+      // marginTop: 5,
+      // borderRadius: 7,
+      // marginLeft: 9.5
+      borderTopLeftRadius: 7,
+      borderTopRightRadius: 7,
+    },
 
     containerArtista1: {
       // display: 'flex',
       // justifyContent: 'center',
       // alignItems: 'center',
-      padding: 5,
-      width: 200,
+      // padding: 5,
+      width: 170,
       height: 200,
       // borderWidth: 3,
       // borderColor: '#F97316',
-      margin: 4,
+      margin: 6,
       backgroundColor: 'white',
       borderRadius: 12,
       elevation: 50,
       // left: 15
+    },
+
+    containerArtista2: {
+      // display: 'flex',
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      // padding: 5,
+      width: 170,
+      height: 200,
+      // borderWidth: 3,
+      // borderColor: '#F97316',
+      margin: 6,
+      backgroundColor: 'white',
+      borderRadius: 12,
+      elevation: 50,
+      left: 7
+    },
+
+    containerArtista3: {
+      // display: 'flex',
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      // padding: 5,
+      width: 170,
+      height: 200,
+      // borderWidth: 3,
+      // borderColor: '#F97316',
+      // margin: 6,
+      backgroundColor: 'white',
+      borderRadius: 12,
+      elevation: 50,
+      // left: 15
+      marginTop: 220,
+      left: -358
+    },
+
+    containerArtista4: {
+      // display: 'flex',
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      // padding: 5,
+      width: 170,
+      height: 200,
+      // borderWidth: 3,
+      // borderColor: '#F97316',
+      // margin: 6,
+      backgroundColor: 'white',
+      borderRadius: 12,
+      elevation: 50,
+      // left: 15
+      marginTop: 220,
+      left: -338
+    },
+
+    containerArtista5: {
+      // display: 'flex',
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      // padding: 5,
+      width: 170,
+      height: 200,
+      // borderWidth: 3,
+      // borderColor: '#F97316',
+      // margin: 6,
+      backgroundColor: 'white',
+      borderRadius: 12,
+      elevation: 50,
+      // left: 15
+      marginTop: 440,
+      left: -696
+    },
+
+    containerArtista6: {
+      // display: 'flex',
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      // padding: 5,
+      width: 170,
+      height: 200,
+      // borderWidth: 3,
+      // borderColor: '#F97316',
+      // margin: 6,
+      backgroundColor: 'white',
+      borderRadius: 12,
+      elevation: 50,
+      // left: 15
+      marginTop: 440,
+      left: -678
     },
 
     txtServicoDe: {
