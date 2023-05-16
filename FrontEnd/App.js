@@ -22,11 +22,10 @@ const StackNavegacao =  () => {
        <Stack.Navigator initialRouteName='Menu'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
-        <Stack.Screen name="Menu" component={TabNavegacao} />
+        <Stack.Screen name="Menu" component={TabNavegacao} options={{headerShown: false}}/>
         <Stack.Screen name="MudarSenha" component={MudarSenha} />
         <Stack.Screen name="Perfil" component={Perfil} options={{title:'Minha Conta', headerTitleAlign: 'center'}} />
         <Stack.Screen name="BoasVindas" component={BoasVindas} options={{headerShown:false}} />
-        <Stack.Screen name="Pintores" component={Pintores} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -42,8 +41,9 @@ const TabNavegacao =  () => {
 
         <Tab.Screen 
           name="Menu" 
-          component={Menu} 
+          component={RotaMenu} 
           options={{
+            headerShown: false,
             tabBarLabelStyle: {
               fontSize: 12,
             },
@@ -72,6 +72,18 @@ const TabNavegacao =  () => {
     </NavigationContainer>
   );
 }
+
+const RotaMenu = () => {
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen name="Menu" component={Menu} options={{ headerTitleAlign: 'center' }} />
+        <Stack.Screen name="Pintores" component={Pintores} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
 
 
 export default StackNavegacao;

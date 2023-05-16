@@ -12,7 +12,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { Touchable } from 'react-native/types';
 
-const Menu = ( navigation ) => {
+const Menu = ( {navigation} ) => {
 
   const [usuario, setUsuario] = useState([])
   console.log(usuario);
@@ -360,11 +360,12 @@ const styleMenu = StyleSheet.create({
   },
 
   btnPost2: {
-    fontSize: 70,
+    fontSize: 65,
     // justifyContent: 'center',
     color: 'white',    
     textAlign:'center',
-    // padding: 10
+    marginTop: -17,
+    paddingLeft: 1
     
   },
 
