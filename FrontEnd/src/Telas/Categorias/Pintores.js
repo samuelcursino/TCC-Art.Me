@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import BotaoPerfil from './BotaoPerfil';
 
 const Pintores = ({navigation}) => {
 
@@ -23,8 +24,8 @@ return (
 
   <ScrollView>
 
+<View style={stylePintores.backgroundColor}> 
     <View style={stylePintores.container}>
-      <View style={stylePintores.containerColor}>
 
         <View style={{ flexDirection: 'row' }}>
         <Image source={require('../../../assets/Imagens/Vetor.png')} style={stylePintores.vetor} />
@@ -34,15 +35,29 @@ return (
             <Image source={require('../../../assets/Imagens/UsuarioMCategorias.png')} style={stylePintores.fotoPerfil} />            
             </View>
 
-        </View>
-    
+        </View>    
     </View>
         
-    <Text style={stylePintores.txtServicos}>Categorias</Text>
 
+        <Text style={stylePintores.txtServicos}>Serviços</Text>
+        <View style={stylePintores.categorias}>         
 
+          {/* <BotaoPerfil /> */}
 
-      </View>
+        <TouchableOpacity>
+          <View style={stylePintores.containerArtista1}>
+            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
+            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
+              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
+              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
+              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
+          </View>          
+       </TouchableOpacity>
+
+        </View>
+
+</View>
+      
     </ScrollView>
 
     )
@@ -56,7 +71,11 @@ const stylePintores = StyleSheet.create({
       },
 
       containerColor: {
-        backgroundColor: '#FFBB1B',
+        backgroundColor: 'white',
+      },
+
+      backgroundColor: {
+        backgroundColor: 'white'
       },
 
     vetor: {
@@ -96,10 +115,83 @@ const stylePintores = StyleSheet.create({
     },
 
     txtServicos: {
-      fontSize: 22,
-      marginTop: 8,
+      fontSize: 17,
+      marginTop: -15,
       fontWeight: 'bold',
       marginHorizontal: 20,
+      margin: 10
+    },
+
+    categorias: {
+      flexDirection: 'row',
+      marginHorizontal: 10
+    },
+
+    BackgroundFoto: {
+      height: 110,
+      width: 190,
+      // marginVertical: 3,
+      // marginTop: 5,
+      // borderRadius: 7,
+      // marginLeft: 9.5
+      borderTopLeftRadius: 7,
+      borderTopRightRadius: 7,
+    },
+
+    fotoPerfilArtista: {
+      top: 95,
+      height: 40,
+      width: 40,
+      // marginEnd: 20, 
+      // paddingTop: 25,
+      left: 15,
+      position: 'absolute'
+      },
+
+    containerArtista1: {
+      // display: 'flex',
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      padding: 5,
+      width: 200,
+      height: 200,
+      // borderWidth: 3,
+      // borderColor: '#F97316',
+      margin: 4,
+      backgroundColor: 'white',
+      borderRadius: 12,
+      elevation: 50,
+      // left: 15
+    },
+
+    txtServicoDe: {
+      fontSize: 9,
+      marginTop: 5,
+      // marginEnd: 50,
+      marginLeft: 7,
+      // marginHorizontal: 20,
+      // fontWeight: 'bold',
+      color: '#666262'
+    },
+
+    txtNomeArtistas: {
+      fontSize: 12,
+      marginTop: 20,
+      // marginEnd: 50,
+      // marginLeft: 55,
+      marginHorizontal: 6,
+      fontWeight: 'bold',
+      color: '#666262'
+    },
+
+    txtCategoriaArtistas: {
+      fontSize: 18,
+      // marginTop: 20,
+      // marginRight: 60,
+      marginLeft: 7,
+      // color: '#970C0C'
+      // marginHorizontal: 20,
+      fontWeight: 'bold',
     },
 
 })

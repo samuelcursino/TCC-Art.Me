@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 
 //Importação da conexão com banco de dados
 const connection = require('../database/database');
+const modelCategoriaServico = require('./modelCategoriaServico');
 
 //Criação da tabela Usuario
 const modelUsuario = connection.define(
@@ -36,6 +37,12 @@ const modelUsuario = connection.define(
 
     }
 );
+
+//Implementação da  CHAVE ESTRANGEIRA - LADO N
+modelCategoriaServico.hasMany(modelUsuario);
+
+//Implementação da  CHAVE PRIMÁRIA - LADO 1
+modelUsuario.belongsTo(modelCategoriaServico);
 
 //Forçar recriação da tabela
 //modelUsuario.sync({force:true});

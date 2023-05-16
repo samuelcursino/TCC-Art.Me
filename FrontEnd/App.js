@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer>
-       <Stack.Navigator initialRouteName='Menu'>
+        <Stack.Navigator initialRouteName='Menu'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} options={{headerShown: false}}/>
@@ -31,6 +31,17 @@ const StackNavegacao =  () => {
   );
 
 }
+
+  const RotaMenu = () => {
+    return (
+      <NavigationContainer independent={true}>
+        <Stack.Navigator>
+          <Stack.Screen name="Menu" component={Menu} options={{ headerTitleAlign: 'center' }} />
+          <Stack.Screen name="Pintores" component={Pintores} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
 
 const TabNavegacao =  () => {
   return (
@@ -71,17 +82,6 @@ const TabNavegacao =  () => {
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
-
-const RotaMenu = () => {
-  return (
-    <NavigationContainer independent={true}>
-      <Stack.Navigator>
-        <Stack.Screen name="Menu" component={Menu} options={{ headerTitleAlign: 'center' }} />
-        <Stack.Screen name="Pintores" component={Pintores} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
 }
 
 

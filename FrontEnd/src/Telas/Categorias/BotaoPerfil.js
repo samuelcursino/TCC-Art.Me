@@ -17,9 +17,10 @@ const BotaoPerfil = (props) => {
         alignItems: 'center',
         padding: 8,
         borderRadius: 10,
-        borderWidth: 3,
+        borderWidth: 2,
         borderColor: '#F97316',
-        margin: 10}}>
+        margin: 10
+        }}>
 
             <Image source={imagem} style={styles.art} />
 
