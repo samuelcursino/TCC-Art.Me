@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import BotaoPerfil from './BotaoPerfil';
+// import BotaoPerfil from './BotaoPerfil';
 
 const Pintores = ({navigation}) => {
 

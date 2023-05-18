@@ -9,6 +9,12 @@ const modelCategoriaServico = require('./modelCategoriaServico');
 const modelUsuario = connection.define(
     'tbl_usuario',
     {
+
+        id_usuario:{
+            type: Sequelize.INTEGER(),
+            primaryKey: true,
+            autoIncrement:true
+        },
         nome:{
             type: Sequelize.STRING(50),
             autoIncrement:false
@@ -19,7 +25,6 @@ const modelUsuario = connection.define(
         },
         email:{
             type: Sequelize.STRING(50),
-            primaryKey: true,
             allowNull: false
         },
         password:{
@@ -39,10 +44,10 @@ const modelUsuario = connection.define(
 );
 
 //Implementação da  CHAVE ESTRANGEIRA - LADO N
-modelCategoriaServico.hasMany(modelUsuario);
+ modelCategoriaServico.hasMany(modelUsuario);
 
 //Implementação da  CHAVE PRIMÁRIA - LADO 1
-modelUsuario.belongsTo(modelCategoriaServico);
+ modelUsuario.belongsTo(modelCategoriaServico);
 
 //Forçar recriação da tabela
 //modelUsuario.sync({force:true});

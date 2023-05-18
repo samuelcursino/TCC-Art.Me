@@ -10,10 +10,10 @@ const router = express.Router();
 // -------------------------------------- ROTA DE CADASTRAR CATEGORIA DO SERVICO ------------------------------------
 router.post('/cadastrarCategoriaServico', (req, res)=>{
     console.log(req.body);    
-    let {desc_categoria} = req.body;
+    let {nome_categoria} = req.body;
     modelCategoriaServico.create(
         //DADOS DA INSERÇÂO DE CATEGORIA
-        {desc_categoria}
+        {nome_categoria}
     ).then(
         ()=>{
             return res.status(201).json({
