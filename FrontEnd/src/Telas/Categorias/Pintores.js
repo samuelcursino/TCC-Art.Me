@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { 
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView
+  } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import BotaoPerfil from './BotaoPerfil';
@@ -18,6 +25,30 @@ const Pintores = ({navigation}) => {
       let json = JSON.parse(response)
       setUsuario(json)
     }
+
+    const [users, setUsers] = useState([])
+
+    // const [nomeUsers, setNomeUsers] = useState([])
+
+    // const [sobrenomeUsers, setSobrenomeUsers] = useState([])
+
+  console.log(users);
+
+  // users.nome = setNomeUsers
+
+  // users.sobrenome = setSobrenomeUsers
+
+  // console.log(nomeUsers)
+
+    useEffect(() => {
+    getUsers();
+  }, []); 
+
+    async function getUsers() {
+    let response = await AsyncStorage.getItem('usersData')
+    let json = JSON.parse(response)
+    getUsers(json)
+  }
 
 
 return (
@@ -48,7 +79,7 @@ return (
           <View style={stylePintores.containerArtista1}>
             <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
             <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
-              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
+              <Text style={stylePintores.txtNomeArtistas}>{users.nome} {users.sobrenome}</Text>
               <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
               <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
           </View>          

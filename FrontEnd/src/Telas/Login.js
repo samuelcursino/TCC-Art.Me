@@ -26,6 +26,7 @@ const Login = ({ navigation }) => {
       .then(function (response) {
         console.log(response.data)
         setDados(response.data.data)
+        
         //armazenando dados do usuario em cache 
          AsyncStorage.setItem('usuarioData', JSON.stringify(response.data.data))
 
