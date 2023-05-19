@@ -26,29 +26,29 @@ const Pintores = ({navigation}) => {
       setUsuario(json)
     }
 
-    const [users, setUsers] = useState([])
+  //   const [users, setUsers] = useState([])
 
-    // const [nomeUsers, setNomeUsers] = useState([])
+  //   // const [nomeUsers, setNomeUsers] = useState([])
 
-    // const [sobrenomeUsers, setSobrenomeUsers] = useState([])
+  //   // const [sobrenomeUsers, setSobrenomeUsers] = useState([])
 
-  console.log(users);
+  // console.log(users);
 
-  // users.nome = setNomeUsers
+  // // users.nome = setNomeUsers
 
-  // users.sobrenome = setSobrenomeUsers
+  // // users.sobrenome = setSobrenomeUsers
 
-  // console.log(nomeUsers)
+  // // console.log(nomeUsers)
 
-    useEffect(() => {
-    getUsers();
-  }, []); 
+  //   useEffect(() => {
+  //   getUsers();
+  // }, []); 
 
-    async function getUsers() {
-    let response = await AsyncStorage.getItem('usersData')
-    let json = JSON.parse(response)
-    getUsers(json)
-  }
+  //   async function getUsers() {
+  //   let response = await AsyncStorage.getItem('usersData')
+  //   let json = JSON.parse(response)
+  //   getUsers(json)
+  // }
 
 
 return (
