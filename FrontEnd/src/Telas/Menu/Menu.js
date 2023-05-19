@@ -59,7 +59,7 @@ const Menu = ( {navigation} ) => {
   // constante que chama a função handleClickUsers e ao mesmo tempo navega até a tela pintores
   const NavegarPintores = () => {
     handleClickUsers()
-    // navigation.navigate('Pintores')
+    navigation.navigate('Pintores')
   }
 
   return (
