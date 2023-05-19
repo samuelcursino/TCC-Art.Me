@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import BotaoCategoria from '../Menu/BotaoCategoria';
+import axios from "axios";
+import configuration from '../../../configuration.json';
 import { 
   View,
   Text,
@@ -25,6 +27,36 @@ const Menu = ( {navigation} ) => {
     let response = await AsyncStorage.getItem('usuarioData')
     let json = JSON.parse(response)
     setUsuario(json)
+  }
+
+
+
+  const handleClickUsers = async (values) => {
+    axios.get(`${configuration.url}/listarUsuario`, {
+      nome: values.nome,
+      sobrenome: values.sobrenome,
+    })
+
+      .then(function (response) {
+        console.log(response.data)
+        setDados(response.data.data)
+        
+        //armazenando dados do usuario em cache 
+         AsyncStorage.setItem('usersData', JSON.stringify(response.data.data))
+
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  const NavegarPintores = () => {
+    handleClickUsers()
+    navigation.navigate('Pintores')
   }
 
   return (
@@ -57,11 +89,11 @@ const Menu = ( {navigation} ) => {
       <Text style={styleMenu.txtCategorias}>Categorias</Text>
       <View style={styleMenu.categorias}>
         
-        <TouchableOpacity onPress={() => navigation.navigate('Pintores')} >
+        <TouchableOpacity onPress={NavegarPintores} >
           <BotaoCategoria texto={'Pintores'} imagem={require('../../../assets/Imagens/Pintores.png')} />
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={NavegarPintores}>
           <BotaoCategoria texto={'Fotógrafos'} imagem={require('../../../assets/Imagens/Fotografos.png')} />
         </TouchableOpacity>
 
