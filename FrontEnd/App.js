@@ -32,6 +32,8 @@ const StackNavegacao =  () => {
 
 }
 
+//teste
+
   const RotaMenu = () => {
     return (
       <NavigationContainer independent={true}>
