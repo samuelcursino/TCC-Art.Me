@@ -5,8 +5,10 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  FlatList
   } from 'react-native';
+import CaixaUsuario from '../../components/CaixaUsuario';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import BotaoPerfil from './BotaoPerfil';
@@ -28,17 +30,17 @@ const Pintores = ({navigation}) => {
 
     const [users, setUsers] = useState([])
 
-  //   // const [nomeUsers, setNomeUsers] = useState([])
+    // const [nomeUsers, setNomeUsers] = useState([])
 
-  //   // const [sobrenomeUsers, setSobrenomeUsers] = useState([])
+    // const [sobrenomeUsers, setSobrenomeUsers] = useState([])
 
   console.log(users);
 
-  // // users.nome = setNomeUsers
+  // users.nome = setNomeUsers
 
-  // // users.sobrenome = setSobrenomeUsers
+  // users.sobrenome = setSobrenomeUsers
 
-  // // console.log(nomeUsers)
+  // console.log(nomeUsers)
 
     useEffect(() => {
     getUsers();
@@ -73,9 +75,20 @@ return (
         <Text style={stylePintores.txtServicos}>Serviços</Text>
         <View style={stylePintores.categorias}>         
 
-          {/* <BotaoPerfil /> */}
+{/* <View style={style= {flex: 1}}>
+    <CaixaUsuario></CaixaUsuario>
+    <CaixaUsuario></CaixaUsuario>
+    <CaixaUsuario></CaixaUsuario>
+</View> */}
 
-        <TouchableOpacity>
+      <View>
+        <FlatList
+        
+        />
+      </View>
+    
+
+        {/* <TouchableOpacity>
           <View style={stylePintores.containerArtista1}>
             <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
             <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
@@ -133,7 +146,7 @@ return (
               <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
               <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
           </View>          
-       </TouchableOpacity>
+       </TouchableOpacity> */}
 
         </View>
 
@@ -207,6 +220,7 @@ const stylePintores = StyleSheet.create({
       flexDirection: 'row',
       marginHorizontal: 10
     },
+
     fotoPerfilArtista: {
       top: 95,
       height: 40,

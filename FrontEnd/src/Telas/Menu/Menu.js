@@ -18,7 +18,13 @@ const Menu = ( {navigation} ) => {
 
   // recuperar o usuario que está logado
   const [usuario, setUsuario] = useState([])
-  console.log(usuario);
+  // console.log(usuario);
+
+  // recuperar todos os usuarios do banco de dados
+  const [dadosUsers, setDadosUsers] = useState([])
+  // console.log(dadosUsers);
+
+  // const [Nome, setNome] = useState([])
 
   useEffect(() => {
     getUsuario();
@@ -34,13 +40,14 @@ const Menu = ( {navigation} ) => {
 
   const handleClickUsers = async (values) => {
     axios.get(`${configuration.url}/listarUsuario`, {
-      nome: values.nome,
-      sobrenome: values.sobrenome,
+      // nome: values.nome,
+      // sobrenome: values.sobrenome,
     })
 
       .then(function (response) {
-        console.log(response.data)
-        setDados(response.data.data)
+        console.log("Dados de todos os usuarios: " + JSON.stringify(response.data.data))
+        setDadosUsers(response.data.data)
+        // console.log(JSON.stringify(dados))
         
         //armazenando dados do usuario em cache 
          AsyncStorage.setItem('usersData', JSON.stringify(response.data.data))

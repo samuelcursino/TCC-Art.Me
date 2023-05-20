@@ -36,7 +36,7 @@ router.post('/cadastrarUsuario', (req, res)=>{
 // ------------------------------ ROTA DE LISTAGEM DE USUARIO -----------------------------
 router.get('/listarUsuario', (req, res)=>{
 
-    modelUsuario.findAll()
+    modelUsuario.findAll({attributes:['id_usuario', 'nome', 'sobrenome',]})
         .then(
             (response)=>{
                 //console.log(response);
