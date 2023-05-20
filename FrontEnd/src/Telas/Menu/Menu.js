@@ -20,12 +20,6 @@ const Menu = ( {navigation} ) => {
   const [usuario, setUsuario] = useState([])
   // console.log(usuario);
 
-  // recuperar todos os usuarios do banco de dados
-  const [dadosUsers, setDadosUsers] = useState([])
-  // console.log(dadosUsers);
-
-  // const [Nome, setNome] = useState([])
-
   useEffect(() => {
     getUsuario();
   }, []); 
@@ -37,6 +31,11 @@ const Menu = ( {navigation} ) => {
   }
 
 
+
+  
+  // recuperar todos os usuarios do banco de dados
+  const [dadosUsers, setDadosUsers] = useState([])
+  // console.log(dadosUsers);
 
   const handleClickUsers = async (values) => {
     axios.get(`${configuration.url}/listarUsuario`, {

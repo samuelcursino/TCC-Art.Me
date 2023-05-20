@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='BoasVindas'>
+        <Stack.Navigator initialRouteName='Menu'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} options={{headerShown: false}}/>
@@ -32,7 +32,6 @@ const StackNavegacao =  () => {
 
 }
 
-//teste
 
   const RotaMenu = () => {
     return (

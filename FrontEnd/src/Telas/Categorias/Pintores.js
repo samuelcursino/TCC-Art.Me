@@ -29,36 +29,32 @@ const Pintores = ({navigation}) => {
       setUsuario(json)
     }
 
-    const [users, setUsers] = useState([])
 
-
-    // const [nomeUsers, setNomeUsers] = useState([])
-
-    // const [sobrenomeUsers, setSobrenomeUsers] = useState([])
-
-  console.log(users);
-
-  // users.nome = setNomeUsers
-
-  // users.sobrenome = setSobrenomeUsers
-
-  // console.log(nomeUsers)
-
-
-
+  // recuperar todos os usuarios do banco de dados
+  const [dadosUsers, setDadosUsers] = useState([])
+  console.log(dadosUsers);
 
     useEffect(() => {
-    getUsers();
+    getDadosUsers();
   }, []); 
 
-    async function getUsers() {
+    async function getDadosUsers() {
     let response = await AsyncStorage.getItem('usersData')
     let json = JSON.parse(response)
 
-    getUsers(json)
+    setDadosUsers(json)
 
   }
 
+  const Item = ({item}) => {
+    return (
+      <View >
+        <Text >{item.id_usuario}</Text>
+        <Text >{item.nome}</Text>
+        <Text >{item.sobrenome}</Text>
+      </View>
+    )
+  }
 
 return (
 
@@ -90,7 +86,9 @@ return (
 
       <View>
         <FlatList
-        
+          data={dadosUsers}
+          renderItem={({item})=><CaixaUsuario campo={(item.nome)} />}
+          keyExtractor={(item)=>item.id_usuario}
         />
       </View>
     
