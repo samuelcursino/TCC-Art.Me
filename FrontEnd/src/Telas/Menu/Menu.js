@@ -40,6 +40,7 @@ const Menu = ( {navigation} ) => {
 
   const handleClickUsers = async (values) => {
     axios.get(`${configuration.url}/listarUsuario`, {
+
       // nome: values.nome,
       // sobrenome: values.sobrenome,
     })
@@ -48,6 +49,7 @@ const Menu = ( {navigation} ) => {
         console.log("Dados de todos os usuarios: " + JSON.stringify(response.data.data))
         setDadosUsers(response.data.data)
         // console.log(JSON.stringify(dados))
+
         
         //armazenando dados do usuario em cache 
          AsyncStorage.setItem('usersData', JSON.stringify(response.data.data))
@@ -63,7 +65,9 @@ const Menu = ( {navigation} ) => {
   }
 
 
+
   // constante que chama a função handleClickUsers e ao mesmo tempo navega até a tela pintores
+
   const NavegarPintores = () => {
     handleClickUsers()
     navigation.navigate('Pintores')

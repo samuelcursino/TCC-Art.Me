@@ -24,9 +24,11 @@ const Login = ({ navigation }) => {
     })
 
       .then(function (response) {
+
         console.log("Dados da tela de Login: " + JSON.stringify(response.data))
         setDados(response.data)
         console.log("Teste de Dados: " + JSON.stringify(dados))
+
         
         //armazenando dados do usuario em cache 
          AsyncStorage.setItem('usuarioData', JSON.stringify(response.data.data))

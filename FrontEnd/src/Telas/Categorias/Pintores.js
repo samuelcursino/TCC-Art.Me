@@ -10,6 +10,7 @@ import {
   } from 'react-native';
 import CaixaUsuario from '../../components/CaixaUsuario';
 
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import BotaoPerfil from './BotaoPerfil';
 
@@ -30,6 +31,7 @@ const Pintores = ({navigation}) => {
 
     const [users, setUsers] = useState([])
 
+
     // const [nomeUsers, setNomeUsers] = useState([])
 
     // const [sobrenomeUsers, setSobrenomeUsers] = useState([])
@@ -42,6 +44,9 @@ const Pintores = ({navigation}) => {
 
   // console.log(nomeUsers)
 
+
+
+
     useEffect(() => {
     getUsers();
   }, []); 
@@ -49,7 +54,9 @@ const Pintores = ({navigation}) => {
     async function getUsers() {
     let response = await AsyncStorage.getItem('usersData')
     let json = JSON.parse(response)
+
     getUsers(json)
+
   }
 
 
