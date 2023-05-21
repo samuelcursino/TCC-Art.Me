@@ -18,7 +18,7 @@ const Menu = ( {navigation} ) => {
 
   // recuperar o usuario que está logado
   const [usuario, setUsuario] = useState([])
-  // console.log(usuario);
+  console.log("Usuario conectado: " + JSON.stringify(usuario));
 
   useEffect(() => {
     getUsuario();

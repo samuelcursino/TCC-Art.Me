@@ -17,7 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Pintores = ({navigation}) => {
 
     const [usuario, setUsuario] = useState([])
-    console.log(usuario);
+    // console.log(usuario);
   
     useEffect(() => {
       getUsuario();
@@ -32,7 +32,7 @@ const Pintores = ({navigation}) => {
 
   // recuperar todos os usuarios do banco de dados
   const [dadosUsers, setDadosUsers] = useState([])
-  console.log(dadosUsers);
+  // console.log(dadosUsers);
 
     useEffect(() => {
     getDadosUsers();
@@ -87,7 +87,7 @@ return (
       <View>
         <FlatList
           data={dadosUsers}
-          renderItem={({item})=><CaixaUsuario campo={(item.nome)} />}
+          renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
       </View>
