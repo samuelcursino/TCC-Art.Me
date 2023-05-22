@@ -52,6 +52,7 @@ const Pintores = ({navigation}) => {
         <Text >{item.id_usuario}</Text>
         <Text >{item.nome}</Text>
         <Text >{item.sobrenome}</Text>
+        <Text >{item.catServicoIdCategoria}</Text>
       </View>
     )
   }
@@ -87,7 +88,7 @@ return (
       <View>
         <FlatList
           data={dadosUsers}
-          renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} />}
+          renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoIdCategoria={(item.catServicoIdCategoria)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
       </View>

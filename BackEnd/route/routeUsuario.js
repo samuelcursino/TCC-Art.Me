@@ -2,7 +2,7 @@
 const express = require('express');
 
 //Importação da tabela Usuario
-const modelUsuario = require('../model/modelUsuario');
+const modelUsuario = require('../model/modelUsuario');g
 
 //Importação do Router
 const router = express.Router();
@@ -36,7 +36,7 @@ router.post('/cadastrarUsuario', (req, res)=>{
 // ------------------------------ ROTA DE LISTAGEM DE USUARIO -----------------------------
 router.get('/listarUsuario', (req, res)=>{
 
-    modelUsuario.findAll({attributes:['id_usuario', 'nome', 'sobrenome',]})
+    modelUsuario.findAll({attributes:['id_usuario', 'nome', 'sobrenome', 'catServicoIdCategoria']})
         .then(
             (response)=>{
                 //console.log(response);
