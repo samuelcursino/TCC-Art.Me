@@ -111,6 +111,46 @@ const Menu = ( {navigation} ) => {
 
 // -------------------------------------------------------------------------------------------------------------------
 
+// ------------------------------------ Rota do axios que tráz os artístas 'Músicos' ------------------------------------
+  
+  // recuperar todos os artistas músicos do banco de dados
+  const [dadosMusicos, setDadosMusicos] = useState([])
+  // console.log(dadosMusicos);
+
+  const handleClickMusicos = async (values) => {
+    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Musico`, {
+
+      // nome: values.nome,
+      // sobrenome: values.sobrenome,
+    })
+
+      .then(function (response) {
+        console.log("Dados dos Musicos: " + JSON.stringify(response.data.data))
+        setDadosMusicos(response.data.data)
+        // console.log(JSON.stringify(dados))
+
+        
+        //armazenando dados do usuario em cache 
+         AsyncStorage.setItem('musicosData', JSON.stringify(response.data.data))
+
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  // constante que chama a função handleClickMusicos e ao mesmo tempo navega até a tela Musicos
+  const NavegarMusicos = () => {
+    handleClickMusicos()
+    navigation.navigate('Musicos')
+  }
+
+// -------------------------------------------------------------------------------------------------------------------
+
   return (
 
   <View>
@@ -149,7 +189,7 @@ const Menu = ( {navigation} ) => {
           <BotaoCategoria texto={'Fotógrafos'} imagem={require('../../../assets/Imagens/Fotografos.png')} />
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={NavegarMusicos}>
           <BotaoCategoria texto={'Músicos'} imagem={require('../../../assets/Imagens/Musicos.png')} />
         </TouchableOpacity>
 

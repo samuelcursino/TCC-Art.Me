@@ -145,6 +145,7 @@ const Perfil = () => {
           </Text>
           <Text style={stylePerfil.samu}>
             {/* 10K Seguidores 12K Seguindo */}
+            {usuario.catServicoNomeCategoria}
           </Text>
         </View>
 

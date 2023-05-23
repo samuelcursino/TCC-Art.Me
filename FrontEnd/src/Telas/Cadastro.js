@@ -25,13 +25,14 @@ const handleClickCadastro = async (values) => {
     password: values.password,
     telefone: values.telefone,
     uf: values.uf
-  })
+  }), alert("Cadastro completado com Sucesso!")
 
   .then((response) => {
     if(response == 201){
       navigation.navigate('Menu')
+
     } else if(response == 400){
-      alert.alert("algo errado")
+      alert("algo errado")
     }
     
   })

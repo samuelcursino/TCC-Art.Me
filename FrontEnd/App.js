@@ -6,6 +6,7 @@ import MudarSenha from './src/Telas/MudarSenha';
 import Menu from './src/Telas/Menu/Menu';
 import Pintores from './src/Telas/Categorias/Pintores';
 import Fotografos from './src/Telas/Categorias/Fotografos';
+import Musicos from './src/Telas/Categorias/Musicos';
 import Perfil from './src/Telas/Perfil';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -20,7 +21,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='Menu'>
+        <Stack.Navigator initialRouteName='BoasVindas'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} options={{headerShown: false}}/>
@@ -41,6 +42,7 @@ const StackNavegacao =  () => {
           <Stack.Screen name="Menu" component={Menu} options={{ headerTitleAlign: 'center' }} />
           <Stack.Screen name="Pintores" component={Pintores} />
           <Stack.Screen name="Fotografos" component={Fotografos} />
+          <Stack.Screen name="Musicos" component={Musicos} />
         </Stack.Navigator>
       </NavigationContainer>
     )
