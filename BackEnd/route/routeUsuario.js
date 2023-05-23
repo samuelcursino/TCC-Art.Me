@@ -2,7 +2,7 @@
 const express = require('express');
 
 //Importação da tabela Usuario
-const modelUsuario = require('../model/modelUsuario');g
+const modelUsuario = require('../model/modelUsuario');
 
 //Importação do Router
 const router = express.Router();
@@ -10,10 +10,10 @@ const router = express.Router();
 // -------------------------------------- ROTA DE CADASTRAR USUARIO ------------------------------------
 router.post('/cadastrarUsuario', (req, res)=>{
     console.log(req.body);    
-    let {nome, sobrenome, email, password, telefone, uf, catServicoIdCategoria} = req.body;
+    let {nome, sobrenome, email, password, telefone, uf, catServicoNomeCategoria} = req.body;
     modelUsuario.create(
         //DADOS DA INSERÇÂO DE USUARIO/
-        {nome, sobrenome, email, password, telefone, uf, catServicoIdCategoria}
+        {nome, sobrenome, email, password, telefone, uf, catServicoNomeCategoria}
     ).then(
         ()=>{
             return res.status(201).json({
@@ -56,6 +56,33 @@ router.get('/listarUsuario', (req, res)=>{
             }
         );
 
+});
+// -----------------------------------------------------------------------------------------------------
+
+// ------------------------- ROTA DE LISTAGEM DE USUARIO POR CATEGORIA (exemplo: 1-Pintor, 2-Fotografo, 3- Musico) --------------------------
+router.get('/listarUsuarioCATEGORIA/:catServicoNomeCategoria', (req, res)=>{
+
+    let {catServicoNomeCategoria} = req.params;
+
+    modelUsuario.findAll({attributes:['id_usuario', 'nome', 'sobrenome', 'catServicoNomeCategoria'],where:{catServicoNomeCategoria}})
+    .then(
+        (response)=>{
+            return res.status(200).json({
+                erroStatus:false,
+                mensagemStatus:"USUARIO RECUPERADO COM SUCESSO.",
+                data:response
+            })
+        }
+    )
+    .catch(
+        (error)=>{
+            return res.status(400).json({
+                erroStatus:true,
+                mensagemStatus:"ERRO AO RECUPERAR O USUARIO.",
+                errorObject:error
+            });
+        }
+    )
 });
 // -----------------------------------------------------------------------------------------------------
 

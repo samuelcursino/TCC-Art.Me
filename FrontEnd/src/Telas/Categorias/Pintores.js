@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Pintores = ({navigation}) => {
 
+  // "Pegar" o usuário que está conectado
     const [usuario, setUsuario] = useState([])
     // console.log(usuario);
   
@@ -30,19 +31,22 @@ const Pintores = ({navigation}) => {
     }
 
 
-  // recuperar todos os usuarios do banco de dados
-  const [dadosUsers, setDadosUsers] = useState([])
+
+
+
+  // recuperar todos os pintores do banco de dados
+  const [dadosPintores, setDadosPintores] = useState([])
   // console.log(dadosUsers);
 
     useEffect(() => {
-    getDadosUsers();
+    getDadosPintores()
   }, []); 
 
-    async function getDadosUsers() {
-    let response = await AsyncStorage.getItem('usersData')
+    async function getDadosPintores() {
+    let response = await AsyncStorage.getItem('pintoresData')
     let json = JSON.parse(response)
 
-    setDadosUsers(json)
+    setDadosPintores(json)
 
   }
 
@@ -52,7 +56,7 @@ const Pintores = ({navigation}) => {
         <Text >{item.id_usuario}</Text>
         <Text >{item.nome}</Text>
         <Text >{item.sobrenome}</Text>
-        <Text >{item.catServicoIdCategoria}</Text>
+        <Text >{item.catServicoNomeCategoria}</Text>
       </View>
     )
   }
@@ -79,16 +83,11 @@ return (
         <Text style={stylePintores.txtServicos}>Serviços</Text>
         <View style={stylePintores.categorias}>         
 
-{/* <View style={style= {flex: 1}}>
-    <CaixaUsuario></CaixaUsuario>
-    <CaixaUsuario></CaixaUsuario>
-    <CaixaUsuario></CaixaUsuario>
-</View> */}
 
       <View>
         <FlatList
-          data={dadosUsers}
-          renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoIdCategoria={(item.catServicoIdCategoria)} />}
+          data={dadosPintores}
+          renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
       </View>

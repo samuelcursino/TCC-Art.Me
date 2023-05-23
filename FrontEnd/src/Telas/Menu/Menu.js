@@ -34,24 +34,24 @@ const Menu = ( {navigation} ) => {
 
   
   // recuperar todos os usuarios do banco de dados
-  const [dadosUsers, setDadosUsers] = useState([])
-  // console.log(dadosUsers);
+  const [dadosPintores, setDadosPintores] = useState([])
+  // console.log(dadosPintores);
 
-  const handleClickUsers = async (values) => {
-    axios.get(`${configuration.url}/listarUsuario`, {
+  const handleClickPintores = async (values) => {
+    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Pintor`, {
 
       // nome: values.nome,
       // sobrenome: values.sobrenome,
     })
 
       .then(function (response) {
-        console.log("Dados de todos os usuarios: " + JSON.stringify(response.data.data))
-        setDadosUsers(response.data.data)
+        console.log("Dados dos Pintores: " + JSON.stringify(response.data.data))
+        setDadosPintores(response.data.data)
         // console.log(JSON.stringify(dados))
 
         
         //armazenando dados do usuario em cache 
-         AsyncStorage.setItem('usersData', JSON.stringify(response.data.data))
+         AsyncStorage.setItem('pintoresData', JSON.stringify(response.data.data))
 
         if (response == 201) {
         } else if (response == 404) {
@@ -65,10 +65,9 @@ const Menu = ( {navigation} ) => {
 
 
 
-  // constante que chama a função handleClickUsers e ao mesmo tempo navega até a tela pintores
-
+  // constante que chama a função handleClickPintores e ao mesmo tempo navega até a tela pintores
   const NavegarPintores = () => {
-    handleClickUsers()
+    handleClickPintores()
     navigation.navigate('Pintores')
   }
 

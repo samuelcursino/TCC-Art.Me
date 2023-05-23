@@ -8,13 +8,14 @@ const connection = require('../database/database');
 const modelCategoriaServico = connection.define(
     'cat_servico',
     {
-        id_Categoria:{
-            type: Sequelize.INTEGER(),
-            primaryKey: true,
-            autoIncrement:true
-        },
+        // id_Categoria:{
+        //     type: Sequelize.INTEGER(),
+        //     primaryKey: true,
+        //     autoIncrement:true
+        // },
         nome_categoria:{
             type: Sequelize.STRING(100),
+            primaryKey: true,
             allowNull: false
         }
         

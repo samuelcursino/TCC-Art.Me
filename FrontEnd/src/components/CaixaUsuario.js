@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   } from 'react-native';
 
-const CaixaUsuario = ({Nome, Sobrenome, catServicoIdCategoria})=>{
+const CaixaUsuario = ({Nome, Sobrenome, catServicoNomeCategoria})=>{
 
  return (
     <View style={styleCaixaUsuario.containerArtista1}>
@@ -15,7 +15,7 @@ const CaixaUsuario = ({Nome, Sobrenome, catServicoIdCategoria})=>{
             <Image source={require('../../assets/Imagens/UsuarioM2.png')} style={styleCaixaUsuario.fotoPerfilArtista} /> 
               <Text style={styleCaixaUsuario.txtNomeArtistas}>{Nome} {Sobrenome}</Text>
               <Text style={styleCaixaUsuario.txtServicoDe}>Serviço de:</Text>
-              <Text style={styleCaixaUsuario.txtCategoriaArtistas}>{catServicoIdCategoria}</Text>
+              <Text style={styleCaixaUsuario.txtCategoriaArtistas}>{catServicoNomeCategoria}</Text>
     </View>          
 
   )
