@@ -36,7 +36,7 @@ const Pintores = ({navigation}) => {
 
   // recuperar todos os pintores do banco de dados
   const [dadosPintores, setDadosPintores] = useState([])
-  // console.log(dadosUsers);
+  // console.log(dadosPintores);
 
     useEffect(() => {
     getDadosPintores()

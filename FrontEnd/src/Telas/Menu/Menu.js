@@ -31,9 +31,9 @@ const Menu = ( {navigation} ) => {
   }
 
 
-
+// ------------------------------------ Rota do axios que tráz os artístas 'Pintores' ------------------------------------
   
-  // recuperar todos os usuarios do banco de dados
+  // recuperar todos os artístas pintores do banco de dados
   const [dadosPintores, setDadosPintores] = useState([])
   // console.log(dadosPintores);
 
@@ -50,7 +50,7 @@ const Menu = ( {navigation} ) => {
         // console.log(JSON.stringify(dados))
 
         
-        //armazenando dados do usuario em cache 
+        //armazenando dados dos artístas pintores em cache 
          AsyncStorage.setItem('pintoresData', JSON.stringify(response.data.data))
 
         if (response == 201) {
@@ -63,13 +63,53 @@ const Menu = ( {navigation} ) => {
       })
   }
 
-
-
   // constante que chama a função handleClickPintores e ao mesmo tempo navega até a tela pintores
   const NavegarPintores = () => {
     handleClickPintores()
     navigation.navigate('Pintores')
   }
+
+// -------------------------------------------------------------------------------------------------------------------
+
+// ------------------------------------ Rota do axios que tráz os artístas 'Fotógrafos' ------------------------------------
+  
+  // recuperar todos os artistas fotógrafos do banco de dados
+  const [dadosFotografos, setDadosFotografos] = useState([])
+  // console.log(dadosFotografos);
+
+  const handleClickFotografos = async (values) => {
+    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Fotógrafo`, {
+
+      // nome: values.nome,
+      // sobrenome: values.sobrenome,
+    })
+
+      .then(function (response) {
+        console.log("Dados dos Fotógrafos: " + JSON.stringify(response.data.data))
+        setDadosFotografos(response.data.data)
+        // console.log(JSON.stringify(dados))
+
+        
+        //armazenando dados do usuario em cache 
+         AsyncStorage.setItem('fotografosData', JSON.stringify(response.data.data))
+
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  // constante que chama a função handleClickFotografos e ao mesmo tempo navega até a tela Fotografos
+  const NavegarFotografos = () => {
+    handleClickFotografos()
+    navigation.navigate('Fotografos')
+  }
+
+// -------------------------------------------------------------------------------------------------------------------
 
   return (
 
@@ -105,7 +145,7 @@ const Menu = ( {navigation} ) => {
           <BotaoCategoria texto={'Pintores'} imagem={require('../../../assets/Imagens/Pintores.png')} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={NavegarPintores}>
+        <TouchableOpacity onPress={NavegarFotografos}>
           <BotaoCategoria texto={'Fotógrafos'} imagem={require('../../../assets/Imagens/Fotografos.png')} />
         </TouchableOpacity>
 
@@ -160,8 +200,8 @@ const Menu = ( {navigation} ) => {
     </View>
   </ScrollView>
       {/* onPress={() => navigation.navigate('#')} */}
-      <TouchableOpacity style={styleMenu.btnPost} > 
-        <Text style={styleMenu.btnPost2}>+</Text>
+      <TouchableOpacity style={styleMenu.btnPost} >       
+          <Text style={styleMenu.btnPost2}>+</Text>                
       </TouchableOpacity>
 
 </View>
@@ -404,12 +444,13 @@ const styleMenu = StyleSheet.create({
   },
 
   btnPost2: {
-    fontSize: 65,
+    fontSize: 45,
     // justifyContent: 'center',
     color: 'white',    
     textAlign:'center',
-    marginTop: -17,
-    paddingLeft: 1
+    marginTop: -7,
+    paddingLeft: 1,
+    fontWeight: '300',
     
   },
 
