@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import * as yup from "yup";
 import axios from "axios";
 import configuration from '../../configuration.json';
+import BotaoCategoriaModal from '../components/BotaoCategoriaModal';
 import { 
   StyleSheet, 
   Text,
@@ -10,11 +11,16 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Modal,
+  Pressable
   } from 'react-native';
 
 
 const Cadastro = ({ navigation }) => {
+
+  
+const [modalVisible, setModalVisible] = useState(false);
 
   // Axios Cadastro
 const handleClickCadastro = async (values) => {
@@ -211,9 +217,58 @@ const validationCadastro = yup.object().shape({
                 />
                 {touched.uf && <Text style={StyleCadastro.msgErroCurta}>{errors.uf}</Text>}
 
-              </View>
+              </View>             
 
-            </View>      
+            </View>     
+
+
+            {/* Input selecionar Categoria */}
+            <View>
+
+              <TouchableOpacity style={StyleCadastro.categoriaButton} onPress={() => setModalVisible(true)}>
+                <Text style={StyleCadastro.categoriaText}>Selecione uma categoria</Text>
+              </TouchableOpacity>
+
+              <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+              }}
+            >
+              <View style={StyleCadastro.centeredView}>
+                <View style={StyleCadastro.modalView}>
+
+                  <Text style={StyleCadastro.modalText}>Selecione uma categoria...</Text>
+
+                    <View style={StyleCadastro.modalCategorias}>
+
+                      <TouchableOpacity >
+                        <BotaoCategoriaModal texto={'Pintor'} imagem={require('../../assets/Imagens/Pintores.png')} />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity>
+                        <BotaoCategoriaModal texto={'Fotógrafo'} imagem={require('../../assets/Imagens/Fotografos.png')} />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity>
+                        <BotaoCategoriaModal texto={'Músico'} imagem={require('../../assets/Imagens/Musicos.png')} />
+                      </TouchableOpacity>
+
+                    </View>
+
+                    <Pressable
+                    onPress={() => setModalVisible(!modalVisible)}>
+                    <Text style={StyleCadastro.voltar}>Voltar</Text>              
+                    </Pressable>
+
+                </View>
+              </View>
+            </Modal>
+
+            </View>            
 
             <TouchableOpacity style={StyleCadastro.loginButton} onPress={handleSubmit} disabled={!isValid}>
               <Text style={StyleCadastro.loginText}>Cadastrar</Text>
@@ -238,7 +293,7 @@ const StyleCadastro = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 750
+    height: 800
   },
 
   //imagem
@@ -259,7 +314,7 @@ const StyleCadastro = StyleSheet.create({
   borderRadius: 30,
   paddingVertical: 20,
   width: 310,
-  height: 500,
+  height: 570,
   backgroundColor: '#FFC700',
   alignItems: 'center',
   justifyContent: 'center',
@@ -373,7 +428,7 @@ modalContainer: {
 
 modalText: {
 fontSize: 19,
-color: 'white',
+color: 'black',
 fontWeight: 'bold',
 textAlign:'center',
 },
@@ -430,7 +485,7 @@ loginButton: {
   padding: 5,
   fontSize: 10,
   // margin: 20,
-  marginTop: 20
+  marginTop: 35
 },
 
 // Fonte do Botão Entrar
@@ -440,6 +495,71 @@ loginText: {
   fontWeight: 'bold',
   textAlign:'center',
 },
+
+//Botão de selecionar a categoria do artista
+categoriaButton: {
+  textAlign: 'center',
+  width: 270,
+  height: 43,
+  borderRadius: 40,
+  // alignContent: 'center',
+  justifyContent: 'center',
+  // paddingHorizontal: 20,
+  backgroundColor: '#fff',
+  // margin: 20,
+  marginTop: 40
+},
+
+// Fonte do Botão Entrar
+categoriaText: {
+  fontSize: 19,
+  color: '#F97316',
+  textAlign:'center',
+},
+
+centeredView: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: 22
+},
+
+modalView: {
+  margin: 20,
+  backgroundColor: "white",
+  borderRadius: 20,
+  padding: 35,
+  alignItems: "center",
+  shadowColor: "#000",
+  width: 350,
+  height: 480,
+  shadowOffset: {
+    width: 0,
+    height: 2
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 4,
+  elevation: 5
+},
+
+modalCategorias: {
+  margin: 20
+},
+
+voltar: {
+  textAlign: 'center',
+  // margin: 25,
+  borderRadius: 30,
+  paddingHorizontal: 10,
+  backgroundColor: '#F97316',      
+  fontWeight: 'bold',
+  fontSize: 18,
+  color: 'white',
+  marginBottom: 10,
+  width: 80,
+  height: 30,
+  padding: 2
+}
 
 })
 

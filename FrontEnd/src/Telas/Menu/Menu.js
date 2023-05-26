@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import BotaoCategoria from '../Menu/BotaoCategoria';
+import BotaoCategoria from '../../components/BotaoCategoria';
 import axios from "axios";
 import configuration from '../../../configuration.json';
 import { 
@@ -239,8 +239,8 @@ const Menu = ( {navigation} ) => {
       </View>
     </View>
   </ScrollView>
-      {/* onPress={() => navigation.navigate('#')} */}
-      <TouchableOpacity style={styleMenu.btnPost} >       
+      
+      <TouchableOpacity style={styleMenu.btnPost} onPress={() => navigation.navigate('Escreva algo')}>       
           <Text style={styleMenu.btnPost2}>+</Text>                
       </TouchableOpacity>
 

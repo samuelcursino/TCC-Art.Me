@@ -4,6 +4,7 @@ import Login from './src/Telas/Login';
 import Cadastro from './src/Telas/Cadastro';
 import MudarSenha from './src/Telas/MudarSenha';
 import Menu from './src/Telas/Menu/Menu';
+import PostArtista from './src/Telas/Menu/PostArtista';
 import Pintores from './src/Telas/Categorias/Pintores';
 import Fotografos from './src/Telas/Categorias/Fotografos';
 import Musicos from './src/Telas/Categorias/Musicos';
@@ -21,7 +22,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='BoasVindas'>
+        <Stack.Navigator initialRouteName='Cadastro'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} options={{headerShown: false}}/>
@@ -40,6 +41,7 @@ const StackNavegacao =  () => {
       <NavigationContainer independent={true}>
         <Stack.Navigator>
           <Stack.Screen name="Menu" component={Menu} options={{ headerTitleAlign: 'center' }} />
+          <Stack.Screen name="Escreva algo" component={PostArtista} />
           <Stack.Screen name="Pintores" component={Pintores} />
           <Stack.Screen name="Fotografos" component={Fotografos} />
           <Stack.Screen name="Musicos" component={Musicos} />

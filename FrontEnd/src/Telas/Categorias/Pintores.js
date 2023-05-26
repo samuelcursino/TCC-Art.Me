@@ -87,71 +87,13 @@ return (
       <View>
         <FlatList
           data={dadosPintores}
+          contentContainerStyle={{margin:4}}
+          horizontal={false}
+          numColumns = {2}
           renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
       </View>
-    
-
-        {/* <TouchableOpacity>
-          <View style={stylePintores.containerArtista1}>
-            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
-            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
-              <Text style={stylePintores.txtNomeArtistas}>{users.nome} {users.sobrenome}</Text>
-              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
-              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
-          </View>          
-       </TouchableOpacity>
-
-       <TouchableOpacity>
-          <View style={stylePintores.containerArtista2}>
-            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
-            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
-              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
-              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
-              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
-          </View>          
-       </TouchableOpacity>
-
-       <TouchableOpacity>
-          <View style={stylePintores.containerArtista3}>
-            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
-            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
-              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
-              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
-              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
-          </View>          
-       </TouchableOpacity>
-
-       <TouchableOpacity>
-          <View style={stylePintores.containerArtista4}>
-            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
-            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
-              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
-              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
-              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
-          </View>          
-       </TouchableOpacity>
-
-       <TouchableOpacity>
-          <View style={stylePintores.containerArtista5}>
-            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
-            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
-              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
-              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
-              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
-          </View>          
-       </TouchableOpacity>
-
-       <TouchableOpacity>
-          <View style={stylePintores.containerArtista6}>
-            <Image source={require('../../../assets/Imagens/FotoPintando.png')} style={stylePintores.BackgroundFoto} />
-            <Image source={require('../../../assets/Imagens/UsuarioM2.png')} style={stylePintores.fotoPerfilArtista} /> 
-              <Text style={stylePintores.txtNomeArtistas}>Salvador Alcantara</Text>
-              <Text style={stylePintores.txtServicoDe}>Serviço de:</Text>
-              <Text style={stylePintores.txtCategoriaArtistas}>Pintor</Text>
-          </View>          
-       </TouchableOpacity> */}
 
         </View>
 

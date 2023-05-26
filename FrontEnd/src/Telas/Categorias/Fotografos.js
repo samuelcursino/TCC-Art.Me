@@ -86,6 +86,9 @@ return (
       <View>
         <FlatList
           data={dadosFotografos}
+          contentContainerStyle={{margin:4}}
+          horizontal={false}
+          numColumns = {2}
           renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
