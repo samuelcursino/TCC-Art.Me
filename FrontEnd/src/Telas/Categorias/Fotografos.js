@@ -8,7 +8,7 @@ import {
   ScrollView,
   FlatList
   } from 'react-native';
-import CaixaUsuario from '../../components/CaixaUsuario';
+import CaixaUsuarioFotografos from '../../components/CaixaUsuarioFotografos';
 
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -89,7 +89,7 @@ return (
           contentContainerStyle={{margin:4}}
           horizontal={false}
           numColumns = {2}
-          renderItem={({item})=><CaixaUsuario Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
+          renderItem={({item})=><CaixaUsuarioFotografos Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
       </View>         

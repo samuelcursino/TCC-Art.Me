@@ -30,7 +30,8 @@ const handleClickCadastro = async (values) => {
     email: values.email,
     password: values.password,
     telefone: values.telefone,
-    uf: values.uf
+    uf: values.uf,
+    catServicoNomeCategoria: catServicoNomeCategoria
   }), alert("Cadastro completado com Sucesso!")
 
   .then((response) => {
@@ -80,6 +81,44 @@ const validationCadastro = yup.object().shape({
   
 })
 
+const [catServicoNomeCategoria, setCatServicoNomeCategoria] =  useState(null)
+
+const [catPintor, setcatPintor] =  useState(false)
+const [catFotografo, setcatFotografo] =  useState(false)
+const [catMusico, setcatMusico] =  useState(false)
+
+useEffect (() => {
+  if (catPintor == true) {
+  setCatServicoNomeCategoria('Pintor'),
+  console.log(catServicoNomeCategoria)
+  setModalVisible(!modalVisible)
+  }
+  return () => {
+    setcatPintor(false)
+  }
+})
+
+useEffect (() => {
+  if (catFotografo == true) {
+  setCatServicoNomeCategoria('Fotografo'),
+  console.log(catServicoNomeCategoria)
+  setModalVisible(!modalVisible)
+  }
+  return () => {
+    setcatFotografo(false)
+  }
+})
+
+useEffect (() => {
+  if (catMusico == true) {
+  setCatServicoNomeCategoria('Musico'),
+  console.log(catServicoNomeCategoria)
+  setModalVisible(!modalVisible)
+  }
+  return () => {
+    setcatMusico(false)
+  }
+})
 
   return (
     <ScrollView>
@@ -92,7 +131,7 @@ const validationCadastro = yup.object().shape({
         email: '',
         password: '',
         telefone: '',
-        uf: '',
+        uf: ''
       }}
 
     onSubmit={values=>{handleClickCadastro(values)}}
@@ -245,24 +284,32 @@ const validationCadastro = yup.object().shape({
 
                     <View style={StyleCadastro.modalCategorias}>
 
-                      <TouchableOpacity >
+                      <TouchableOpacity onPress={() => setcatPintor(true)}>
                         <BotaoCategoriaModal texto={'Pintor'} imagem={require('../../assets/Imagens/Pintores.png')} />
                       </TouchableOpacity>
 
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => setcatFotografo(true)}>
                         <BotaoCategoriaModal texto={'Fotógrafo'} imagem={require('../../assets/Imagens/Fotografos.png')} />
                       </TouchableOpacity>
 
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => setcatMusico(true)}>
                         <BotaoCategoriaModal texto={'Músico'} imagem={require('../../assets/Imagens/Musicos.png')} />
-                      </TouchableOpacity>
+                      </TouchableOpacity>                      
 
                     </View>
 
-                    <Pressable
+                    <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+                      <Text style={StyleCadastro.btnNaoSouArtista}>Sou usuário</Text>  
+                     </TouchableOpacity>
+
+                     <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+                      <Text style={StyleCadastro.voltar}>Voltar</Text>  
+                     </TouchableOpacity>
+
+                    {/* <Pressable
                     onPress={() => setModalVisible(!modalVisible)}>
                     <Text style={StyleCadastro.voltar}>Voltar</Text>              
-                    </Pressable>
+                    </Pressable> */}
 
                 </View>
               </View>
@@ -532,7 +579,7 @@ modalView: {
   alignItems: "center",
   shadowColor: "#000",
   width: 350,
-  height: 480,
+  height: 530,
   shadowOffset: {
     width: 0,
     height: 2
@@ -548,7 +595,7 @@ modalCategorias: {
 
 voltar: {
   textAlign: 'center',
-  // margin: 25,
+  margin: 25,
   borderRadius: 30,
   paddingHorizontal: 10,
   backgroundColor: '#F97316',      
@@ -559,6 +606,23 @@ voltar: {
   width: 80,
   height: 30,
   padding: 2
+},
+
+btnNaoSouArtista: {
+  textAlign: 'center',
+  margin: -7,
+  borderRadius: 30,
+  // paddingHorizontal: 10,
+  backgroundColor: '#fff',      
+  fontWeight: 'bold',
+  fontSize: 18,
+  color: '#F97316',
+  marginBottom: 10,
+  width: 170,
+  height: 35,
+  padding: 4,
+  borderWidth: 3,
+  borderColor: '#F97316',
 }
 
 })
