@@ -9,7 +9,7 @@ const rotasCategoriaServico = require('./route/routeCategoriaServico');
 const rotasChat = require('./route/routeChat');
 
 //Importação das rotas de Serviço
-const rotasServico = require('./route/routeServico');
+const rotasPost = require('./route/routePost');
 
 //Importação das rotas de Usuario
 const rotasUsuario = require('./route/routeUsuario');
@@ -21,7 +21,7 @@ app.use(cors());
 
 app.use('/', rotasCategoriaServico);
 app.use('/', rotasUsuario);
-app.use('/', rotasServico);
+app.use('/', rotasPost);
 app.use('/', rotasChat);
 
 app.listen(3005, ()=>{

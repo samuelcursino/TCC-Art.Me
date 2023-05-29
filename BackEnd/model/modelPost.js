@@ -5,16 +5,15 @@ const Sequelize = require('sequelize');
 const connection = require('../database/database');
 
 //Criação da tabela Serviço
-const modelServico = connection.define(
-    'tbl_servico',
+const modelPost = connection.define(
+    'tbl_post',
     {
-        id_servico:{
-            type: Sequelize.INTEGER(20),
+        titulo:{
+            type: Sequelize.STRING(30),
             primaryKey: true,
-            autoIncrement:true
         },
-        desc_servico:{
-            type: Sequelize.STRING(45),
+        desc_postagem:{
+            type: Sequelize.STRING(150),
             allowNull: false
         }
         
@@ -22,7 +21,7 @@ const modelServico = connection.define(
 );
 
 //Forçar recriação da tabela
-//modelServico.sync({force:true});
+//modelPost.sync({force:true});
 
 //Exportação da tabela Serviço
-module.exports = modelServico;
+module.exports = modelPost;

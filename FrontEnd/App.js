@@ -5,6 +5,7 @@ import Cadastro from './src/Telas/Cadastro';
 import MudarSenha from './src/Telas/MudarSenha';
 import Menu from './src/Telas/Menu/Menu';
 import PostArtista from './src/Telas/Menu/PostArtista';
+import NavegarPost from './src/Telas/Menu/NavegarPost';
 import Pintores from './src/Telas/Categorias/Pintores';
 import Fotografos from './src/Telas/Categorias/Fotografos';
 import Musicos from './src/Telas/Categorias/Musicos';
@@ -45,7 +46,8 @@ const StackNavegacao =  () => {
           <Stack.Screen name="Pintores" component={Pintores} />
           <Stack.Screen name="Fotografos" component={Fotografos} />
           <Stack.Screen name="Musicos" component={Musicos} />
-        </Stack.Navigator>
+          <Stack.Screen name="NavegarPost" component={NavegarPost} />
+        </Stack.Navigator> 
       </NavigationContainer>
     )
   }
@@ -53,7 +55,7 @@ const StackNavegacao =  () => {
 const TabNavegacao =  () => {
   return (
 
-    //Container de navegação das telas "Menu" e "Minha Conta"
+    //Container de navegação das telas "Menu", "Minha Conta" e "Descobrir"
     <NavigationContainer independent={true}>
        <Tab.Navigator initialRouteName='Menu'>
 
@@ -72,6 +74,21 @@ const TabNavegacao =  () => {
           />
 
         <Tab.Screen
+            name="NavegarPost"
+            component={NavegarPost} 
+            options={{
+              title:'Descobrir', 
+              headerTitleAlign: 'center',
+              tabBarLabelStyle: {
+                  fontSize: 12
+                },
+                tabBarIcon: ({size, color, }) => (
+                  <MaterialCommunityIcons name='crown' size= {40} color={color}/>
+                  ) 
+              }} 
+            />
+
+        <Tab.Screen
           name="Perfil"
           component={Perfil} 
           options={{
@@ -84,7 +101,7 @@ const TabNavegacao =  () => {
                 <MaterialCommunityIcons name='account-box' size= {40} color={color}/>
                 ) 
             }} 
-          />
+          />       
 
       </Tab.Navigator>
     </NavigationContainer>
