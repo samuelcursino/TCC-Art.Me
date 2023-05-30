@@ -38,11 +38,7 @@ const Menu = ( {navigation} ) => {
   // console.log(dadosPintores);
 
   const handleClickPintores = async (values) => {
-    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Pintor`, {
-
-      // nome: values.nome,
-      // sobrenome: values.sobrenome,
-    })
+    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Pintor`)
 
       .then(function (response) {
         console.log("Dados dos Pintores: " + JSON.stringify(response.data.data))
@@ -78,11 +74,7 @@ const Menu = ( {navigation} ) => {
   // console.log(dadosFotografos);
 
   const handleClickFotografos = async (values) => {
-    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Fotógrafo`, {
-
-      // nome: values.nome,
-      // sobrenome: values.sobrenome,
-    })
+    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Fotógrafo`)
 
       .then(function (response) {
         console.log("Dados dos Fotógrafos: " + JSON.stringify(response.data.data))
@@ -118,11 +110,7 @@ const Menu = ( {navigation} ) => {
   // console.log(dadosMusicos);
 
   const handleClickMusicos = async (values) => {
-    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Musico`, {
-
-      // nome: values.nome,
-      // sobrenome: values.sobrenome,
-    })
+    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Musico`)
 
       .then(function (response) {
         console.log("Dados dos Musicos: " + JSON.stringify(response.data.data))

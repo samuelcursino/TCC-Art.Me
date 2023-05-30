@@ -17,6 +17,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
 
+
+// --------------------------- Rota do axios que tráz o email e senha do artista --------------------------------
+
   const handleClickLogin = async (values) => {
     axios.get(`${configuration.url}/listarUsuarioEMAIL/${values.email}/${values.password}`, {
       email: values.email,
@@ -43,9 +46,9 @@ const Login = ({ navigation }) => {
       })
   }
 
+// -----------------------------------------------------------------------------------------------------------
+
   const [dados, setDados] = useState(null);
-  // const [email, setEmail] = useState(null);
-  // const [password, setPassword] = useState(null);
 
   useEffect(() => {
     dados != null
@@ -70,10 +73,6 @@ const Login = ({ navigation }) => {
   })
 
   function ValidationDados(dados) {
-    // let dados = {
-    //   email: email,
-    //   password: password,
-    // }
     if (dados != null) {
       navigation.navigate("Menu")
     } else {

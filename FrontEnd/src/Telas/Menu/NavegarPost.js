@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
+import configuration from '../../../configuration.json';
 import { 
   View,
   Text,
@@ -30,35 +32,67 @@ const NavegarPosts = ({navigation}) => {
     }
 
 
+// ------------------------------------ Rota do axios que tráz as postagens dos artístas ------------------------------------
 
+  const handleClickPosts = async (values) => {
+    axios.get(`${configuration.url}/listarPostagem`)
 
+      .then(function (response) {
+        console.log("Dados das postagens: " + JSON.stringify(response.data.data))
+        setDadosPonstagens(response.data.data)
+        // console.log(JSON.stringify(dados))
 
-  // // recuperar todos os pintores do banco de dados
-  // const [dadosPintores, setDadosPintores] = useState([])
-  // // console.log(dadosPintores);
+        
+        //armazenando dados das postagens dos artístas em cache 
+         AsyncStorage.setItem('pintoresData', JSON.stringify(response.data.data))
 
-  //   useEffect(() => {
-  //   getDadosPintores()
-  // }, []); 
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
 
-  //   async function getDadosPintores() {
-  //   let response = await AsyncStorage.getItem('pintoresData')
-  //   let json = JSON.parse(response)
-
-  //   setDadosPintores(json)
-
+  // constante que chama a função handleClickPintores e ao mesmo tempo navega até a tela pintores
+  // const NavegarPintores = () => {
+  //   handleClickPintores()
+  //   navigation.navigate('Pintores')
   // }
 
-  // const Item = ({item}) => {
-  //   return (
-  //     <View >
-  //       <Text >{item.id_usuario}</Text>
-  //       <Text >{item.nome}</Text>
-  //       <Text >{item.sobrenome}</Text>
-  //       <Text >{item.catServicoNomeCategoria}</Text>
-  //     </View>
-  //   )
-  // }
+// -------------------------------------------------------------------------------------------------------------------
+
+  
+  // recuperar todas as postagens dos artístas do banco de dados
+  const [dadosPonstagens, setDadosPonstagens] = useState([])
+  // console.log(dadosPonstagens);
+
+    useEffect(() => {
+    getDadosPonstagens()
+  }, []); 
+
+    async function getDadosPonstagens() {
+    let response = await AsyncStorage.getItem('postagensData')
+    let json = JSON.parse(response)
+
+    setDadosPonstagens(json)
+
+  }
+
+  const Item = ({item}) => {
+    return (
+      <View >
+        <Text >{item.id_usuario}</Text>
+        <Text >{item.nome}</Text>
+        <Text >{item.sobrenome}</Text>
+        <Text >{item.catServicoNomeCategoria}</Text>
+        <Text >{item.titulo}</Text>
+        <Text >{item.desc_postagem}</Text>
+      </View>
+    )
+  }
 
 return (
 
@@ -75,25 +109,32 @@ return (
             <Image source={require('../../../assets/Imagens/UsuarioMCategorias.png')} style={stylePintores.fotoPerfil} />            
             </View>
 
+
+
         </View>    
     </View>
-        
+
+    <View style={stylePintores.recarregar}>
+      <TouchableOpacity onPress={handleClickPosts}>
+        <Text style={stylePintores.txtRecarregar}>Recarregar</Text>
+      </TouchableOpacity>  
+    </View>
 
         <Text style={stylePintores.txtServicos}>Postagens</Text>
-        <View style={stylePintores.categorias}>         
+        <View style={stylePintores.categorias}>       
 
-      <CaixaPost></CaixaPost>
+        
 
-      {/* <View>
+      {/* <CaixaPost></CaixaPost> */}
+
+      <View>
         <FlatList
-          data={dadosPintores}
-          contentContainerStyle={{margin:4}}
-          horizontal={false}
-          numColumns = {2}
-          renderItem={({item})=><CaixaUsuarioPintores Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
+          data={dadosPonstagens}
+          // contentContainerStyle={{marginEnd:5}}
+          renderItem={({item})=><CaixaPost Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} Titulo={(item.titulo)} desc_postagem={(item.desc_postagem)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
-      </View> */}
+      </View>
 
         </View>
 
@@ -157,7 +198,7 @@ const stylePintores = StyleSheet.create({
 
     txtServicos: {
       fontSize: 17,
-      marginTop: -15,
+      // marginTop: -26,
       fontWeight: 'bold',
       marginHorizontal: 20,
       margin: 10
@@ -321,6 +362,22 @@ const stylePintores = StyleSheet.create({
       // color: '#970C0C'
       // marginHorizontal: 20,
       fontWeight: 'bold',
+    },
+
+    recarregar: {
+      borderRadius: 30,
+      backgroundColor: '#F97316',     
+      // marginBottom: -11,
+      width: 100,
+      height: 30,
+      left: 285,
+    },
+
+    txtRecarregar: {
+      color: 'white',
+      fontSize: 16,
+      left: 10,
+      top: 3
     },
 
 })

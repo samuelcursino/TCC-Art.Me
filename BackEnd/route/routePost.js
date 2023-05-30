@@ -10,10 +10,10 @@ const router = express.Router();
 // -------------------------------------- ROTA DE CADASTRAR POSTAGEM ------------------------------------
 router.post('/cadastrarPostagem', (req, res)=>{
     console.log(req.body);    
-    let {titulo, desc_postagem} = req.body;
+    let {titulo, desc_postagem, tblUsuarioIdUsuario} = req.body;
     modelPost.create(
         //DADOS DA INSERÇÂO DE POSTAGEM
-        {titulo, desc_postagem}
+        {titulo, desc_postagem, tblUsuarioIdUsuario}
     ).then(
         ()=>{
             return res.status(201).json({
@@ -36,7 +36,7 @@ router.post('/cadastrarPostagem', (req, res)=>{
 // ------------------------------ ROTA DE LISTAGEM DE POSTAGEM -----------------------------
 router.get('/listarPostagem', (req, res)=>{
 
-    modelPost.findAll()
+    modelPost.findAll({attributes:['tblUsuarioIdUsuario', 'nome', 'sobrenome', 'catServicoNomeCategoria','titulo', 'desc_postagem']})
         .then(
             (response)=>{
                 //console.log(response);
