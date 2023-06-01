@@ -90,8 +90,8 @@ const NavegarPosts = ({navigation}) => {
   const [dadosPostagens, setDadosPostagens] = useState([])
   const [dadosPostagensArtista, setDadosPostagensArtista] = useState([])
   console.log(dadosPostagens);
-  // console.log(dadosPostagensArtista);
-  const dadosPostagensCombinado = [...dadosPostagens, ...dadosPostagensArtista]
+  console.log(dadosPostagensArtista);
+  // const dadosPostagensCombinado = [...dadosPostagens, ...dadosPostagensArtista]
 
     useEffect(() => {
     getDadosPostagens()

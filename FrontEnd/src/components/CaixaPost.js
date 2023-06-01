@@ -60,7 +60,7 @@ const styleCaixaUsuario = StyleSheet.create({
       fontSize: 9,
       marginTop: -25,
       // marginEnd: 50,
-      marginLeft: 295,
+      marginLeft: 285,
       // marginHorizontal: 20,
       // fontWeight: 'bold',
       color: '#666262'
