@@ -32,19 +32,19 @@ const NavegarPosts = ({navigation}) => {
     }
 
 
-// ------------------------------------ Rota do axios que tráz as postagens dos artístas ------------------------------------
+// ------------------------------------ Rotas do axios que tráz as postagens e lista os artístas ------------------------------------
 
   const handleClickPosts = async (values) => {
     axios.get(`${configuration.url}/listarPostagem`)
 
       .then(function (response) {
         console.log("Dados das postagens: " + JSON.stringify(response.data.data))
-        setDadosPonstagens(response.data.data)
+        setDadosPostagens(response.data.data)
         // console.log(JSON.stringify(dados))
 
         
         //armazenando dados das postagens dos artístas em cache 
-         AsyncStorage.setItem('pintoresData', JSON.stringify(response.data.data))
+         AsyncStorage.setItem('postData', JSON.stringify(response.data.data))
 
         if (response == 201) {
         } else if (response == 404) {
@@ -56,43 +56,80 @@ const NavegarPosts = ({navigation}) => {
       })
   }
 
-  // constante que chama a função handleClickPintores e ao mesmo tempo navega até a tela pintores
-  // const NavegarPintores = () => {
-  //   handleClickPintores()
-  //   navigation.navigate('Pintores')
-  // }
+  const handleClickPostsArtistas = async (values) => {
+    axios.get(`${configuration.url}/listarUsuario`)
+
+      .then(function (response) {
+        console.log("Dados dos artístas: " + JSON.stringify(response.data.data))
+        setDadosPostagensArtista(response.data.data)
+        // console.log(JSON.stringify(dados))
+
+        
+        //armazenando dados das postagens e os artístas em cache 
+         AsyncStorage.setItem('postUserData', JSON.stringify(response.data.data))
+
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  const TrazerPostagem = ()=>{
+    handleClickPosts()
+    handleClickPostsArtistas()
+  }
 
 // -------------------------------------------------------------------------------------------------------------------
 
   
-  // recuperar todas as postagens dos artístas do banco de dados
-  const [dadosPonstagens, setDadosPonstagens] = useState([])
-  // console.log(dadosPonstagens);
+  // recuperar todas as postagens e os artístas do banco de dados
+  const [dadosPostagens, setDadosPostagens] = useState([])
+  const [dadosPostagensArtista, setDadosPostagensArtista] = useState([])
+  console.log(dadosPostagens);
+  // console.log(dadosPostagensArtista);
+  const dadosPostagensCombinado = [...dadosPostagens, ...dadosPostagensArtista]
 
     useEffect(() => {
-    getDadosPonstagens()
+    getDadosPostagens()
   }, []); 
 
-    async function getDadosPonstagens() {
-    let response = await AsyncStorage.getItem('postagensData')
+    async function getDadosPostagens() {
+    let response = await AsyncStorage.getItem('postData')
     let json = JSON.parse(response)
 
-    setDadosPonstagens(json)
+    setDadosPostagens(json)
 
   }
 
-  const Item = ({item}) => {
-    return (
-      <View >
-        <Text >{item.id_usuario}</Text>
-        <Text >{item.nome}</Text>
-        <Text >{item.sobrenome}</Text>
-        <Text >{item.catServicoNomeCategoria}</Text>
-        <Text >{item.titulo}</Text>
-        <Text >{item.desc_postagem}</Text>
-      </View>
-    )
+  useEffect(() => {
+    getDadosPostagensArtista()
+  }, []); 
+
+    async function getDadosPostagensArtista() {
+    let response = await AsyncStorage.getItem('postUserData')
+    let json = JSON.parse(response)
+
+    setDadosPostagensArtista(json)
+
   }
+
+  // const Item = ({item}) => {
+  //   return (
+  //     <View >
+  //       <Text >{item.nome}</Text>
+  //       <Text >{item.sobrenome}</Text>
+  //       <Text >{item.catServicoNomeCategoria}</Text>
+  //       <Text >{item.titulo}</Text>
+  //       <Text >{item.desc_postagem}</Text>
+  //     </View>
+  //   )
+  // }
+
+  // const {data: {titulo, desc_postagem, tbl_usuario: {id_usuario, nome, sobrenome, catServicoNomeCategoria} } } = dadosPostagens
 
 return (
 
@@ -115,7 +152,7 @@ return (
     </View>
 
     <View style={stylePintores.recarregar}>
-      <TouchableOpacity onPress={handleClickPosts}>
+      <TouchableOpacity onPress={TrazerPostagem}>
         <Text style={stylePintores.txtRecarregar}>Recarregar</Text>
       </TouchableOpacity>  
     </View>
@@ -129,10 +166,15 @@ return (
 
       <View>
         <FlatList
-          data={dadosPonstagens}
+          data={dadosPostagens}
           // contentContainerStyle={{marginEnd:5}}
-          renderItem={({item})=><CaixaPost Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} Titulo={(item.titulo)} desc_postagem={(item.desc_postagem)} />}
-          keyExtractor={(item)=>item.id_usuario}
+          renderItem={({item})=><CaixaPost 
+            Nome={(item.tbl_usuario.nome)} 
+            Sobrenome={(item.tbl_usuario.sobrenome)} 
+            catServicoNomeCategoria={(item.tbl_usuario.catServicoNomeCategoria)} 
+            Titulo={(item.titulo)} 
+            desc_postagem={(item.desc_postagem)} />} 
+          keyExtractor={(item)=>item.titulo}
         />
       </View>
 

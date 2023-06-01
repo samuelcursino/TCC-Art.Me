@@ -14,7 +14,7 @@ const modelPost = connection.define(
             primaryKey: true,
         },
         desc_postagem:{
-            type: Sequelize.STRING(150),
+            type: Sequelize.STRING(250),
             allowNull: false
         }
         

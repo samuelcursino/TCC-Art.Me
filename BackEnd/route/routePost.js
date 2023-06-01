@@ -3,6 +3,7 @@ const express = require('express');
 
 //Importação da tabela Serviço
 const modelPost = require('../model/modelPost');
+const modelUsuario = require('../model/modelUsuario');
 
 //Importação do Router
 const router = express.Router();
@@ -36,7 +37,10 @@ router.post('/cadastrarPostagem', (req, res)=>{
 // ------------------------------ ROTA DE LISTAGEM DE POSTAGEM -----------------------------
 router.get('/listarPostagem', (req, res)=>{
 
-    modelPost.findAll({attributes:['tblUsuarioIdUsuario', 'nome', 'sobrenome', 'catServicoNomeCategoria','titulo', 'desc_postagem']})
+    modelPost.findAll({
+        // attributes:['id_usuario', 'nome', 'sobrenome', 'catServicoNomeCategoria','titulo', 'desc_postagem'], 
+        include: modelUsuario
+    })
         .then(
             (response)=>{
                 //console.log(response);
