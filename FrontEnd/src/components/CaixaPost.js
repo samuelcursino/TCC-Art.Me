@@ -15,7 +15,7 @@ const CaixaUsuarioPintores = ({Nome, Sobrenome, catServicoNomeCategoria, titulo,
               <Text style={styleCaixaUsuario.txtNomeArtistas}>{Nome} {Sobrenome}</Text>
               <Text style={styleCaixaUsuario.txtServicoDe}>Serviço de:</Text>
               <Text style={styleCaixaUsuario.txtCategoriaArtistas}>{catServicoNomeCategoria}</Text>
-              <Text style={styleCaixaUsuario.txtTituloPost}>{titulo}</Text>
+              {/* <Text style={styleCaixaUsuario.txtTituloPost}>{titulo}</Text> */}
               <Text style={styleCaixaUsuario.txtPost}>{desc_postagem}</Text>
     </View>          
 
@@ -25,15 +25,17 @@ const CaixaUsuarioPintores = ({Nome, Sobrenome, catServicoNomeCategoria, titulo,
 const styleCaixaUsuario = StyleSheet.create({
 
   containerArtista1: {
-    // display: 'flex',
+    display: 'flex',
     // padding: 5,
-    width: 370,
-    height: 200,
+    flex: 1,
+    // width: 370,
+    // height: 200,
     backgroundColor: 'white',
     borderRadius: 12,
     // elevation: 50,
     borderWidth: 1,
     borderColor: '#F97316',
+    marginTop: 7
   },
 
   fotoPerfilArtista: {
@@ -68,6 +70,7 @@ const styleCaixaUsuario = StyleSheet.create({
 
     txtCategoriaArtistas: {
       fontSize: 18,
+      padding: 'alignItems',
       // marginTop: 20,
       // marginRight: 60,
       marginLeft: 280,
@@ -86,10 +89,13 @@ const styleCaixaUsuario = StyleSheet.create({
 
     txtPost: {
       fontSize: 14,
-      marginTop: 4,
+      marginTop: 15,
       // marginRight: 60,
       // marginLeft: 10,
       marginHorizontal: 10,
+      // flexWrap: 'wrap',
+      // alignSelf: 'flex-start'
+      padding: 5
     },
 
 })

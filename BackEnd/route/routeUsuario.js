@@ -39,7 +39,7 @@ router.get('/listarUsuario', (req, res)=>{
     modelUsuario.findAll({attributes:['id_usuario', 'nome', 'sobrenome', 'catServicoNomeCategoria']})
         .then(
             (response)=>{
-                //console.log(response);
+                // console.log(response);
                 return res.status(200).json({
                     erroStatus:false,
                     mensagemStatus:"USUARIO LISTADO COM SUCESSO.",

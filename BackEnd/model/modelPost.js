@@ -9,10 +9,15 @@ const modelUsuario = require('./modelUsuario');
 const modelPost = connection.define(
     'tbl_post',
     {
-        titulo:{
-            type: Sequelize.STRING(30),
+        id_postagem:{
+            type: Sequelize.INTEGER(),
             primaryKey: true,
+            autoIncrement:true
         },
+        // titulo:{
+        //     type: Sequelize.STRING(30),
+        //     allowNull: false
+        // },
         desc_postagem:{
             type: Sequelize.STRING(250),
             allowNull: false

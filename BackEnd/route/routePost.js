@@ -11,10 +11,10 @@ const router = express.Router();
 // -------------------------------------- ROTA DE CADASTRAR POSTAGEM ------------------------------------
 router.post('/cadastrarPostagem', (req, res)=>{
     console.log(req.body);    
-    let {titulo, desc_postagem, tblUsuarioIdUsuario} = req.body;
+    let {id_postagem, desc_postagem, tblUsuarioIdUsuario} = req.body;
     modelPost.create(
         //DADOS DA INSERÇÂO DE POSTAGEM
-        {titulo, desc_postagem, tblUsuarioIdUsuario}
+        {id_postagem, desc_postagem, tblUsuarioIdUsuario}
     ).then(
         ()=>{
             return res.status(201).json({
@@ -43,7 +43,7 @@ router.get('/listarPostagem', (req, res)=>{
     })
         .then(
             (response)=>{
-                //console.log(response);
+                // console.log(response);
                 return res.status(200).json({
                     erroStatus:false,
                     mensagemStatus:"POSTAGEM LISTADA COM SUCESSO.",

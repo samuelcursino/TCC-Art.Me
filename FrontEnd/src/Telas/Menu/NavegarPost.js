@@ -38,7 +38,8 @@ const NavegarPosts = ({navigation}) => {
     axios.get(`${configuration.url}/listarPostagem`)
 
       .then(function (response) {
-        console.log("Dados das postagens: " + JSON.stringify(response.data.data))
+        // console.log("Dados das postagens: " + JSON.stringify(response.data.data))
+        console.log(response.data.data)
         setDadosPostagens(response.data.data)
         // console.log(JSON.stringify(dados))
 
@@ -60,7 +61,8 @@ const NavegarPosts = ({navigation}) => {
     axios.get(`${configuration.url}/listarUsuario`)
 
       .then(function (response) {
-        console.log("Dados dos artístas: " + JSON.stringify(response.data.data))
+        // console.log("Dados dos artístas: " + JSON.stringify(response.data.data))
+        console.log(response.data.data)
         setDadosPostagensArtista(response.data.data)
         // console.log(JSON.stringify(dados))
 
@@ -87,8 +89,8 @@ const NavegarPosts = ({navigation}) => {
 
   
   // recuperar todas as postagens e os artístas do banco de dados
-  const [dadosPostagens, setDadosPostagens] = useState([])
-  const [dadosPostagensArtista, setDadosPostagensArtista] = useState([])
+  const [dadosPostagens, setDadosPostagens] = useState(null)
+  const [dadosPostagensArtista, setDadosPostagensArtista] = useState(null)
   console.log(dadosPostagens);
   console.log(dadosPostagensArtista);
   // const dadosPostagensCombinado = [...dadosPostagens, ...dadosPostagensArtista]
@@ -172,9 +174,9 @@ return (
             Nome={(item.tbl_usuario.nome)} 
             Sobrenome={(item.tbl_usuario.sobrenome)} 
             catServicoNomeCategoria={(item.tbl_usuario.catServicoNomeCategoria)} 
-            Titulo={(item.titulo)} 
+            // Titulo={(item.titulo)} 
             desc_postagem={(item.desc_postagem)} />} 
-          keyExtractor={(item)=>item.titulo}
+          keyExtractor={(item)=>item.id_postagem}
         />
       </View>
 
