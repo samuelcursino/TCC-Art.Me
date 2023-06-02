@@ -41,8 +41,8 @@ const StackNavegacao =  () => {
     return (
       <NavigationContainer independent={true}>
         <Stack.Navigator>
-          <Stack.Screen name="Menu" component={Menu} options={{ headerTitleAlign: 'center' }} />
-          <Stack.Screen name="Escreva algo" component={PostArtista} />
+          <Stack.Screen name="Menu" component={Menu} options={{ headerTitleAlign: 'Publicação' }} />
+          <Stack.Screen name="Publicação" component={PostArtista} />
           <Stack.Screen name="Pintores" component={Pintores} />
           <Stack.Screen name="Fotografos" component={Fotografos} />
           <Stack.Screen name="Musicos" component={Musicos} />

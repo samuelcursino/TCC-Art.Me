@@ -73,7 +73,8 @@ const Sobre = () => {
 
           <View style={stylePerfil.caixacarac}>
             <Image source={require('../../assets/Imagens/fixar-mapa.png')} style={stylePerfil.local} />
-            <TextInput color= {'grey'} maxLength={15} style={stylePerfil.textocarac2}>
+            <TextInput 
+            color= {'grey'} maxLength={15} style={stylePerfil.textocarac2}>
               Cidade
             </TextInput>
           </View>

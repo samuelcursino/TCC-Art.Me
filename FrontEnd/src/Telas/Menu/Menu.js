@@ -228,7 +228,7 @@ const Menu = ( {navigation} ) => {
     </View>
   </ScrollView>
       
-      <TouchableOpacity style={styleMenu.btnPost} onPress={() => navigation.navigate('Escreva algo')}>       
+      <TouchableOpacity style={styleMenu.btnPost} onPress={() => navigation.navigate('Publicação')}>       
           <Text style={styleMenu.btnPost2}>+</Text>                
       </TouchableOpacity>
 

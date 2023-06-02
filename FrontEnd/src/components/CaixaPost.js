@@ -70,7 +70,7 @@ const styleCaixaUsuario = StyleSheet.create({
 
     txtCategoriaArtistas: {
       fontSize: 18,
-      padding: 'alignItems',
+      // padding: 'alignItems',
       // marginTop: 20,
       // marginRight: 60,
       marginLeft: 280,
@@ -95,7 +95,7 @@ const styleCaixaUsuario = StyleSheet.create({
       marginHorizontal: 10,
       // flexWrap: 'wrap',
       // alignSelf: 'flex-start'
-      padding: 5
+      padding: 9
     },
 
 })
