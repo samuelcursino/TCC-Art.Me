@@ -89,7 +89,7 @@ const styleCaixaUsuario = StyleSheet.create({
 
     txtPost: {
       fontSize: 14,
-      marginTop: 15,
+      marginTop: 2,
       // marginRight: 60,
       // marginLeft: 10,
       marginHorizontal: 10,

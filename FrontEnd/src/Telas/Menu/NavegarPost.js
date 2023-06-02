@@ -160,11 +160,7 @@ return (
     </View>
 
         <Text style={stylePintores.txtServicos}>Postagens</Text>
-        <View style={stylePintores.categorias}>       
-
-        
-
-      {/* <CaixaPost></CaixaPost> */}
+        <View style={stylePintores.categorias}>           
 
       <View>
         <FlatList

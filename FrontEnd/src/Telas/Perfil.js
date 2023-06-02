@@ -7,17 +7,113 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  ImageBackground
+  FlatList
 } from 'react-native';
 
 
+import CaixaPost from '../components/CaixaPost';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Trabalhos = () => {
+const Postagens = () => {
+
+  // ------------------------------------ Rotas do axios que tráz as postagens e lista os artístas ------------------------------------
+
+  const handleClickPosts = async (values) => {
+    axios.get(`${configuration.url}/listarPostagem/:${usuario.id_usuario}`)
+
+      .then(function (response) {
+        console.log("Dados das postagens: " + JSON.stringify(response.data.data))
+        setDadosPostagens(response.data.data)
+        // console.log(JSON.stringify(dados))
+
+        
+        //armazenando dados das postagens dos artístas em cache 
+         AsyncStorage.setItem('postData', JSON.stringify(response.data.data))
+
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  // const handleClickPostsArtistas = async (values) => {
+  //   axios.get(`${configuration.url}/listarUsuario`)
+
+  //     .then(function (response) {
+  //       // console.log("Dados dos artístas: " + JSON.stringify(response.data.data))
+  //       setDadosPostagensArtista(response.data.data)
+  //       // console.log(JSON.stringify(dados))
+
+        
+  //       //armazenando dados das postagens e os artístas em cache 
+  //        AsyncStorage.setItem('postUserData', JSON.stringify(response.data.data))
+
+  //       if (response == 201) {
+  //       } else if (response == 404) {
+  //         console.log("algo errado")
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  // }
+
+  const TrazerPostagem = ()=>{
+    handleClickPosts()
+    setClicou(1)
+  }
+
+// -------------------------------------------------------------------------------------------------------------------
+
+  
+  // recuperar todas as postagens e os artístas do banco de dados
+  const [dadosPostagens, setDadosPostagens] = useState(null)
+  const [dadosPostagensArtista, setDadosPostagensArtista] = useState(null)
+  // console.log(dadosPostagens);
+  // console.log(dadosPostagensArtista);
+  // const dadosPostagensCombinado = [...dadosPostagens, ...dadosPostagensArtista]
+
+    useEffect(() => {
+    getDadosPostagens()
+  }, []); 
+
+    async function getDadosPostagens() {
+    let response = await AsyncStorage.getItem('postData')
+    let json = JSON.parse(response)
+
+    setDadosPostagens(json)
+
+  }
+
+  useEffect(() => {
+    getDadosPostagensArtista()
+  }, []); 
+
+    async function getDadosPostagensArtista() {
+    let response = await AsyncStorage.getItem('postUserData')
+    let json = JSON.parse(response)
+
+    setDadosPostagensArtista(json)
+
+  }
+
   return (
     <View>
-      
-    </View>
+        <FlatList
+          data={dadosPostagens}
+          renderItem={({item})=><CaixaPost 
+            Nome={(item.tbl_usuario.nome)} 
+            Sobrenome={(item.tbl_usuario.sobrenome)} 
+            catServicoNomeCategoria={(item.tbl_usuario.catServicoNomeCategoria)} 
+            desc_postagem={(item.desc_postagem)} />} 
+          keyExtractor={(item)=>item.id_postagem}
+        />
+      </View>
   )
 };
 
@@ -94,39 +190,19 @@ const Sobre = () => {
 };
 
 
-
-// const Rascunhos = () => {
-//   return (
-//     <View>
-//       <Text>
-//         Rascunhos
-//       </Text>
-//     </View>
-//   )
-// };
-
-
 const Perfil = () => {
 
-  const [mostrarTrabalhos, setMostrarTrabalhos] = useState(false)
+  const [mostrarPostagens, setMostrarPostagens] = useState(false)
   const [mostrarSobre, setMostrarSobre] = useState(false)
-
-  const [mostrarRascunhos, setMostrarRascunhos] = useState(false)
 
   const [clicou, setClicou] = useState(0)
 
   useEffect(() => {
-    clicou === 1 ? (setMostrarTrabalhos(true)) : (setMostrarTrabalhos(false))
+    clicou === 1 ? (setMostrarPostagens(true)) : (setMostrarPostagens(false))
   }, [clicou])
 
   useEffect(() => {
     clicou === 2 ? (setMostrarSobre(true)) : (setMostrarSobre(false))
-  }, [clicou])
-
-
-
-  useEffect(() => {
-    clicou === 4 ? (setMostrarRascunhos(true)) : (setMostrarRascunhos(false))
   }, [clicou])
 
 
@@ -136,9 +212,7 @@ const Perfil = () => {
 
   useEffect(() => {
     getUsuario();
-  }, []);
-
-
+  }, [])
 
   async function getUsuario() {
     let response = await AsyncStorage.getItem('usuarioData')
@@ -158,7 +232,7 @@ const Perfil = () => {
 
           <TouchableOpacity>
             <Text style={stylePerfil.edit}>Editar</Text>
-            <Image source={require('../../assets/Imagens/edit.png')} style={stylePerfil.Perfiledit} />
+            <Image source={require('../../assets/Imagens/imgEditar.png')} style={stylePerfil.Perfiledit} />
           </TouchableOpacity>
 
           <Image source={require('../../assets/Imagens/UsuarioM.png')} style={stylePerfil.margem} />
@@ -166,21 +240,17 @@ const Perfil = () => {
           <Text style={stylePerfil.samu}>
             {usuario.nome} {usuario.sobrenome}
           </Text>
-          <Text style={stylePerfil.samu}>
-            {/* 10K Seguidores 12K Seguindo */}
+          <Text style={stylePerfil.catArtista}>
             {usuario.catServicoNomeCategoria}
           </Text>
-          <Text style={stylePerfil.samu}>
-
-
-          </Text>
+         
         </View>
 
         <View>
           <View style={stylePerfil.botoes}>
             <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(1)}>
               <Text>
-                Trabalhos
+                Postagens
               </Text>
             </TouchableOpacity>
 
@@ -190,27 +260,14 @@ const Perfil = () => {
             </TouchableOpacity>
 
 
-
-            {/* 
-            <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(4)}>
-              <Text>
-                Rascunhos
-              </Text>
-            </TouchableOpacity> */}
-
           </View>
           {
-            mostrarTrabalhos === true ? <Trabalhos /> : <View></View>
+            mostrarPostagens === true ? <Postagens /> : <View></View>
           }
 
           {
             mostrarSobre === true ? <Sobre /> : <View></View>
           }
-
-
-          {/* {
-            mostrarRascunhos === true ? <Rascunhos /> : <View></View>
-          } */}
 
         </View>
       </View>
@@ -232,7 +289,6 @@ const stylePerfil = StyleSheet.create({
     padding: 30,
     alignItems: 'center',
     justifyContent: 'center',
-
   },
   button: {
     backgroundColor: '#007AFF',
@@ -252,28 +308,39 @@ const stylePerfil = StyleSheet.create({
     fontWeight: 'bold'
   },
   margem: {
-    height: 50,
-    width: 50,
+    height: 70,
+    width: 70,
   },
   samu: {
     fontWeight: 'bold',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontSize: 20
   },
-  edit: {
+
+  catArtista: {
     fontWeight: 'bold',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontSize: 12
   },
+
+  // edit: {
+  //   fontWeight: 'bold',
+  //   color: '#FFFFFF'
+    
+  // },
   texto1: {
     margin: 10
   },
   edit: {
     height: 20,
     width: 300,
-    color: 'white'
+    color: 'white',
+    marginLeft: 3
   },
   tela: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white'
   },
   botoes: {
     flexDirection: 'row',
@@ -367,9 +434,8 @@ const stylePerfil = StyleSheet.create({
   Perfiledit: {
     width: 15,
     height: 15,
-    marginTop: -16,
-    marginLeft: 40,
-    marginRight: 10,
+    marginTop: -17,
+    marginLeft: -14,
 
   }
 

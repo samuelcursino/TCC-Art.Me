@@ -63,33 +63,34 @@ router.get('/listarPostagem', (req, res)=>{
 });
 // -----------------------------------------------------------------------------------------------------
 
-//------------------------------ ROTA DE LISTAGEM DE SERVICO POR ID ---------------------------
-// router.get('/listarServicoPK/:id_Produto', (req, res)=>{
+// ------------------------- ROTA DE LISTAGEM DE POSTAGEM POR ID_USUARIO --------------------------------
+router.get('/listarPostagem/:tblUsuarioIdUsuario', (req, res)=>{
 
-//     //DECLARAR E RECEBER O ID
-//     let {id_Produto} = req.params;
+    let {tblUsuarioIdUsuario} = req.params;
 
-//     //AÇÃO DE SELEÇÃO DE DADOS DO SEQUELIZE
-//     modelPost.findByPk(id_Produto)
-//     .then(
-//         (response)=>{
-//             return res.status(200).json({
-//                 erroStatus:false,
-//                 mensagemStatus:"SERVICO RECUPERADO COM SUCESSO.",
-//                 data:response
-//             })
-//         }
-//     )
-//     .catch(
-//         (error)=>{
-//             return res.status(400).json({
-//                 erroStatus:true,
-//                 mensagemStatus:"SERVICO NÃO CONSTA NO BANCO DE DADOS.",
-//                 errorObject:error
-//             });
-//         }
-//     )
-// });
+    modelPost.findAll({
+        // attributes:['id_usuario', 'nome', 'sobrenome', 'tblUsuarioIdUsuario'],
+        include: modelUsuario,
+        where:{tblUsuarioIdUsuario}})
+    .then(
+        (response)=>{
+            return res.status(200).json({
+                erroStatus:false,
+                mensagemStatus:"POSTAGEM LISTADA COM SUCESSO.",
+                data:response
+            })
+        }
+    )
+    .catch(
+        (error)=>{
+            return res.status(400).json({
+                erroStatus:true,
+                mensagemStatus:"POSTAGEM NÃO CONSTA NO BANCO DE DADOS.",
+                errorObject:error
+            });
+        }
+    )
+});
 // -----------------------------------------------------------------------------------------------------
 
 // ------------------------- ROTA DE LISTAGEM DE SERVICO POR DESCRIÇÃO --------------------------

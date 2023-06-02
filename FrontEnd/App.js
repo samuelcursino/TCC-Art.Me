@@ -23,7 +23,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer> 
-        <Stack.Navigator initialRouteName='Menu'>
+        <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} options={{headerShown: false}}/>
