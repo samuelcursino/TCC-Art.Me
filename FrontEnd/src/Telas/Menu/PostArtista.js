@@ -1,13 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BotaoCategoriaModal from '../../components/BotaoCategoriaModal';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Modal, Pressable, Alert, Image, TextInput } from "react-native";
 import { Field, Formik } from "formik";
 import * as yup from "yup";
+import axios from "axios";
+import configuration from '../../../configuration.json';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function BottomSheetDemo() {
-  const [modalVisible, setModalVisible] = useState(false);
+export default function PostArtista() {
 
+
+  // recuperar o usuario que está logado
+  const [usuario, setUsuario] = useState([])
+  console.log("Usuario conectado: " + JSON.stringify(usuario));
+
+  useEffect(() => {
+    getUsuario();
+  }, []); 
+
+  async function getUsuario() {
+    let response = await AsyncStorage.getItem('usuarioData')
+    let json = JSON.parse(response)
+    setUsuario(json)
+  }
+
+  // -------------------------- Rota de Post do Axios --------------------------------
+  const handleClickPost = async (values) => {
+    axios.post(`${configuration.url}/cadastrarPostagem`, {
+      desc_postagem: values.desc_postagem,
+      tblUsuarioIdUsuario: usuario.id_usuario
+    }), alert("Publicação realizada com Sucesso!")
   
+    .then((response) => {
+      if(response == 201){
+        navigation.navigate('Menu')
+  
+      } else if(response == 400){
+        alert("algo errado")
+      }
+      
+    })
+    .catch((error) => {
+      console.log(error);
+    })  
+  }
+
+  // Validação dos dados
+const validationPost = yup.object().shape({
+  
+  desc_postagem: yup
+  .string()
+  .min(30, ({ min, value }) => `${min - value.length} Caracteres restantes`)
+  .required('Post inválido'),
+    
+  
+})
 
   return (
 
@@ -15,13 +62,16 @@ export default function BottomSheetDemo() {
 
      <View style={styles.signupContainer}>
       
-        <Text>Escreva Algo...</Text>
+        <Text style={styles.txtPubliqueAlgo}>Publique algo...</Text>
 
         <Formik 
+
+          validationSchema={validationPost}
           initialValues={{
           desc_postagem: ''
           }}
-            onSubmit={values => console.log(values)}
+            onSubmit={values=>{handleClickPost(values)}}
+            // onSubmit={values => console.log(values)}
           >
             {({handleSubmit,
               handleChange,
@@ -42,10 +92,8 @@ export default function BottomSheetDemo() {
               />   
                {touched.desc_postagem && <Text style={styles.msgErro}>{errors.desc_postagem}</Text>}    
                   
-              <TouchableOpacity onPress={handleSubmit} disabled={!isValid}>
-                <Text>
-                  Postar
-                </Text>
+              <TouchableOpacity style={styles.btnPostar} onPress={handleSubmit} disabled={!isValid}>
+                <Text style={styles.txtPostar}> Postar </Text>
               </TouchableOpacity>
               
               </>
@@ -83,6 +131,12 @@ const styles = StyleSheet.create({
     borderRadius: 12
   },
 
+  txtPubliqueAlgo: {
+    fontSize: 19,
+    margin: 8,
+    fontWeight: 'bold',
+  },
+
   textInput: {
     height: 40,
     width: '100%',
@@ -104,6 +158,23 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'red',
     height: 20,
-    paddingLeft: 35
+    margin: 5
   },
+
+  btnPostar: {
+    textAlign: 'center',
+  width: 70,
+  height: 35,
+  borderRadius: 10,
+  justifyContent: 'center',
+  backgroundColor: '#F97316',
+  // padding: 5,
+  },
+
+  txtPostar: {
+    fontSize: 17,
+    color: 'white',
+    textAlign:'center',
+  }
+
 });

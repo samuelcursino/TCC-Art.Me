@@ -49,8 +49,8 @@ const styleCaixaUsuario = StyleSheet.create({
     },  
 
     txtNomeArtistas: {
-      fontSize: 12,
-      marginTop: 22,
+      fontSize: 15,
+      marginTop: 20,
       // marginEnd: 50,
       marginLeft: 70,
       marginHorizontal: 6,
@@ -59,7 +59,7 @@ const styleCaixaUsuario = StyleSheet.create({
     },
 
     txtServicoDe: {
-      fontSize: 9,
+      fontSize: 12,
       marginTop: -25,
       // marginEnd: 50,
       marginLeft: 285,
@@ -73,7 +73,7 @@ const styleCaixaUsuario = StyleSheet.create({
       // padding: 'alignItems',
       // marginTop: 20,
       // marginRight: 60,
-      marginLeft: 280,
+      marginLeft: 275,
       // marginHorizontal: 20,
       fontWeight: 'bold',
     },
