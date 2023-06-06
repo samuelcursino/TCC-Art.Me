@@ -31,6 +31,30 @@ const NavegarPosts = ({navigation}) => {
       setUsuario(json)
     }
 
+      // ------------------------------------ Rotas do axios que tráz as postagens e lista os artístas ------------------------------------
+
+  const handleClickPostsPerfil = async () => {
+    axios.get(`${configuration.url}/listarPostagem/:${usuario.id_usuario}`)
+
+      .then(function (response) {
+        console.log("Dados das postagens: " + JSON.stringify(response.data.data))
+        setDadosPostagens(response.data.data)
+        console.log(JSON.stringify(dados))
+
+        
+        //armazenando dados das postagens dos artístas em cache 
+         AsyncStorage.setItem('postPerfilData', JSON.stringify(response.data.data))
+
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
 
 // ------------------------------------ Rotas do axios que tráz as postagens e lista os artístas ------------------------------------
 
@@ -83,6 +107,7 @@ const NavegarPosts = ({navigation}) => {
   const TrazerPostagem = ()=>{
     handleClickPosts()
     handleClickPostsArtistas()
+    handleClickPostsPerfil()
   }
 
 // -------------------------------------------------------------------------------------------------------------------
@@ -119,20 +144,6 @@ const NavegarPosts = ({navigation}) => {
 
   }
 
-  // const Item = ({item}) => {
-  //   return (
-  //     <View >
-  //       <Text >{item.nome}</Text>
-  //       <Text >{item.sobrenome}</Text>
-  //       <Text >{item.catServicoNomeCategoria}</Text>
-  //       <Text >{item.titulo}</Text>
-  //       <Text >{item.desc_postagem}</Text>
-  //     </View>
-  //   )
-  // }
-
-  // const {data: {titulo, desc_postagem, tbl_usuario: {id_usuario, nome, sobrenome, catServicoNomeCategoria} } } = dadosPostagens
-
 return (
 
   <ScrollView>
@@ -164,7 +175,9 @@ return (
 
       <View>
         <FlatList
-          data={dadosPostagens}
+          data={dadosPostagens
+            .reverse()
+          }
           // contentContainerStyle={{marginEnd:5}}
           renderItem={({item})=><CaixaPost 
             Nome={(item.tbl_usuario.nome)} 

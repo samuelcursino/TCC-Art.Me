@@ -469,6 +469,7 @@ const styleMenu = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     // alignItems: 'center',
+    elevation: 8
   },
 
   btnPost2: {

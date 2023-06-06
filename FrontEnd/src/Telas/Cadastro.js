@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { 
+    StyleSheet, 
+    Text,
+    View,
+    TextInput,
+    TouchableOpacity,
+    Image,
+    ScrollView,
+    Modal
+  } from 'react-native';
+  
 import { Formik } from 'formik';
 import * as yup from "yup";
 import axios from "axios";
 import configuration from '../../configuration.json';
 import BotaoCategoriaModal from '../components/BotaoCategoriaModal';
-import { 
-  StyleSheet, 
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  Modal,
-  Pressable
-  } from 'react-native';
 
 
 const Cadastro = ({ navigation }) => {
@@ -22,7 +22,7 @@ const Cadastro = ({ navigation }) => {
   
 const [modalVisible, setModalVisible] = useState(false);
 
-  // Axios Cadastro
+  // ------------------------------------ Rota de cadastrar artísta do Axios ----------------------------------
 const handleClickCadastro = async (values) => {
   axios.post(`${configuration.url}/cadastrarUsuario`, {
     nome: values.nome,
@@ -47,6 +47,7 @@ const handleClickCadastro = async (values) => {
     console.log(error);
   })  
 }
+// --------------------------------------------------------------------------------------------------------------
 
 // Validação dos dados
 const validationCadastro = yup.object().shape({
@@ -81,6 +82,8 @@ const validationCadastro = yup.object().shape({
   
 })
 
+
+// -------------------------------- Definindo a categoria do artísta -----------------------------------------
 const [catServicoNomeCategoria, setCatServicoNomeCategoria] =  useState(null)
 
 const [catPintor, setcatPintor] =  useState(false)
@@ -119,6 +122,7 @@ useEffect (() => {
     setcatMusico(false)
   }
 })
+// -------------------------------------------------------------------------------------------------------
 
   return (
     <ScrollView>

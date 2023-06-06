@@ -32,7 +32,7 @@ const styleCaixaUsuario = StyleSheet.create({
     // height: 200,
     backgroundColor: 'white',
     borderRadius: 12,
-    // elevation: 50,
+    elevation: 5,
     borderWidth: 1,
     borderColor: '#F97316',
     marginTop: 7
@@ -63,7 +63,7 @@ const styleCaixaUsuario = StyleSheet.create({
       marginTop: -25,
       // marginEnd: 50,
       marginLeft: 285,
-      // marginHorizontal: 20,
+      marginHorizontal: 25,
       // fontWeight: 'bold',
       color: '#666262'
     },

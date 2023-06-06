@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Formik } from 'formik';
-import * as yup from "yup";
-import axios from "axios";
-import configuration from '../../configuration.json';
 import {
   StyleSheet,
   Text,
@@ -11,6 +7,12 @@ import {
   TouchableOpacity,
   Image,
   } from 'react-native';
+  
+import { Formik } from 'formik';
+import * as yup from "yup";
+import axios from "axios";
+import configuration from '../../configuration.json';
+
 
 //importando modulo AsyncStorage para salvar dados do login
 import AsyncStorage from '@react-native-async-storage/async-storage';

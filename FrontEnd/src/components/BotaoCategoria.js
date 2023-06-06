@@ -19,7 +19,8 @@ const BotaoCategoria = (props) => {
         borderRadius: 10,
         borderWidth: 3,
         borderColor: '#F97316',
-        margin: 10}}>
+        margin: 10,
+        }}>
 
             <Image source={imagem} style={styles.art} />
 

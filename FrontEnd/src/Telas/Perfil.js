@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   View,
   Text,
@@ -7,25 +8,35 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  FlatList
+  FlatList,
+  Alert, 
+  BackHandler 
+  
 } from 'react-native';
 
-
 import CaixaPost from '../components/CaixaPost';
-
+import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
+
+
 
 const Postagens = () => {
 
+  
+  
+
   // ------------------------------------ Rotas do axios que tráz as postagens e lista os artístas ------------------------------------
 
-  const handleClickPosts = async (values) => {
+  const handleClickPostsPerfil = async () => {
     axios.get(`${configuration.url}/listarPostagem/:${usuario.id_usuario}`)
 
       .then(function (response) {
         console.log("Dados das postagens: " + JSON.stringify(response.data.data))
         setDadosPostagens(response.data.data)
-        // console.log(JSON.stringify(dados))
+        console.log(JSON.stringify(dados))
 
         
         //armazenando dados das postagens dos artístas em cache 
@@ -73,7 +84,7 @@ const Postagens = () => {
   
   // recuperar todas as postagens e os artístas do banco de dados
   const [dadosPostagens, setDadosPostagens] = useState(null)
-  const [dadosPostagensArtista, setDadosPostagensArtista] = useState(null)
+  // const [dadosPostagensArtista, setDadosPostagensArtista] = useState(null)
   // console.log(dadosPostagens);
   // console.log(dadosPostagensArtista);
   // const dadosPostagensCombinado = [...dadosPostagens, ...dadosPostagensArtista]
@@ -90,17 +101,17 @@ const Postagens = () => {
 
   }
 
-  useEffect(() => {
-    getDadosPostagensArtista()
-  }, []); 
+  // useEffect(() => {
+  //   getDadosPostagensArtista()
+  // }, []); 
 
-    async function getDadosPostagensArtista() {
-    let response = await AsyncStorage.getItem('postUserData')
-    let json = JSON.parse(response)
+  //   async function getDadosPostagensArtista() {
+  //   let response = await AsyncStorage.getItem('postUserData')
+  //   let json = JSON.parse(response)
 
-    setDadosPostagensArtista(json)
+  //   setDadosPostagensArtista(json)
 
-  }
+  // }
 
   return (
     <View>
@@ -230,10 +241,24 @@ const Perfil = () => {
         </TouchableOpacity>
         <View style={stylePerfil.beck}>
 
-          <TouchableOpacity>
-            <Text style={stylePerfil.edit}>Editar</Text>
-            <Image source={require('../../assets/Imagens/imgEditar.png')} style={stylePerfil.Perfiledit} />
-          </TouchableOpacity>
+        <View>
+<TouchableOpacity
+  onPress={() => {
+    Alert.alert(
+      'Sair',
+      'Deseja sair do aplicativo ?',
+      [
+        { text: 'Não', onPress: () => console.log('Saida cancelada'), style: 'cancel' },
+        { text: 'Sim', onPress: () => BackHandler.exitApp() },
+      ],
+      { cancelable: false });
+    return true;
+  }}>
+  <Text>Sair</Text>
+</TouchableOpacity>
+</View>
+
+          
 
           <Image source={require('../../assets/Imagens/UsuarioM.png')} style={stylePerfil.margem} />
 
@@ -289,6 +314,7 @@ const stylePerfil = StyleSheet.create({
     padding: 30,
     alignItems: 'center',
     justifyContent: 'center',
+    elevation: 9
   },
   button: {
     backgroundColor: '#007AFF',

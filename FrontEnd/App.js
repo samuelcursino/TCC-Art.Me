@@ -23,7 +23,7 @@ const Tab = createBottomTabNavigator();
 const StackNavegacao =  () => {
   return (
     <NavigationContainer> 
-        <Stack.Navigator initialRouteName='Login'>
+        <Stack.Navigator initialRouteName='Menu'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Menu" component={TabNavegacao} options={{headerShown: false}}/>
@@ -55,7 +55,7 @@ const StackNavegacao =  () => {
 const TabNavegacao =  () => {
   return (
 
-    //Container de navegação das telas "Menu", "Minha Conta" e "Descobrir"
+    //Container de navegação das telas "Menu", "Descobrir" e "Minha Conta"
     <NavigationContainer independent={true}>
        <Tab.Navigator initialRouteName='Menu'>
 

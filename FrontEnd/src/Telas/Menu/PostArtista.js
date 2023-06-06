@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import BotaoCategoriaModal from '../../components/BotaoCategoriaModal';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Modal, Pressable, Alert, Image, TextInput } from "react-native";
-import { Field, Formik } from "formik";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput 
+  } from "react-native";
+
+import { Formik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import configuration from '../../../configuration.json';
@@ -44,6 +50,8 @@ export default function PostArtista() {
       console.log(error);
     })  
   }
+
+// ------------------------------------------------------------------------------------
 
   // Validação dos dados
 const validationPost = yup.object().shape({

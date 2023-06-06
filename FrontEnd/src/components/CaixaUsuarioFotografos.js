@@ -35,7 +35,7 @@ const styleCaixaUsuario = StyleSheet.create({
     margin: 6,
     backgroundColor: 'white',
     borderRadius: 12,
-    elevation: 50,
+    elevation: 7,
     // left: 15
   },
 
