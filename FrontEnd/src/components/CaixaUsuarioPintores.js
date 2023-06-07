@@ -10,13 +10,16 @@ import {
 const CaixaUsuarioPintores = ({Nome, Sobrenome, catServicoNomeCategoria})=>{
 
  return (
+
+  <TouchableOpacity>
     <View style={styleCaixaUsuario.containerArtista1}>
             <Image source={require('../../assets/Imagens/FotoPintando.png')} style={styleCaixaUsuario.BackgroundFoto} />
             <Image source={require('../../assets/Imagens/UsuarioM2.png')} style={styleCaixaUsuario.fotoPerfilArtista} /> 
               <Text style={styleCaixaUsuario.txtNomeArtistas}>{Nome} {Sobrenome}</Text>
               <Text style={styleCaixaUsuario.txtServicoDe}>Serviço de:</Text>
               <Text style={styleCaixaUsuario.txtCategoriaArtistas}>{catServicoNomeCategoria}</Text>
-    </View>          
+    </View>    
+  </TouchableOpacity>
 
   )
 }

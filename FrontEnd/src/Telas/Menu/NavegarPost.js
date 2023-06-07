@@ -164,9 +164,9 @@ return (
         </View>    
     </View>
 
-    <View style={stylePintores.recarregar}>
+    <View style={stylePintores.atualizar}>
       <TouchableOpacity onPress={TrazerPostagem}>
-        <Text style={stylePintores.txtRecarregar}>Recarregar</Text>
+        <Text style={stylePintores.txtAtualizar}>Atualizar</Text>
       </TouchableOpacity>  
     </View>
 
@@ -176,7 +176,7 @@ return (
       <View>
         <FlatList
           data={dadosPostagens
-            .reverse()
+            // .reverse()
           }
           // contentContainerStyle={{marginEnd:5}}
           renderItem={({item})=><CaixaPost 
@@ -417,16 +417,16 @@ const stylePintores = StyleSheet.create({
       fontWeight: 'bold',
     },
 
-    recarregar: {
+    atualizar: {
       borderRadius: 30,
       backgroundColor: '#F97316',     
       // marginBottom: -11,
-      width: 100,
+      width: 88,
       height: 30,
       left: 285,
     },
 
-    txtRecarregar: {
+    txtAtualizar: {
       color: 'white',
       fontSize: 16,
       left: 10,

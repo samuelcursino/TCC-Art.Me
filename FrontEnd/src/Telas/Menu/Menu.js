@@ -8,10 +8,12 @@ import {
   StyleSheet,
   Image,
   ScrollView, 
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
   } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CaixaArtistas from '../../components/CaixaArtistas';
 // import { Touchable } from 'react-native/types';
 
 const Menu = ( {navigation} ) => {
@@ -139,6 +141,37 @@ const Menu = ( {navigation} ) => {
 
 // -------------------------------------------------------------------------------------------------------------------
 
+// ------------------------------------ Rota do axios que tráz todos os artístas -------------------------------------
+  
+  // recuperar todos os artistas músicos do banco de dados
+  const [dadosArtistas, setDadosArtistas] = useState([])
+  // console.log(dadosArtistas);
+
+  const handleClickArtistas = async (values) => {
+    axios.get(`${configuration.url}/listarUsuario`)
+
+      .then(function (response) {
+        console.log("Dados de todos os Artístas: " + JSON.stringify(response.data.data))
+        setDadosArtistas(response.data.data)
+        // console.log(JSON.stringify(dados))
+
+        
+        //armazenando dados do usuario em cache 
+         AsyncStorage.setItem('artistasData', JSON.stringify(response.data.data))
+
+        if (response == 201) {
+        } else if (response == 404) {
+          console.log("algo errado")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+// -------------------------------------------------------------------------------------------------------------------
+
+
   return (
 
   <View>
@@ -183,10 +216,25 @@ const Menu = ( {navigation} ) => {
 
       </View>
 
-
+       
 
       <Text style={styleMenu.txtArtistasRecomendados}>Artistas Recomendados</Text>
 
+ <TouchableOpacity  style={styleMenu.atualizar} onPress={handleClickArtistas}>     
+          <Text style={styleMenu.txtAtualizar}>Atualizar</Text>        
+        </TouchableOpacity>  
+
+    <View>
+        <FlatList
+          data={dadosArtistas}
+          contentContainerStyle={{margin:4}}
+          horizontal={false}
+          numColumns = {2}
+          renderItem={({item})=><CaixaArtistas Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
+          keyExtractor={(item)=>item.id_usuario}
+        />
+      </View>       
+{/* 
       <TouchableOpacity>
         <View style={styleMenu.containerUsuario1}>
           <Image source={require('../../../assets/Imagens/FotoArtista.png')} style={styleMenu.fotoArtista} />
@@ -221,7 +269,7 @@ const Menu = ( {navigation} ) => {
             <Text style={styleMenu.txtNomeArtistas}>Santos</Text>
             <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
         </View> 
-      </TouchableOpacity>      
+      </TouchableOpacity>       */}
 
         <View>
       </View>
@@ -481,6 +529,24 @@ const styleMenu = StyleSheet.create({
     paddingLeft: 1,
     fontWeight: '300',
     
+  },
+
+  
+  atualizar: {
+    borderRadius: 30,
+    backgroundColor: '#F97316',     
+    // marginBottom: -11,
+    width: 88,
+    height: 30,
+    left: 285,
+    top: -30
+  },
+
+  txtAtualizar: {
+    color: 'white',
+    fontSize: 16,
+    left: 10,
+    top: 3
   },
 
 });
