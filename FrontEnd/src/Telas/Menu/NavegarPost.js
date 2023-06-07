@@ -31,7 +31,7 @@ const NavegarPosts = ({navigation}) => {
       setUsuario(json)
     }
 
-      // ------------------------------------ Rotas do axios que tráz as postagens e lista os artístas ------------------------------------
+// ------------------------------------ Rotas do axios que tráz as postagens e lista os artístas ------------------------------------
 
   const handleClickPostsPerfil = async () => {
     axios.get(`${configuration.url}/listarPostagem/:${usuario.id_usuario}`)
@@ -159,10 +159,10 @@ return (
             <Image source={require('../../../assets/Imagens/UsuarioMCategorias.png')} style={stylePintores.fotoPerfil} />            
             </View>
 
-
-
         </View>    
     </View>
+
+
 
     <View style={stylePintores.atualizar}>
       <TouchableOpacity onPress={TrazerPostagem}>
@@ -176,24 +176,22 @@ return (
       <View>
         <FlatList
           data={dadosPostagens
-            // .reverse()
+            .reverse()
           }
-          // contentContainerStyle={{marginEnd:5}}
           renderItem={({item})=><CaixaPost 
             Nome={(item.tbl_usuario.nome)} 
             Sobrenome={(item.tbl_usuario.sobrenome)} 
             catServicoNomeCategoria={(item.tbl_usuario.catServicoNomeCategoria)} 
-            // Titulo={(item.titulo)} 
             desc_postagem={(item.desc_postagem)} />} 
           keyExtractor={(item)=>item.id_postagem}
         />
       </View>
 
-        </View>
+    </View>
 
-</View>
+  </View>
       
-    </ScrollView>
+</ScrollView>
 
     )
 }

@@ -226,7 +226,9 @@ const Menu = ( {navigation} ) => {
 
     <View>
         <FlatList
-          data={dadosArtistas}
+          data={dadosArtistas
+          .reverse()
+          }
           contentContainerStyle={{margin:4}}
           horizontal={false}
           numColumns = {2}

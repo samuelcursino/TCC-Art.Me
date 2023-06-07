@@ -22,32 +22,60 @@ const Login = ({ navigation }) => {
 
 // --------------------------- Rota do axios que tráz o email e senha do artista --------------------------------
 
+  // const handleClickLogin = async (values) => {
+  //   axios.get(`${configuration.url}/listarUsuarioEMAIL/${values.email}/${values.password}`, {
+  //     email: values.email,
+  //     password: values.password,
+  //   })
+
+  //     .then(function (response) {
+
+  //       console.log("Dados da tela de Login: " + JSON.stringify(response.data))
+  //       setDados(response.data)
+  //       // console.log("Teste de Dados: " + JSON.stringify(dados))
+
+        
+  //       //armazenando dados do usuario em cache 
+  //        AsyncStorage.setItem('usuarioData', JSON.stringify(response.data.data))
+
+  //       if (response == 201) {
+  //       } else if (response == 404) {
+  //         console.log("algo errado")
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  // }
+
   const handleClickLogin = async (values) => {
-    axios.get(`${configuration.url}/listarUsuarioEMAIL/${values.email}/${values.password}`, {
-      email: values.email,
-      password: values.password,
-    })
+    axios
+      .get(`${configuration.url}/listarUsuarioEMAIL/${values.email}/${values.password}`, {
+        email: values.email,
+        password: values.password,
+      })
 
       .then(function (response) {
 
-        console.log("Dados da tela de Login: " + JSON.stringify(response.data))
-        setDados(response.data)
-        // console.log("Teste de Dados: " + JSON.stringify(dados))
+        console.log("Dados da tela de Login: " + JSON.stringify(response.data));
+        const responseData = response.data;
 
-        
-        //armazenando dados do usuario em cache 
-         AsyncStorage.setItem('usuarioData', JSON.stringify(response.data.data))
+        if (responseData && responseData.data) {
+          setDados(responseData.data);
 
-        if (response == 201) {
-        } else if (response == 404) {
-          console.log("algo errado")
+          AsyncStorage.setItem('usuarioData', JSON.stringify(responseData.data));
+          navigation.navigate("Menu");
+          
+        } else {
+          alert("Email ou senha incorretos!");
         }
       })
       .catch((error) => {
         console.log(error);
-      })
-  }
-
+        alert("Ocorreu um erro ao realizar o login. Por favor, tente novamente mais tarde.");
+      });
+  };
+  
 // -----------------------------------------------------------------------------------------------------------
 
   const [dados, setDados] = useState(null);
@@ -78,7 +106,7 @@ const Login = ({ navigation }) => {
     if (dados != null) {
       navigation.navigate("Menu")
     } else {
-      alert("Login inválido!")
+      // alert("Login inválido!")
     }
   }
 
