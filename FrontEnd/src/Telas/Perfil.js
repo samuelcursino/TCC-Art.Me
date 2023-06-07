@@ -232,60 +232,66 @@ const Perfil = () => {
   }
 
 
-  return (
-    <ScrollView>
+return (
+    
+<ScrollView>
 
-      <View style={stylePerfil.tela}>
-        <TouchableOpacity>
-          <Image source={require('../../assets/Imagens/Vetor.png')} style={stylePerfil.vet} />
+  <View style={stylePerfil.tela}>
+
+    <TouchableOpacity>
+      <Image source={require('../../assets/Imagens/Vetor.png')} style={stylePerfil.vet} />
+    </TouchableOpacity>
+
+
+    <View style={stylePerfil.beck}>
+
+      <View>
+        <TouchableOpacity style={stylePerfil.btnSair}
+          onPress={() => {
+            Alert.alert(
+              'Sair',
+              'Deseja sair do aplicativo ?',
+              [
+                { text: 'Não', onPress: () => console.log('Saida cancelada'), style: 'cancel' },
+                { text: 'Sim', onPress: () => BackHandler.exitApp() },
+              ],
+              { cancelable: false });
+            return true;
+          }}>
+            <Text style={stylePerfil.txtSair}>Sair</Text>
         </TouchableOpacity>
-        <View style={stylePerfil.beck}>
 
-        <View>
-<TouchableOpacity
-  onPress={() => {
-    Alert.alert(
-      'Sair',
-      'Deseja sair do aplicativo ?',
-      [
-        { text: 'Não', onPress: () => console.log('Saida cancelada'), style: 'cancel' },
-        { text: 'Sim', onPress: () => BackHandler.exitApp() },
-      ],
-      { cancelable: false });
-    return true;
-  }}>
-  <Text>Sair</Text>
-</TouchableOpacity>
-</View>
+      </View>
 
-          
-
-          <Image source={require('../../assets/Imagens/UsuarioM.png')} style={stylePerfil.margem} />
+        <Image source={require('../../assets/Imagens/UsuarioM.png')} style={stylePerfil.margem} />
 
           <Text style={stylePerfil.samu}>
             {usuario.nome} {usuario.sobrenome}
           </Text>
+
           <Text style={stylePerfil.catArtista}>
             {usuario.catServicoNomeCategoria}
           </Text>
          
-        </View>
-
-        <View>
-          <View style={stylePerfil.botoes}>
-            <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(1)}>
-              <Text>
-                Postagens
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(2)}>
-              <Text>Sobre</Text>
-
-            </TouchableOpacity>
+    </View>
 
 
-          </View>
+    <View>
+
+      <View style={stylePerfil.botoes}>
+        <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(1)}>
+          <Text>
+            Postagens
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={stylePerfil.escolhas} onPress={() => setClicou(2)}>
+          <Text>Sobre</Text>
+
+        </TouchableOpacity>
+
+
+      </View>
           {
             mostrarPostagens === true ? <Postagens /> : <View></View>
           }
@@ -294,11 +300,11 @@ const Perfil = () => {
             mostrarSobre === true ? <Sobre /> : <View></View>
           }
 
-        </View>
-      </View>
-    </ScrollView>
-  )
-}
+    </View>
+  </View>
+</ScrollView>
+
+)}
 
 const stylePerfil = StyleSheet.create({
   containerLogin: {
@@ -344,9 +350,9 @@ const stylePerfil = StyleSheet.create({
   },
 
   catArtista: {
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     color: '#FFFFFF',
-    fontSize: 12
+    fontSize: 13
   },
 
   // edit: {
@@ -463,6 +469,14 @@ const stylePerfil = StyleSheet.create({
     marginTop: -17,
     marginLeft: -14,
 
+  },
+
+  btnSair: {
+    right: 130
+  },
+
+  txtSair: {
+    color: '#FFFFFF',
   }
 
 
