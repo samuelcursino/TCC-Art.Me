@@ -129,7 +129,7 @@ const Postagens = () => {
 };
 
 const Sobre = () => {
-  [value, onChangeText] = React.useState('Escreva Algo...');
+  [value, onChangeText] = React.useState();
 
   return (
    
@@ -141,10 +141,12 @@ const Sobre = () => {
             editable
             multiline 
             numberOfLines={3}
+            placeholder='Escreva Algo...'
             maxLength={150}
             onChangeText={text => onChangeText(text)}
             value={value}
             style={{ padding: 1 }}>
+            
 
 
 
@@ -182,7 +184,7 @@ const Sobre = () => {
             <Image source={require('../../assets/Imagens/fixar-mapa.png')} style={stylePerfil.local} />
             <TextInput 
             color= {'grey'} maxLength={15} style={stylePerfil.textocarac2}>
-              Cidade
+              Estado
             </TextInput>
           </View>
 
