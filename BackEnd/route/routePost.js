@@ -10,11 +10,23 @@ const router = express.Router();
 
 // -------------------------------------- ROTA DE CADASTRAR POSTAGEM ------------------------------------
 router.post('/cadastrarPostagem', (req, res)=>{
+
     console.log(req.body);    
-    let {id_postagem, desc_postagem, tblUsuarioIdUsuario} = req.body;
+
+    let {
+        id_postagem,
+        desc_postagem,
+        tblUsuarioIdUsuario
+        } = req.body;
+
     modelPost.create(
         //DADOS DA INSERÇÂO DE POSTAGEM
-        {id_postagem, desc_postagem, tblUsuarioIdUsuario}
+        {
+        id_postagem,
+        desc_postagem,
+        tblUsuarioIdUsuario
+        }
+
     ).then(
         ()=>{
             return res.status(201).json({
@@ -38,7 +50,15 @@ router.post('/cadastrarPostagem', (req, res)=>{
 router.get('/listarPostagem', (req, res)=>{
 
     modelPost.findAll({
-        // attributes:['id_usuario', 'nome', 'sobrenome', 'catServicoNomeCategoria','titulo', 'desc_postagem'], 
+        // attributes:
+        // [
+        // 'id_usuario',
+        // 'nome', 
+        // 'sobrenome', 
+        // 'catServicoNomeCategoria',
+        // 'titulo', 
+        // 'desc_postagem'
+        // ], 
         include: modelUsuario
     })
         .then(
@@ -69,9 +89,17 @@ router.get('/listarPostagem/:tblUsuarioIdUsuario', (req, res)=>{
     let {tblUsuarioIdUsuario} = req.params;
 
     modelPost.findAll({
-        // attributes:['id_usuario', 'nome', 'sobrenome', 'tblUsuarioIdUsuario'],
+        // attributes:
+        // [
+        // 'id_usuario',
+        // 'nome',
+        // 'sobrenome',
+        // 'tblUsuarioIdUsuario'
+        // ],
         include: modelUsuario,
+
         where:{tblUsuarioIdUsuario}})
+
     .then(
         (response)=>{
             return res.status(200).json({
