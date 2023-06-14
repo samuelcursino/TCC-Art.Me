@@ -35,18 +35,16 @@ export default function PostArtista() {
     axios.post(`${configuration.url}/cadastrarPostagem`, {
       desc_postagem: values.desc_postagem,
       tblUsuarioIdUsuario: usuario.id_usuario
-    }), alert("Publicação realizada com Sucesso!")
-  
+    })   
     .then((response) => {
-      if(response == 201){
-        navigation.navigate('Menu')
-  
-      } else if(response == 400){
-        alert("algo errado")
-      }
+
+      console.log(response.data)
+      alert("Publicação realizada com Sucesso!")
       
     })
     .catch((error) => {
+
+      alert("Deu erro ae")
       console.log(error);
     })  
   }

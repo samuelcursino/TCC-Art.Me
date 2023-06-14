@@ -85,6 +85,7 @@ return (
 
 
       <View>
+      <ScrollView horizontal={true}>
         <FlatList
           data={dadosPintores}
           contentContainerStyle={{margin:4}}
@@ -93,6 +94,7 @@ return (
           renderItem={({item})=><CaixaUsuarioPintores Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
           keyExtractor={(item)=>item.id_usuario}
         />
+                </ScrollView>
       </View>
 
         </View>

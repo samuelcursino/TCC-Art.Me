@@ -173,12 +173,12 @@ const Sobre = () => {
 
         <View style={stylePerfil.carac}>
 
-          <View style={stylePerfil.caixacarac}>
+          {/* <View style={stylePerfil.caixacarac}>
             <Image source={require('../../assets/Imagens/museu.png')} style={stylePerfil.museu} />
             <TextInput color= {'grey'} maxLength={30} style={stylePerfil.textocarac2}>
             Formação
             </TextInput>
-          </View>
+          </View> */}
 
           <View style={stylePerfil.caixacarac}>
             <Image source={require('../../assets/Imagens/fixar-mapa.png')} style={stylePerfil.local} />
@@ -236,7 +236,6 @@ const Perfil = () => {
 
 return (
     
-<ScrollView>
 
   <View style={stylePerfil.tela}>
 
@@ -304,7 +303,6 @@ return (
 
     </View>
   </View>
-</ScrollView>
 
 )}
 
@@ -374,7 +372,8 @@ const stylePerfil = StyleSheet.create({
   tela: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    marginBottom: 170
   },
   botoes: {
     flexDirection: 'row',

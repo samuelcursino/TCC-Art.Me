@@ -36,108 +36,102 @@ const Menu = ( {navigation} ) => {
 // ------------------------------------ Rota do axios que tráz os artístas 'Pintores' ------------------------------------
   
   // recuperar todos os artístas pintores do banco de dados
-  const [dadosPintores, setDadosPintores] = useState([])
-  // console.log(dadosPintores);
+  const [dadosPintores, setDadosPintores] = useState([]);
+// console.log(dadosPintores);
 
-  const handleClickPintores = async (values) => {
-    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Pintor`)
+const handleClickPintores = async () => {
+  try {
+    const response = await axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Pintor`);
+    console.log("Dados dos Pintores: " + JSON.stringify(response.data.data));
+    setDadosPintores(response.data.data);
+    // console.log(JSON.stringify(dados));
 
-      .then(function (response) {
-        console.log("Dados dos Pintores: " + JSON.stringify(response.data.data))
-        setDadosPintores(response.data.data)
-        // console.log(JSON.stringify(dados))
+    // Armazenando dados dos artistas pintores em cache
+    await AsyncStorage.setItem('pintoresData', JSON.stringify(response.data.data));
 
-        
-        //armazenando dados dos artístas pintores em cache 
-         AsyncStorage.setItem('pintoresData', JSON.stringify(response.data.data))
-
-        if (response == 201) {
-        } else if (response == 404) {
-          console.log("algo errado")
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    if (response.status === 201) {
+      // Lógica para resposta 201
+    } else if (response.status === 404) {
+      console.log("algo errado");
+    }
+  } catch (error) {
+    console.log(error);
   }
+};
 
-  // constante que chama a função handleClickPintores e ao mesmo tempo navega até a tela pintores
-  const NavegarPintores = () => {
-    handleClickPintores()
-    navigation.navigate('Pintores')
-  }
+// Constante que chama a função handleClickPintores e ao mesmo tempo navega até a tela pintores
+const NavegarPintores = async () => {
+  await handleClickPintores();
+  navigation.navigate('Pintores');
+};
 
 // -------------------------------------------------------------------------------------------------------------------
 
 // ------------------------------------ Rota do axios que tráz os artístas 'Fotógrafos' ------------------------------------
   
   // recuperar todos os artistas fotógrafos do banco de dados
-  const [dadosFotografos, setDadosFotografos] = useState([])
+  const [dadosFotografos, setDadosFotografos] = useState([]);
   // console.log(dadosFotografos);
-
-  const handleClickFotografos = async (values) => {
-    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Fotógrafo`)
-
-      .then(function (response) {
-        console.log("Dados dos Fotógrafos: " + JSON.stringify(response.data.data))
-        setDadosFotografos(response.data.data)
-        // console.log(JSON.stringify(dados))
-
-        
-        //armazenando dados do usuario em cache 
-         AsyncStorage.setItem('fotografosData', JSON.stringify(response.data.data))
-
-        if (response == 201) {
-        } else if (response == 404) {
-          console.log("algo errado")
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
-  // constante que chama a função handleClickFotografos e ao mesmo tempo navega até a tela Fotografos
-  const NavegarFotografos = () => {
-    handleClickFotografos()
-    navigation.navigate('Fotografos')
-  }
+  
+  const handleClickFotografos = async () => {
+    try {
+      const response = await axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Fotógrafo`);
+      console.log("Dados dos Fotógrafos: " + JSON.stringify(response.data.data));
+      setDadosFotografos(response.data.data);
+      // console.log(JSON.stringify(dados));
+  
+      // Armazenando dados dos fotógrafos em cache
+      await AsyncStorage.setItem('fotografosData', JSON.stringify(response.data.data));
+  
+      if (response.status === 201) {
+        // Lógica para resposta 201
+      } else if (response.status === 404) {
+        console.log("algo errado");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  // Constante que chama a função handleClickFotografos e ao mesmo tempo navega até a tela Fotografos
+  const NavegarFotografos = async () => {
+    await handleClickFotografos();
+    navigation.navigate('Fotografos');
+  };
 
 // -------------------------------------------------------------------------------------------------------------------
 
 // ------------------------------------ Rota do axios que tráz os artístas 'Músicos' ------------------------------------
   
   // recuperar todos os artistas músicos do banco de dados
-  const [dadosMusicos, setDadosMusicos] = useState([])
+  const [dadosMusicos, setDadosMusicos] = useState([]);
   // console.log(dadosMusicos);
-
-  const handleClickMusicos = async (values) => {
-    axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Musico`)
-
-      .then(function (response) {
-        console.log("Dados dos Musicos: " + JSON.stringify(response.data.data))
-        setDadosMusicos(response.data.data)
-        // console.log(JSON.stringify(dados))
-
-        
-        //armazenando dados do usuario em cache 
-         AsyncStorage.setItem('musicosData', JSON.stringify(response.data.data))
-
-        if (response == 201) {
-        } else if (response == 404) {
-          console.log("algo errado")
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
-  // constante que chama a função handleClickMusicos e ao mesmo tempo navega até a tela Musicos
-  const NavegarMusicos = () => {
-    handleClickMusicos()
-    navigation.navigate('Musicos')
-  }
+  
+  const handleClickMusicos = async () => {
+    try {
+      const response = await axios.get(`${configuration.url}/listarUsuarioCATEGORIA/Musico`);
+      console.log("Dados dos Musicos: " + JSON.stringify(response.data.data));
+      setDadosMusicos(response.data.data);
+      // console.log(JSON.stringify(dados));
+  
+      // Armazenando dados dos músicos em cache
+      await AsyncStorage.setItem('musicosData', JSON.stringify(response.data.data));
+  
+      if (response.status === 201) {
+        // Lógica para resposta 201
+      } else if (response.status === 404) {
+        console.log("algo errado");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  // Constante que chama a função handleClickMusicos e ao mesmo tempo navega até a tela Musicos
+  const NavegarMusicos = async () => {
+    await handleClickMusicos();
+    navigation.navigate('Musicos');
+  };
 
 // -------------------------------------------------------------------------------------------------------------------
 
@@ -224,54 +218,25 @@ const Menu = ( {navigation} ) => {
           <Text style={styleMenu.txtAtualizar}>Atualizar</Text>        
         </TouchableOpacity>  
 
-    <View>
-        <FlatList
-          data={dadosArtistas
-          .reverse()
-          }
-          contentContainerStyle={{margin:4}}
-          horizontal={false}
-          numColumns = {2}
-          renderItem={({item})=><CaixaArtistas Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
-          keyExtractor={(item)=>item.id_usuario}
-        />
-      </View>       
-{/* 
-      <TouchableOpacity>
-        <View style={styleMenu.containerUsuario1}>
-          <Image source={require('../../../assets/Imagens/FotoArtista.png')} style={styleMenu.fotoArtista} />
-            <Text style={styleMenu.txtNomeArtistas}>Jefferson</Text>
-            <Text style={styleMenu.txtNomeArtistas}>Santos</Text>
-            <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
-        </View>          
-      </TouchableOpacity>
-
-      <TouchableOpacity>
-        <View style={styleMenu.containerUsuario2}>
-          <Image source={require('../../../assets/Imagens/FotoPintora.png')} style={styleMenu.fotoArtista} />
-            <Text style={styleMenu.txtNomeArtistasBranco}>Alice</Text>
-            <Text style={styleMenu.txtNomeArtistasBranco}>Duarte</Text>
-            <Text style={styleMenu.txtCategoriaArtistas}>Pintor</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity>
-        <View style={styleMenu.containerUsuario3}>
-          <Image source={require('../../../assets/Imagens/FotoArtista.png')} style={styleMenu.fotoArtista} />
-            <Text style={styleMenu.txtNomeArtistasBranco}>Jefferson</Text>
-            <Text style={styleMenu.txtNomeArtistasBranco}>Santos</Text>
-            <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
-        </View> 
-      </TouchableOpacity>
-
-      <TouchableOpacity>
-        <View style={styleMenu.containerUsuario4}>
-          <Image source={require('../../../assets/Imagens/FotoArtista.png')} style={styleMenu.fotoArtista} />
-            <Text style={styleMenu.txtNomeArtistas}>Jefferson</Text>
-            <Text style={styleMenu.txtNomeArtistas}>Santos</Text>
-            <Text style={styleMenu.txtCategoriaArtistas}>Fotógrafo</Text>
-        </View> 
-      </TouchableOpacity>       */}
+          <View>
+            <ScrollView horizontal={true} contentContainerStyle={{ flex: 1 }}>
+              <FlatList
+                data={dadosArtistas
+                .reverse()
+                }
+                contentContainerStyle={{margin:4}}
+                horizontal={false}
+                numColumns = {2}
+                renderItem={({item})=>
+                  <CaixaArtistas 
+                  Nome={(item.nome)}
+                  Sobrenome={(item.sobrenome)}
+                  catServicoNomeCategoria={(item.catServicoNomeCategoria)} 
+                  />}
+                keyExtractor={(item)=>item.id_usuario}
+              />
+            </ScrollView>
+          </View>       
 
         <View>
       </View>
@@ -427,71 +392,6 @@ const styleMenu = StyleSheet.create({
     marginVertical: -25
   },
 
-  // containerUsuario1: {
-  //   // display: 'flex',
-  //   justifyContent: 'center',
-  //   // alignItems: 'center',
-  //   padding: 5,
-  //   width: 170,
-  //   height: 180,
-  //   borderWidth: 3,
-  //   borderColor: '#F97316',
-  //   margin: 4,
-  //   backgroundColor: 'white',
-  //   borderRadius: 22,
-  //   // elevation: 50,
-  //   left: 15
-  // },
-
-  // containerUsuario2: {
-  //   // display: 'flex',
-  //   justifyContent: 'center',
-  //   // alignItems: 'center',
-  //   padding: 5,
-  //   width: 170,
-  //   height: 180,
-  //   borderWidth: 3,
-  //   borderColor: '#F97316',
-  //   margin: 4,
-  //   backgroundColor: '#F97316',
-  //   borderRadius: 22,
-  //   // elevation: 50,
-  //   marginTop: -185,
-  //   left: 200
-  // },
-
-  // containerUsuario3: {
-  //   // display: 'flex',
-  //   justifyContent: 'center',
-  //   // alignItems: 'center',
-  //   padding: 5,
-  //   width: 170,
-  //   height: 180,
-  //   borderWidth: 3,
-  //   borderColor: '#F97316',
-  //   margin: 4,
-  //   backgroundColor: '#F97316',
-  //   borderRadius: 22,
-  //   // elevation: 50,
-  //   left: 15
-  // },
-
-  // containerUsuario4: {
-  //   // display: 'flex',
-  //   justifyContent: 'center',
-  //   // alignItems: 'center',
-  //   padding: 5,
-  //   width: 170,
-  //   height: 180,
-  //   borderWidth: 3,
-  //   borderColor: '#F97316',
-  //   margin: 4,
-  //   backgroundColor: 'white',
-  //   borderRadius: 22,
-  //   // elevation: 50,
-  //   marginTop: -185,
-  //   left: 200
-  // },
 
   fotoArtista: {
     height: 90,

@@ -15,6 +15,7 @@ import * as yup from "yup";
 import axios from "axios";
 import configuration from '../../configuration.json';
 import BotaoCategoriaModal from '../components/BotaoCategoriaModal';
+import { TextInputMask } from 'react-native-masked-text';
 
 
 const Cadastro = ({ navigation }) => {
@@ -32,18 +33,18 @@ const handleClickCadastro = async (values) => {
     telefone: values.telefone,
     uf: values.uf,
     catServicoNomeCategoria: catServicoNomeCategoria
-  }), alert("Cadastro completado com Sucesso!")
-
+  })
   .then((response) => {
-    if(response == 201){
-      navigation.navigate('Menu')
 
-    } else if(response == 400){
-      alert("algo errado")
-    }
+    alert("Cadastro completado com Sucesso!")
+
+    console.log(response.data)
+    setCatServicoNomeCategoria(null)
     
   })
   .catch((error) => {
+
+    alert("Erro!")
     console.log(error);
   })  
 }
@@ -173,6 +174,7 @@ useEffect (() => {
               
               <TextInput
                 style={StyleCadastro.inputText}
+                autoCapitalize="words"
                 placeholder="Nome"
                 placeholderTextColor="#F97316"
                 value={values.nome}
@@ -188,6 +190,7 @@ useEffect (() => {
               
               <TextInput
                 style={StyleCadastro.inputText}
+                autoCapitalize="words"
                 placeholder="Sobrenome"
                 placeholderTextColor="#F97316"
                 value={values.sobrenome}
@@ -235,16 +238,24 @@ useEffect (() => {
               {/* input telefone */}
               <View style={StyleCadastro.inputViewCurto}>
 
-                <TextInput
+              <TextInputMask
+                  type={'cel-phone'}
+                    options={{
+                      maskType: 'BRL',
+                      withDDD: true,
+                      dddMask: '(99) ',
+                    }}
                   style={StyleCadastro.inputTextCurto}
                   placeholder="Telefone"
                   placeholderTextColor="#F97316"
                   value={values.telefone}
                   onChangeText={handleChange('telefone')}
                   onBlur={handleBlur('telefone')}
+                  keyboardType='numeric'
+                  maxLength={15}
                 />
                 {touched.telefone && <Text style={StyleCadastro.msgErroCurta}>{errors.telefone}</Text>}
-
+                {/* <MascaraTelefone /> */}
               </View>
 
               {/* input estado */}
@@ -252,11 +263,13 @@ useEffect (() => {
                 
                 <TextInput
                   style={StyleCadastro.inputTextCurto}
+                  autoCapitalize="characters"
                   placeholder="UF"
                   placeholderTextColor="#F97316"
                   value={values.uf}
                   onChangeText={handleChange('uf')}
                   onBlur={handleBlur('uf')}
+                  maxLength={2}
                 />
                 {touched.uf && <Text style={StyleCadastro.msgErroCurta}>{errors.uf}</Text>}
 

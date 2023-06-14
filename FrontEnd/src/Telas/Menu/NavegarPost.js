@@ -176,7 +176,7 @@ return (
       <View>
         <FlatList
           data={dadosPostagens
-            // .reverse()
+            .reverse() 
           }
           renderItem={({item})=><CaixaPost 
             Nome={(item.tbl_usuario.nome)} 
