@@ -101,6 +101,7 @@ const NavegarPintores = async () => {
 
 // -------------------------------------------------------------------------------------------------------------------
 
+
 // ------------------------------------ Rota do axios que tráz os artístas 'Músicos' ------------------------------------
   
   // recuperar todos os artistas músicos do banco de dados

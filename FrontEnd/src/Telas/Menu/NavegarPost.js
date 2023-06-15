@@ -174,17 +174,20 @@ return (
         <View style={stylePintores.categorias}>           
 
       <View>
-        <FlatList
-          data={dadosPostagens
-            .reverse() 
-          }
-          renderItem={({item})=><CaixaPost 
-            Nome={(item.tbl_usuario.nome)} 
-            Sobrenome={(item.tbl_usuario.sobrenome)} 
-            catServicoNomeCategoria={(item.tbl_usuario.catServicoNomeCategoria)} 
-            desc_postagem={(item.desc_postagem)} />} 
-          keyExtractor={(item)=>item.id_postagem}
-        />
+        <ScrollView horizontal={false}>
+          <FlatList
+            data={dadosPostagens
+              // .reverse() 
+            }
+            horizontal={false}
+            renderItem={({item})=><CaixaPost 
+              Nome={(item.tbl_usuario.nome)} 
+              Sobrenome={(item.tbl_usuario.sobrenome)} 
+              catServicoNomeCategoria={(item.tbl_usuario.catServicoNomeCategoria)} 
+              desc_postagem={(item.desc_postagem)} />} 
+            keyExtractor={(item)=>item.id_postagem}
+          />
+        </ScrollView>
       </View>
 
     </View>

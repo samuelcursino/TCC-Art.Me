@@ -85,16 +85,16 @@ return (
 
 
       <View>
-      <ScrollView horizontal={true}>
-        <FlatList
-          data={dadosPintores}
-          contentContainerStyle={{margin:4}}
-          horizontal={false}
-          numColumns = {2}
-          renderItem={({item})=><CaixaUsuarioPintores Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
-          keyExtractor={(item)=>item.id_usuario}
-        />
-                </ScrollView>
+        <ScrollView horizontal={true}>
+          <FlatList
+            data={dadosPintores}
+            contentContainerStyle={{margin:4}}
+            horizontal={false}
+            numColumns = {2}
+            renderItem={({item})=><CaixaUsuarioPintores Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
+            keyExtractor={(item)=>item.id_usuario}
+          />
+        </ScrollView>
       </View>
 
         </View>

@@ -84,14 +84,16 @@ return (
 
 
       <View>
-        <FlatList
-          data={dadosMusicos}
-          contentContainerStyle={{margin:4}}
-          horizontal={false}
-          numColumns = {2}
-          renderItem={({item})=><CaixaUsuarioMusicos Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
-          keyExtractor={(item)=>item.id_usuario}
-        />
+        <ScrollView horizontal={true}>
+          <FlatList
+            data={dadosMusicos}
+            contentContainerStyle={{margin:4}}
+            horizontal={false}
+            numColumns = {2}
+            renderItem={({item})=><CaixaUsuarioMusicos Nome={(item.nome)} Sobrenome={(item.sobrenome)} catServicoNomeCategoria={(item.catServicoNomeCategoria)} />}
+            keyExtractor={(item)=>item.id_usuario}
+          />
+        </ScrollView>
       </View>         
 
         </View>
