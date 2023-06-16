@@ -175,30 +175,32 @@ router.get('/listarPostagem/:tblUsuarioIdUsuario', (req, res)=>{
 // });
 // -----------------------------------------------------------------------------------------------------
 
-// ----------------------------------- ROTA DE EXCLUSÃO DE SERVICO-----------------------------------
-// router.delete('/excluirServico/:id_servico', (req, res)=>{
-//     console.log(req.params);
-//     let {id_servico} = req.params
+// ----------------------------------- ROTA DE EXCLUSÃO DE POSTAGEM-----------------------------------
+router.delete('/excluirPostagem/:id_postagem', (req, res)=>{
 
-//     modelPost.destroy(
-//         {where:{id_servico}}
-//     ).then(
-//         ()=>{
-//             return res.status(200).json({
-//                 erroStatus:false,
-//                 mensagemStatus:"SERVICO EXCLUIDO COM SUCESSO."
-//             })
-//         }
-//     ).catch(
-//         (error)=>{
-//             return res.status(400).json({
-//                 erroStatus:true,
-//                 mensagemStatus:"ERRO AO EXCLUIR O SERVICO.",
-//                 errorObject:error
-//             });
-//         }
-//     );
-// });
+    console.log(req.params);
+
+    let {id_postagem} = req.params
+
+    modelPost.destroy(
+        {where:{id_postagem}}
+    ).then(
+        ()=>{
+            return res.status(200).json({
+                erroStatus:false,
+                mensagemStatus:"POSTAGEM EXCLUIDA COM SUCESSO."
+            })
+        }
+    ).catch(
+        (error)=>{
+            return res.status(400).json({
+                erroStatus:true,
+                mensagemStatus:"ERRO AO EXCLUIR A POSTAGEM.",
+                errorObject:error
+            });
+        }
+    );
+});
 // -----------------------------------------------------------------------------------------------------
 
 module.exports = router;

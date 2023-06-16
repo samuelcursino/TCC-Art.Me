@@ -44,7 +44,7 @@ export default function PostArtista() {
     })
     .catch((error) => {
 
-      alert("Deu erro ae")
+      alert("Algo deu errado!")
       console.log(error);
     })  
   }
