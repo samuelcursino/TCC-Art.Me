@@ -180,6 +180,7 @@ return (
               // .reverse() 
             }
             horizontal={false}
+            vertical={true}
             renderItem={({item})=><CaixaPost 
               Nome={(item.tbl_usuario.nome)} 
               Sobrenome={(item.tbl_usuario.sobrenome)} 
